@@ -1,0 +1,6 @@
+D:\My\IT\SoftServe\SS\2 Convention\Elementary\5.Writing Number\bin\Debug\5.Writing Number.exe.config
+D:\My\IT\SoftServe\SS\2 Convention\Elementary\5.Writing Number\bin\Debug\5.Writing Number.exe
+D:\My\IT\SoftServe\SS\2 Convention\Elementary\5.Writing Number\bin\Debug\5.Writing Number.pdb
+D:\My\IT\SoftServe\SS\2 Convention\Elementary\5.Writing Number\obj\Debug\5.Writing Number.exe
+D:\My\IT\SoftServe\SS\2 Convention\Elementary\5.Writing Number\obj\Debug\5.Writing Number.pdb
+D:\My\IT\SoftServe\SS\2 Convention\Elementary\5.Writing Number\obj\Debug\5. Writing Number.csprojResolveAssemblyReference.cache

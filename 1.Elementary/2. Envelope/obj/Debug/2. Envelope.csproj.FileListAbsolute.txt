@@ -1,0 +1,6 @@
+D:\My\IT\SoftServe\SS\2 Convention\Elementary\2. Envelope\bin\Debug\_2.Envelope.exe.config
+D:\My\IT\SoftServe\SS\2 Convention\Elementary\2. Envelope\bin\Debug\_2.Envelope.exe
+D:\My\IT\SoftServe\SS\2 Convention\Elementary\2. Envelope\bin\Debug\_2.Envelope.pdb
+D:\My\IT\SoftServe\SS\2 Convention\Elementary\2. Envelope\obj\Debug\_2.Envelope.exe
+D:\My\IT\SoftServe\SS\2 Convention\Elementary\2. Envelope\obj\Debug\_2.Envelope.pdb
+D:\My\IT\SoftServe\SS\2 Convention\Elementary\2. Envelope\obj\Debug\2. Envelope.csprojResolveAssemblyReference.cache

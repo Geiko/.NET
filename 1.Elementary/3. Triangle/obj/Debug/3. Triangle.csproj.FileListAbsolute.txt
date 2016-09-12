@@ -1,0 +1,6 @@
+D:\My\IT\SoftServe\SS\2 Convention\Elementary\3. Triangle\bin\Debug\_3.Triangle.exe.config
+D:\My\IT\SoftServe\SS\2 Convention\Elementary\3. Triangle\bin\Debug\_3.Triangle.exe
+D:\My\IT\SoftServe\SS\2 Convention\Elementary\3. Triangle\bin\Debug\_3.Triangle.pdb
+D:\My\IT\SoftServe\SS\2 Convention\Elementary\3. Triangle\obj\Debug\3. Triangle.csprojResolveAssemblyReference.cache
+D:\My\IT\SoftServe\SS\2 Convention\Elementary\3. Triangle\obj\Debug\_3.Triangle.exe
+D:\My\IT\SoftServe\SS\2 Convention\Elementary\3. Triangle\obj\Debug\_3.Triangle.pdb
