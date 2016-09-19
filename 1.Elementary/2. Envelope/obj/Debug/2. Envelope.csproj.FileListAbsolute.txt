@@ -4,3 +4,21 @@ D:\My\IT\SoftServe\SS\2 Convention\Elementary\2. Envelope\bin\Debug\_2.Envelope.
 D:\My\IT\SoftServe\SS\2 Convention\Elementary\2. Envelope\obj\Debug\_2.Envelope.exe
 D:\My\IT\SoftServe\SS\2 Convention\Elementary\2. Envelope\obj\Debug\_2.Envelope.pdb
 D:\My\IT\SoftServe\SS\2 Convention\Elementary\2. Envelope\obj\Debug\2. Envelope.csprojResolveAssemblyReference.cache
+D:\My\IT\SoftServe\SS\2 Convention\1.Elementary\2. Envelope\bin\Debug\_2.Envelope.exe.config
+D:\My\IT\SoftServe\SS\2 Convention\1.Elementary\2. Envelope\bin\Debug\_2.Envelope.exe
+D:\My\IT\SoftServe\SS\2 Convention\1.Elementary\2. Envelope\bin\Debug\_2.Envelope.pdb
+D:\My\IT\SoftServe\SS\2 Convention\1.Elementary\2. Envelope\obj\Debug\_2.Envelope.exe
+D:\My\IT\SoftServe\SS\2 Convention\1.Elementary\2. Envelope\obj\Debug\_2.Envelope.pdb
+D:\My\IT\SoftServe\C#\PRACTICE\1.Elem\1.Elementary\2. Envelope\bin\Debug\_2.Envelope.exe.config
+D:\My\IT\SoftServe\C#\PRACTICE\1.Elem\1.Elementary\2. Envelope\obj\Debug\_2.Envelope.exe
+D:\My\IT\SoftServe\C#\PRACTICE\1.Elem\1.Elementary\2. Envelope\obj\Debug\_2.Envelope.pdb
+D:\My\IT\SoftServe\C#\PRACTICE\1.Elem\1.Elementary\2. Envelope\bin\Debug\_2.Envelope.exe
+D:\My\IT\SoftServe\C#\PRACTICE\1.Elem\1.Elementary\2. Envelope\bin\Debug\_2.Envelope.pdb
+D:\My\IT\SoftServe\C#\PRACTICE\1.Elem\1.Elementary\2. Envelope\obj\Debug\2. Envelope.csprojResolveAssemblyReference.cache
+D:\My\IT\SoftServe\C#\PRACTICE\1.Elem\1.Elementary\2. Envelope\obj\Debug\_2.Envelope.Properties.Resources.resources
+D:\My\IT\SoftServe\C#\PRACTICE\1.Elem\1.Elementary\2. Envelope\obj\Debug\2. Envelope.csproj.GenerateResource.Cache
+D:\My\IT\SoftServe\C#\PRACTICE\1.Elem\1.Elementary\2. Envelope\bin\Debug\_2.Envelope.exe.CodeAnalysisLog.xml
+D:\My\IT\SoftServe\C#\PRACTICE\1.Elem\1.Elementary\2. Envelope\bin\Debug\_2.Envelope.exe.lastcodeanalysissucceeded
+D:\gh\dotNET\.NET\1.Elementary\2. Envelope\bin\Debug\_2.Envelope.exe.config
+D:\gh\dotNET\.NET\1.Elementary\2. Envelope\obj\Debug\_2.Envelope.exe
+D:\gh\dotNET\.NET\1.Elementary\2. Envelope\obj\Debug\_2.Envelope.pdb

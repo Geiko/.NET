@@ -1,48 +1,34 @@
-﻿using System;
-/*
-1.	При передаче некорректных параметров на исполнение приложение не должно завершать работу сбоем.
-2.	Запуск без параметров выводит инструкции по использованию программы.
-3.	Параметры передаются в порядке, приведённом в описании задания.
-
-
-3.	Сортировка треугольников
-
-Разработать консольную программу, выполняющую вывод треугольников в порядке убывания их площади. 
-
-После добавления каждого нового треугольника программа спрашивает, хочет ли пользователь добавить ещё один. 
-Если пользователь ответит “y” или “yes” (без учёта регистра), программа попросит ввести данные для ещё одного треугольника, 
-в противном случае – выводит результат в консоль.
-
-•	Расчёт площади треугольника должен производится по формуле Герона.
-
-•	Каждый треугольник определяется именем и длинами его сторон. 
-        Формат ввода (разделитель - запятая):   <имя>, <длина стороны>, <длина стороны>, <длина стороны>
-
-•	Приложение должно обрабатывать ввод чисел с плавающей точкой.
-
-•	Ввод должен быть нечувствителен к регистру, пробелам, табам.
-
-•	Вывод данных должен быть следующем примере:
-
-============= Triangles list: ===============
-1. [Triangle first]: 17.23 сm
-2. [Triangle 22]: 13 cm
-3. [Triangle 1]: 1.5 cm 
- */
-
+﻿//-----------------------------------------------------------------------
+// <copyright file="Program.cs" company="SoftServe">
+//     Copyright (c) SoftServe. All rights reserved.
+// </copyright>
+// <author>Kostiantyn Geiko</author>
+//-----------------------------------------------------------------------
 namespace _3.Triangle
 {
-    class Program
+    using System;
+    using Entities;
+    using View;
+
+    /// <summary>
+    /// This class represents Program.
+    /// </summary>
+    public class Program
     {
-        static void Main ( string [ ] args )
+        /// <summary>
+        /// It is entry point.
+        /// </summary>
+        public static void Main()
         {
+            IView view = new ConsoleView();
             try
             {
-                TriangleSorting s = new TriangleSorting ( );
+                TriangleSorting sorting = new TriangleSorting();
+                sorting.Start();
             }
-            catch ( Exception ex)
+            catch (SystemException ex)
             {
-                Console.WriteLine ( ex.Message );
+                view.Dislay(ex.Message);
             }
         }
     }

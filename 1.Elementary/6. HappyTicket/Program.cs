@@ -1,51 +1,49 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-/*
-       6.	Счастливые билеты
-    Счастливые билеты.
-    Есть 2 способа подсчёта счастливых билетов:
-    1. Московский — если на автобусном билете напечатано шестизначное число, и сумма первых трёх цифр равна сумме последних трёх, то этот билет считается счастливым.
-    2. Ленинградский, или Питерский — если сумма чётных цифр билета равна сумме нечётных цифр билета, то билет считается счастливым.
-
-    Задача:
-    Номер билета - шестизначное число.
-    Нужно написать консольное приложение, которое может посчитать количество счастливых билетов. 
-    Для выбора алгоритма подсчёта читается текстовый файл. 
-    Путь к текстовому файлу задаётся в консоли после запуска программы. 
-    Индикаторы алгоритмов:
-    1 - слово 'Moskow'
-    2 - слово 'Piter'
-    После задания всех необходимых параметров, 
-    программа в консоль должна вывести количество счастливых билетов для указанного способа подсчёта
-
-        Общие требования
-    1.	При передаче некорректных параметров на исполнение приложение не должно завершать работу сбоем.
-    2.	Запуск без параметров выводит инструкции по использованию программы.
-    3.	Параметры передаются в порядке, приведённом в описании задания. 
-*/
-
+﻿//-----------------------------------------------------------------------
+// <copyright file="Program.cs" company="SoftServe">
+//     Copyright (c) SoftServe. All rights reserved.
+// </copyright>
+// <author>Kostiantyn Geiko</author>
+//-----------------------------------------------------------------------
 namespace _6.HappyTicket
 {
-    class Program
-    {
-        static void Main ( string [ ] args )
-        {
-            new CountHappyTicket ( );
+    using System;
+    using System.IO;
+    using Entities;
+    using View;
 
-            new CountHappyTicket ( new List<Ticket> {
-                    new Ticket ( "123456" ),
-                    new Ticket ( "111111" ),
-                    new Ticket ( "123321" ),
-                    new Ticket ( "112233" ),
-                    new Ticket ( "1122334" ),
-                    new Ticket ( "11223345678" ),
-                    new Ticket ( "12345677654321" ),
-                    new Ticket ( "123456787654321" )
-                } 
-            );
+    /// <summary>
+    /// This class represents Program.
+    /// </summary>
+    public class Program
+    {
+        /// <summary>
+        /// Entry point.
+        /// </summary>
+        /// <param name="args">
+        /// Array of string arguments from command prompt.
+        /// </param>
+        public static void Main(string[] args)
+        {
+            IView view = new ConsoleView();
+            try
+            {
+                Passenger passenger = new Passenger();
+                passenger.AskAlgorithm();
+                string input = Console.ReadLine();
+                passenger.PathToAlgorithmFile =
+                        string.IsNullOrEmpty(input) ?
+                        @"..\..\TextFiles\Algorithm.txt" : 
+                        input;
+                passenger.HowManyHappyNumbersExist();
+            }
+            catch (ArgumentException ex)
+            {
+                view.Show(ex.Message);
+            }
+            catch (FileNotFoundException ex)
+            {
+                view.Show(ex.Message);
+            }
         }
     }
 }

@@ -1,19 +1,39 @@
-﻿using System;
-
+﻿//-----------------------------------------------------------------------
+// <copyright file="Program.cs" company="SoftServe">
+//     Copyright (c) SoftServe. All rights reserved.
+// </copyright>
+// <author>Kostiantyn Geiko</author>
+//-----------------------------------------------------------------------
 namespace _2.Envelope
 {
-    class Program
+    using System;
+    using Entities;
+    using View;
+
+    /// <summary>
+    /// This class represents Program.
+    /// </summary>
+    public class Program
     {
-        static void Main ( string [ ] args )
+        /// <summary>
+        /// It is an entry point.
+        /// </summary>
+        public static void Main()
         {
+            IView view = new ConsoleView();
             try
             {
-                new EnvelopeNesting ( );
+                EnvelopeManager manager = new EnvelopeManager();
+                manager.Start();
             }
-            catch ( Exception ex)
+            catch (OutOfMemoryException ex)
             {
-                Console.WriteLine (ex.Message);
-            }            
+                view.Display(ex.Message);
+            }
+            catch (SystemException ex)
+            {
+                view.Display(ex.Message);
+            }
         }
     }
 }
