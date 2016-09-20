@@ -25,6 +25,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisIgnoreGeneratedCode>true</CodeAnalysisIgnoreGeneratedCode>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -34,6 +35,12 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>Kostiantyn.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -48,7 +55,9 @@
   <ItemGroup>
     <Compile Include="Demo\ConsoleDemo.cs" />
     <Compile Include="Demo\IDemo.cs" />
-    <Compile Include="Writers\EnglishNumberWriter.cs" />
+    <Compile Include="Writers\EngDictionaryRecursWriter.cs" />
+    <Compile Include="Writers\EngEnumRecursWriter.cs" />
+    <Compile Include="Writers\EngEnumWriter.cs" />
     <Compile Include="Abstract\INumberWriter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -57,11 +66,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Writers\RussianNumberWriter.cs" />
+    <Compile Include="Writers\RusEnumWriter.cs" />
     <Compile Include="Abstract\BaseNumberWriter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Kostiantyn.pfx" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

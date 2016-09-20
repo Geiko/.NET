@@ -11,6 +11,7 @@ namespace _5.Writing_Number
     using System.Linq;
     using Demo;
     using Properties;
+    using Writers;
 
     /// <summary>
     /// This class represents Program.
@@ -26,7 +27,6 @@ namespace _5.Writing_Number
             IDemo demo = new ConsoleDemo();
             try
             {
-                INumberWriter writer = new RussianNumberWriter();
                 if (args.Count() == 0)
                 {
                     demo.Show(Resources.ArgsIsNull);
@@ -34,8 +34,7 @@ namespace _5.Writing_Number
                 else
                 {
                     demo.Show(args[0]);
-                    writer = new EnglishNumberWriter(args[0]);
-                    writer = new RussianNumberWriter(args[0]);
+                    INumberWriter writer = new EngDictionaryRecursWriter(args[0], true);
                     demo.Show(writer.ConvertToText());
                 }
             }

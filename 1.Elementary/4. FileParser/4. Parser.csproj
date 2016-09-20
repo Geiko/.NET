@@ -109,7 +109,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="TextFiles\my.txt" />
-    <Content Include="TextFiles\spec.txt" />
+    <Content Include="TextFiles\Specification.txt" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

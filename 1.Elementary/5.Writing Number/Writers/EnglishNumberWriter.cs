@@ -190,16 +190,16 @@ namespace _5.Writing_Number
         public override string ConvertToText()
         {
             string result = string.Empty;
-            if (this.Arg <= 20)
+            if (this.NumberToText <= 20)
             {
                 result = string.Format(
                     Resources.Display, 
-                    ((Numbers)Arg).ToString());
+                    ((Numbers)NumberToText).ToString());
             }
-            else if (this.Arg > 20 && this.Arg < 100)
+            else if (this.NumberToText > 20 && this.NumberToText < 100)
             {
-                int a2 = this.Arg % 10;
-                int a1 = this.Arg - a2;
+                int a2 = this.NumberToText % 10;
+                int a1 = this.NumberToText - a2;
 
                 if (a2 == 0)
                 {
@@ -215,12 +215,12 @@ namespace _5.Writing_Number
                         ((Numbers)a2).ToString());
                 }
             }
-            else if (this.Arg >= 100)
+            else if (this.NumberToText >= 100)
             {
-                int a3 = this.Arg % 10;
-                int a2 = (this.Arg - a3) % 100;
-                int a22 = this.Arg % 100;
-                int a1 = (this.Arg - a2 - a3) / 100;
+                int a3 = this.NumberToText % 10;
+                int a2 = (this.NumberToText - a3) % 100;
+                int a22 = this.NumberToText % 100;
+                int a1 = (this.NumberToText - a2 - a3) / 100;
 
                 if (a3 == 0 && a2 == 0)
                 {

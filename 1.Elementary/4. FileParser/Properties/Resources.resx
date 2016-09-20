@@ -130,7 +130,7 @@
     <value>String enters in the file - {0} times.</value>
   </data>
   <data name="FILE_NOT_EXISTS" xml:space="preserve">
-    <value>This path '{0}' doesn't exist.</value>
+    <value>This file '{0}' doesn't exist.</value>
   </data>
   <data name="ONE_ARG" xml:space="preserve">
     <value>{0}</value>

@@ -25,20 +25,21 @@ namespace _4.FileParser
             IDemo demo = new ConsoleDemo();
             try
             {
+                IParse parser = new FileParser();
                 ShowArgs(args, demo);
                 string path = @"..\..\TextFiles\my.txt";
                 RefreshFile(path, demo);
 
                 if (args.Length == 2)
                 {
-                    IParse parser = new FileParser(args[0], args[1]);
+                    parser = new FileParser(args[0], args[1]);
                     parser = new StreamParser(args[0], args[1]);
                     demo.Display(parser.Count());
                 }
 
                 if (args.Length == 3)
                 {
-                    IParse parser = new FileParser(args[0], args[1], args[2]);
+                    parser = new FileParser(args[0], args[1], args[2]);
                     parser = new StreamParser(args[0], args[1], args[2]);
                     parser.Replace();
                     demo.Display(Properties.Resources.RESULT);
@@ -69,8 +70,7 @@ namespace _4.FileParser
         private static void ShowArgs(string[] args, IDemo demo)
         {
             demo.Display(string.Format(
-                Properties.Resources.ARGS,
-                args.Length));
+                Properties.Resources.ARGS, args.Length));
             for (int i = 0; i < args.Length; i++)
             {
                 demo.Display(args[i]);
@@ -97,8 +97,7 @@ namespace _4.FileParser
             File.WriteAllLines(path, array);
             demo.Display(Properties.Resources.TEXT_FROM_FILE);
             demo.Display(string.Format(
-                Properties.Resources.ONE_ARG, 
-                File.ReadAllText(path)));
+                Properties.Resources.ONE_ARG, File.ReadAllText(path)));
         }
     }
 }

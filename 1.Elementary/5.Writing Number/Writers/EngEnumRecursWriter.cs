@@ -215,7 +215,7 @@ namespace _5.Writing_Number.Writers
         public override string ConvertToText()
         {
             this.MaxNumber = int.MaxValue;
-            return this.NumberToWords(this.NumberToConvert);
+            return this.NumberToWords(this.NumberToText);
         }
 
         /// <summary>

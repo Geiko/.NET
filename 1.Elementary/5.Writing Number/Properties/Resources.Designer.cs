@@ -61,6 +61,15 @@ namespace _5.Writing_Number.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to and .
+        /// </summary>
+        internal static string And {
+            get {
+                return ResourceManager.GetString("And", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Args Is Null..
         /// </summary>
         internal static string ArgsIsNull {
@@ -124,11 +133,146 @@ namespace _5.Writing_Number.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to eight.
+        /// </summary>
+        internal static string eight {
+            get {
+                return ResourceManager.GetString("eight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to eighteen.
+        /// </summary>
+        internal static string eighteen {
+            get {
+                return ResourceManager.GetString("eighteen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to eighty.
+        /// </summary>
+        internal static string eighty {
+            get {
+                return ResourceManager.GetString("eighty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to eleven.
+        /// </summary>
+        internal static string eleven {
+            get {
+                return ResourceManager.GetString("eleven", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to fifteen.
+        /// </summary>
+        internal static string fifteen {
+            get {
+                return ResourceManager.GetString("fifteen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to fifty.
+        /// </summary>
+        internal static string fifty {
+            get {
+                return ResourceManager.GetString("fifty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to five.
+        /// </summary>
+        internal static string five {
+            get {
+                return ResourceManager.GetString("five", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to forty.
+        /// </summary>
+        internal static string forty {
+            get {
+                return ResourceManager.GetString("forty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to four.
+        /// </summary>
+        internal static string four {
+            get {
+                return ResourceManager.GetString("four", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to fourteen.
+        /// </summary>
+        internal static string fourteen {
+            get {
+                return ResourceManager.GetString("fourteen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to hundred.
+        /// </summary>
+        internal static string hundred {
+            get {
+                return ResourceManager.GetString("hundred", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to -.
+        /// </summary>
+        internal static string Hyphen {
+            get {
+                return ResourceManager.GetString("Hyphen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Message is empty.
         /// </summary>
         internal static string MessageEmpty {
             get {
                 return ResourceManager.GetString("MessageEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to milliard.
+        /// </summary>
+        internal static string milliard {
+            get {
+                return ResourceManager.GetString("milliard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to million.
+        /// </summary>
+        internal static string million {
+            get {
+                return ResourceManager.GetString("million", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to minus.
+        /// </summary>
+        internal static string minus {
+            get {
+                return ResourceManager.GetString("minus", resourceCulture);
             }
         }
         
@@ -142,11 +286,182 @@ namespace _5.Writing_Number.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to nine.
+        /// </summary>
+        internal static string nine {
+            get {
+                return ResourceManager.GetString("nine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to nineteen.
+        /// </summary>
+        internal static string nineteen {
+            get {
+                return ResourceManager.GetString("nineteen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ninety.
+        /// </summary>
+        internal static string ninety {
+            get {
+                return ResourceManager.GetString("ninety", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to one.
+        /// </summary>
+        internal static string one {
+            get {
+                return ResourceManager.GetString("one", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reading Specification Error..
         /// </summary>
         internal static string ReadingSpecificationError {
             get {
                 return ResourceManager.GetString("ReadingSpecificationError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to seven.
+        /// </summary>
+        internal static string seven {
+            get {
+                return ResourceManager.GetString("seven", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to seventeen.
+        /// </summary>
+        internal static string seventeen {
+            get {
+                return ResourceManager.GetString("seventeen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to seventy.
+        /// </summary>
+        internal static string seventy {
+            get {
+                return ResourceManager.GetString("seventy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to six.
+        /// </summary>
+        internal static string six {
+            get {
+                return ResourceManager.GetString("six", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to sixteen.
+        /// </summary>
+        internal static string sixteen {
+            get {
+                return ResourceManager.GetString("sixteen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to sixty.
+        /// </summary>
+        internal static string sixty {
+            get {
+                return ResourceManager.GetString("sixty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ten.
+        /// </summary>
+        internal static string ten {
+            get {
+                return ResourceManager.GetString("ten", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to thirteen.
+        /// </summary>
+        internal static string thirteen {
+            get {
+                return ResourceManager.GetString("thirteen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to thirty.
+        /// </summary>
+        internal static string thirty {
+            get {
+                return ResourceManager.GetString("thirty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to thousand.
+        /// </summary>
+        internal static string thousand {
+            get {
+                return ResourceManager.GetString("thousand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to three.
+        /// </summary>
+        internal static string three {
+            get {
+                return ResourceManager.GetString("three", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to twelve.
+        /// </summary>
+        internal static string twelve {
+            get {
+                return ResourceManager.GetString("twelve", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to twenty.
+        /// </summary>
+        internal static string twenty {
+            get {
+                return ResourceManager.GetString("twenty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to two.
+        /// </summary>
+        internal static string two {
+            get {
+                return ResourceManager.GetString("two", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to zero.
+        /// </summary>
+        internal static string zero {
+            get {
+                return ResourceManager.GetString("zero", resourceCulture);
             }
         }
     }

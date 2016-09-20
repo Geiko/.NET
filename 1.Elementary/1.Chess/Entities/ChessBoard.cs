@@ -19,8 +19,19 @@ namespace _1.Chess.Entities
         /// <summary>
         /// Path to the file with specification.
         /// </summary>
-        public const string SPECIFICATION =
+        private const string SPECIFICATION =
                 @"..\..\TextFiles\Specification.txt";
+
+        /// <summary>
+        /// Minimal value of board side.
+        /// </summary>
+        private const int MinValue = 2;
+
+        /// <summary>
+        /// Maximal value of board side.
+        /// </summary>
+        private const int MaxValue = 80;
+
 
         /// <summary>
         /// Interface reference for displaying result.
@@ -88,7 +99,7 @@ namespace _1.Chess.Entities
 
             set
             {
-                if (value <= 0)
+                if (value < MinValue || value > MaxValue)
                 {
                     throw new ArgumentOutOfRangeException(
                         string.Format(Resources.NoHeight, value));
@@ -110,7 +121,7 @@ namespace _1.Chess.Entities
 
             set
             {
-                if (value <= 0)
+                if (value < MinValue || value > MaxValue)
                 {
                     throw new ArgumentOutOfRangeException(string.Format(Resources.NoWidth, value));
                 }

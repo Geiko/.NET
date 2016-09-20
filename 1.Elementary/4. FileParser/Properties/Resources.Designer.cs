@@ -97,7 +97,7 @@ namespace _4.FileParser.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This path &apos;{0}&apos; doesn&apos;t exist..
+        ///   Looks up a localized string similar to This file &apos;{0}&apos; doesn&apos;t exist..
         /// </summary>
         internal static string FILE_NOT_EXISTS {
             get {

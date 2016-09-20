@@ -234,20 +234,20 @@ namespace _5.Writing_Number
         /// <returns>Resulted string</returns>
         public override string ConvertToText()
         {
-            bool minus = this.NumberToConvert < 0 ? true : false;
-            this.NumberToConvert = Math.Abs(this.NumberToConvert);
+            bool minus = this.NumberToText < 0 ? true : false;
+            this.NumberToText = Math.Abs(this.NumberToText);
             string result = string.Empty;
-            if (this.NumberToConvert <= 20)
+            if (this.NumberToText <= 20)
             {
                 result = string.Format(
                     Resources.Display,
-                    ((Numbers)this.NumberToConvert).ToString());
+                    ((Numbers)this.NumberToText).ToString());
             }
-            else if (this.NumberToConvert > 20 && this.NumberToConvert < 100)
+            else if (this.NumberToText > 20 && this.NumberToText < 100)
             {
                 result = this.GetResultFor21To99();
             }
-            else if (this.NumberToConvert >= 100)
+            else if (this.NumberToText >= 100)
             {
                 result = this.GetResultForMore99();
             }
@@ -269,8 +269,8 @@ namespace _5.Writing_Number
         /// <returns>Resulted string.</returns>
         private string GetResultFor21To99()
         {
-            int a2 = this.NumberToConvert % 10;
-            int a1 = this.NumberToConvert - a2;
+            int a2 = this.NumberToText % 10;
+            int a1 = this.NumberToText - a2;
 
             if (a2 == 0)
             {
@@ -293,10 +293,10 @@ namespace _5.Writing_Number
         /// <returns>Resulted string.</returns>
         private string GetResultForMore99()
         {
-            int a3 = this.NumberToConvert % 10;
-            int a2 = (this.NumberToConvert - a3) % 100;
-            int a22 = this.NumberToConvert % 100;
-            int a1 = this.NumberToConvert - a2 - a3;
+            int a3 = this.NumberToText % 10;
+            int a2 = (this.NumberToText - a3) % 100;
+            int a22 = this.NumberToText % 100;
+            int a1 = this.NumberToText - a2 - a3;
 
             if (a3 == 0 && a2 == 0)
             {

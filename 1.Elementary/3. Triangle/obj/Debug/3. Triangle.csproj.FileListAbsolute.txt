@@ -14,3 +14,6 @@ D:\My\IT\SoftServe\C#\PRACTICE\1.Elem\1.Elementary\3. Triangle\obj\Debug\_3.Tria
 D:\My\IT\SoftServe\C#\PRACTICE\1.Elem\1.Elementary\3. Triangle\obj\Debug\3. Triangle.csproj.GenerateResource.Cache
 D:\My\IT\SoftServe\C#\PRACTICE\1.Elem\1.Elementary\3. Triangle\obj\Debug\_3.Triangle.exe
 D:\My\IT\SoftServe\C#\PRACTICE\1.Elem\1.Elementary\3. Triangle\obj\Debug\_3.Triangle.pdb
+D:\gh\dotNET\.NET\1.Elementary\3. Triangle\bin\Debug\_3.Triangle.exe.config
+D:\gh\dotNET\.NET\1.Elementary\3. Triangle\obj\Debug\_3.Triangle.exe
+D:\gh\dotNET\.NET\1.Elementary\3. Triangle\obj\Debug\_3.Triangle.pdb

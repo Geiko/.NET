@@ -138,13 +138,118 @@
   <data name="DisplayTwo" xml:space="preserve">
     <value>{0} {1}</value>
   </data>
+  <data name="eight" xml:space="preserve">
+    <value>eight</value>
+  </data>
+  <data name="eighteen" xml:space="preserve">
+    <value>eighteen</value>
+  </data>
+  <data name="eighty" xml:space="preserve">
+    <value>eighty</value>
+  </data>
+  <data name="eleven" xml:space="preserve">
+    <value>eleven</value>
+  </data>
+  <data name="fifteen" xml:space="preserve">
+    <value>fifteen</value>
+  </data>
+  <data name="fifty" xml:space="preserve">
+    <value>fifty</value>
+  </data>
+  <data name="five" xml:space="preserve">
+    <value>five</value>
+  </data>
+  <data name="forty" xml:space="preserve">
+    <value>forty</value>
+  </data>
+  <data name="four" xml:space="preserve">
+    <value>four</value>
+  </data>
+  <data name="fourteen" xml:space="preserve">
+    <value>fourteen</value>
+  </data>
+  <data name="hundred" xml:space="preserve">
+    <value>hundred</value>
+  </data>
   <data name="MessageEmpty" xml:space="preserve">
     <value>Message is empty</value>
+  </data>
+  <data name="milliard" xml:space="preserve">
+    <value>milliard</value>
+  </data>
+  <data name="million" xml:space="preserve">
+    <value>million</value>
+  </data>
+  <data name="minus" xml:space="preserve">
+    <value>minus</value>
   </data>
   <data name="NamberNotValid" xml:space="preserve">
     <value>"Number {0} out of range 0-999"</value>
   </data>
+  <data name="nine" xml:space="preserve">
+    <value>nine</value>
+  </data>
+  <data name="nineteen" xml:space="preserve">
+    <value>nineteen</value>
+  </data>
+  <data name="ninety" xml:space="preserve">
+    <value>ninety</value>
+  </data>
+  <data name="one" xml:space="preserve">
+    <value>one</value>
+  </data>
   <data name="ReadingSpecificationError" xml:space="preserve">
     <value>Reading Specification Error.</value>
+  </data>
+  <data name="seven" xml:space="preserve">
+    <value>seven</value>
+  </data>
+  <data name="seventeen" xml:space="preserve">
+    <value>seventeen</value>
+  </data>
+  <data name="seventy" xml:space="preserve">
+    <value>seventy</value>
+  </data>
+  <data name="six" xml:space="preserve">
+    <value>six</value>
+  </data>
+  <data name="sixteen" xml:space="preserve">
+    <value>sixteen</value>
+  </data>
+  <data name="sixty" xml:space="preserve">
+    <value>sixty</value>
+  </data>
+  <data name="ten" xml:space="preserve">
+    <value>ten</value>
+  </data>
+  <data name="thirteen" xml:space="preserve">
+    <value>thirteen</value>
+  </data>
+  <data name="thirty" xml:space="preserve">
+    <value>thirty</value>
+  </data>
+  <data name="thousand" xml:space="preserve">
+    <value>thousand</value>
+  </data>
+  <data name="three" xml:space="preserve">
+    <value>three</value>
+  </data>
+  <data name="twelve" xml:space="preserve">
+    <value>twelve</value>
+  </data>
+  <data name="twenty" xml:space="preserve">
+    <value>twenty</value>
+  </data>
+  <data name="two" xml:space="preserve">
+    <value>two</value>
+  </data>
+  <data name="zero" xml:space="preserve">
+    <value>zero</value>
+  </data>
+  <data name="And" xml:space="preserve">
+    <value>and </value>
+  </data>
+  <data name="Hyphen" xml:space="preserve">
+    <value>-</value>
   </data>
 </root>

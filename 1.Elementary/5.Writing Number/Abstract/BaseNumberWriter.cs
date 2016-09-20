@@ -16,9 +16,14 @@ namespace _5.Writing_Number
     public abstract class BaseNumberWriter : INumberWriter
     {
         /// <summary>
+        /// Maximal value of number to covert to text.
+        /// </summary>
+        private int maxNumber = 999;
+
+        /// <summary>
         /// Field of number that is converted to words.
         /// </summary>
-        private int arg;
+        private int numberToText;
 
         /// <summary>
         /// Reference to interface for displaying result.
@@ -43,29 +48,47 @@ namespace _5.Writing_Number
         /// that is converted to words.</param>
         public BaseNumberWriter(string arg)
         {
-            int temp = this.ConvertToInt(arg);
-            this.Arg = temp;
+            this.NumberToText = int.Parse(arg);
         }
+
+        /// <summary>
+        /// Initializes a new instance of the 
+        /// <see cref="BaseNumberWriter" /> class with one parameter.
+        /// </summary>
+        /// <param name="arg">Number as String 
+        /// that is converted to words.</param>
+        /// <param name="maxValue">Maximum value of number that 
+        /// is to be converted to text.</param>
+        public BaseNumberWriter(string arg, bool maxValue)
+        {
+            this.maxNumber = int.MaxValue;
+            this.NumberToText = int.Parse(arg);
+        }
+
+        /// <summary>
+        /// Gets or sets the maximum number that is converted to words.
+        /// </summary>
+        public int MaxNumber { get; set; }
 
         /// <summary>
         /// Gets or sets the number that is converted to words.
         /// </summary>
-        public int Arg
+        public int NumberToText
         {
             get
             {
-                return this.arg;
+                return this.numberToText;
             }
 
             set
             {
-                if (value < 0 || value > 999)
+                if (Math.Abs(value) > this.maxNumber)
                 {
                     throw new ArgumentOutOfRangeException(
                         string.Format(Resources.NamberNotValid, value));
                 }
 
-                this.arg = value;
+                this.numberToText = value;
             }
         }
 
@@ -74,24 +97,5 @@ namespace _5.Writing_Number
         /// </summary>
         /// <returns>Resulted string.</returns>
         public abstract string ConvertToText();
-
-        /// <summary>
-        /// Method trying to convert string to integer.
-        /// </summary>
-        /// <param name="arg">Number as String 
-        /// that is converted to words.</param>
-        /// <returns>Number to convert.</returns>
-        private int ConvertToInt(string arg)
-        {
-            int number;
-            bool result = int.TryParse(arg, out number);
-            if (result)
-            {
-                return number;
-            }
-
-            throw new ArgumentException(string.Format(
-                Resources.CannotConvert, number));
-        }
     }
 }

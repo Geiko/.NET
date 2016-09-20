@@ -18,15 +18,35 @@ namespace _4.FileParser
     public abstract class BaseParser : IParse
     {
         /// <summary>
+        /// Path to the specification file.
+        /// </summary>
+        private const string SPECIFICATION = 
+                @"..\..\TextFiles\Specification.txt";
+
+        /// <summary>
+        /// Path to the file for counting the string.
+        /// </summary>
+        private string pathToFile;
+
+        /// <summary>
+        /// String for finding.
+        /// </summary>
+        private string stringToFind;
+
+        /// <summary>
+        /// String for a replace.
+        /// </summary>
+        private string stringToReplace;
+        
+        /// <summary>
         /// Initializes a new instance of the 
         /// <see cref="BaseParser" /> class.
         /// Constructor without parameters that represents the task.
         /// </summary>
         public BaseParser()
         {
-                string message = Properties.Resources.SPEC_FILE;
                 IDemo demo = new ConsoleDemo();
-                demo.Display(message);
+                demo.Display(File.ReadAllText(SPECIFICATION));
         }
 
         /// <summary>
@@ -43,7 +63,6 @@ namespace _4.FileParser
         /// </param>
         public BaseParser(string pathToFile, string stringToFind)
         {
-            this.Validate(pathToFile, stringToFind);
             this.PathToFile = pathToFile;
             this.StringToFind = stringToFind;
         }
@@ -62,7 +81,6 @@ namespace _4.FileParser
         public BaseParser(
             string pathToFile, string stringToFind, string stringToReplace)
         {
-            this.Validate(pathToFile, stringToFind, stringToReplace);
             this.PathToFile = pathToFile;
             this.StringToFind = stringToFind;
             this.StringToReplace = stringToReplace;
@@ -71,17 +89,68 @@ namespace _4.FileParser
         /// <summary>
         /// Gets or sets the field of path to the file for parsing.
         /// </summary>
-        public string PathToFile { get; set; }
+        public string PathToFile
+        {
+            get
+            {
+                return this.pathToFile;
+            }
+
+            set
+            {
+                if (!File.Exists(value))
+                {
+                    throw new ArgumentNullException(string.Format(
+                        Properties.Resources.FILE_NOT_EXISTS, value));
+                }
+
+                this.pathToFile = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the field string for finding.
         /// </summary>
-        public string StringToFind { get; set; }
+        public string StringToFind
+        {
+            get
+            {
+                return this.stringToFind;
+            }
 
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                {
+                    throw new ArgumentNullException(
+                        Properties.Resources.STRING_NULL_EMPTY, value);
+                }
+
+                this.stringToFind = value;
+            }
+        }
+        
         /// <summary>
         /// Gets or sets the field of string for a swap.
         /// </summary>
-        public string StringToReplace { get; set; }
+        public string StringToReplace
+        {
+            get
+            {
+                return this.stringToReplace;
+            }
+
+            set
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException(
+                        Properties.Resources.STRING_NULL, value);
+                }
+
+                this.stringToReplace = value;
+            }
+        }
 
         /// <summary>
         /// Abstract method to count string.
@@ -94,70 +163,6 @@ namespace _4.FileParser
         /// <summary>
         /// Abstract method to replace strings.
         /// </summary>
-        public abstract void Replace();
-
-        /// <summary>
-        /// It is validate two parameters.
-        /// </summary>
-        /// <param name="pathToFile">
-        /// Path to the file for counting the string.
-        /// </param>
-        /// <param name="stringToFind">
-        /// String for counting entrance to the file.
-        /// </param>
-        private void Validate(string pathToFile, string stringToFind)
-        {
-            this.ValidatePathToFile(pathToFile);
-            this.ValidateString(stringToFind);
-        }
-
-        /// <summary>
-        /// It is validate three parameters.
-        /// </summary>
-        /// <param name="pathToFile">
-        /// Path to the file for counting the string.
-        /// </param>
-        /// <param name="stringToFind">String that will be changed.</param>
-        /// <param name="stringToReplace">New string for swapping.</param>
-        private void Validate(
-                string pathToFile, 
-                string stringToFind, 
-                string stringToReplace)
-        {
-            this.ValidatePathToFile(pathToFile);
-            this.ValidateString(stringToFind);
-            this.ValidateString(stringToReplace);
-        }
-
-        /// <summary>
-        /// It is validate the path to the file.
-        /// </summary>
-        /// <param name="pathToFile">
-        /// Path to the file for counting the string.
-        /// </param>
-        private void ValidatePathToFile(string pathToFile)
-        {
-            if (!File.Exists(pathToFile))
-            {
-                throw new FileNotFoundException(string.Format(
-                    Properties.Resources.FILE_NOT_EXISTS, 
-                    pathToFile));
-            }
-        }
-
-        /// <summary>
-        /// It is validate a string.
-        /// </summary>
-        /// <param name="stringToFind">
-        /// String for counting entrance to the file.
-        /// </param>
-        private void ValidateString(string stringToFind)
-        {
-            if (stringToFind == null)
-            {
-                throw new ArgumentNullException(string.Format(
-                    Properties.Resources.STRING_NULL, stringToFind));
-            }
-        }
+        public abstract void Replace();                
     }
 }

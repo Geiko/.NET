@@ -14,7 +14,7 @@ namespace _5.Writing_Number
         /// <summary>
         /// Gets or sets number that is got from command prompt.
         /// </summary>
-        int Arg { get; set; }
+        int NumberToText { get; set; }
 
         /// <summary>
         /// Main method for converting number to words.
