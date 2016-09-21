@@ -32,7 +32,7 @@ namespace Elementary
                         ChessBoard board = new ChessBoard();
                         ShowArgs(args, view);
                         board = new ChessBoard(args[0], args[1]);
-                        view.Display(board);
+                        view.Display(board.Cells);
                     }
                 }
                 else

@@ -8,7 +8,6 @@ namespace _1.Chess.View
 {
     using System;
     using System.Globalization;
-    using Entities;
     using Properties;
 
     /// <summary>
@@ -41,14 +40,16 @@ namespace _1.Chess.View
         /// <summary>
         /// Method to display board.
         /// </summary>
-        /// <param name="board">Object of board.</param>
-        public void Display(ChessBoard board)
+        /// <param name="cells">
+        /// Boolean 2-size array of chess board object.
+        /// </param>
+        public void Display(bool[,] cells)
         {
-            for (int i = 0; i < board.Height; i++)
+            for (int i = 0; i < cells.GetLength(0); i++)
             {
-                for (int j = 0; j < board.Width; j++)
+                for (int j = 0; j < cells.GetLength(1); j++)
                 {
-                    if (board.Cells[i, j] == true)
+                    if (cells[i, j] == true)
                     {
                         Console.Write(BLACK);
                     }

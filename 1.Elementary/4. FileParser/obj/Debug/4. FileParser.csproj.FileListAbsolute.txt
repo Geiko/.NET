@@ -1,6 +1,0 @@
-D:\My\IT\SoftServe\SS\2 Convention\Elementary\4. FileParser\bin\Debug\_4.FileParser.exe.config
-D:\My\IT\SoftServe\SS\2 Convention\Elementary\4. FileParser\bin\Debug\_4.FileParser.exe
-D:\My\IT\SoftServe\SS\2 Convention\Elementary\4. FileParser\bin\Debug\_4.FileParser.pdb
-D:\My\IT\SoftServe\SS\2 Convention\Elementary\4. FileParser\obj\Debug\4. FileParser.csprojResolveAssemblyReference.cache
-D:\My\IT\SoftServe\SS\2 Convention\Elementary\4. FileParser\obj\Debug\_4.FileParser.exe
-D:\My\IT\SoftServe\SS\2 Convention\Elementary\4. FileParser\obj\Debug\_4.FileParser.pdb

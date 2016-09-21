@@ -22,7 +22,9 @@ namespace _1.Chess.View
         /// <summary>
         /// Method to display given chess board.
         /// </summary>
-        /// <param name="board">Given object of chess board.</param>
-        void Display(ChessBoard board);
+        /// <param name="cells">
+        /// Boolean 2-size array of chess board object.
+        /// </param>
+        void Display(bool[,] cells);
     }
 }
