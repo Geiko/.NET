@@ -94,20 +94,18 @@ namespace _2.Envelope.Entities
         /// <returns>Integer to define compare.</returns>
         public int CompareTo(Envelope other)
         {
-            if (this.LongSide < other.LongSide && 
+            if (this.LongSide < other.LongSide &&
                 this.ShortSide < other.ShortSide)
             {
                 return -1;
             }
-            else if (this.LongSide > other.LongSide && 
+            else if (this.LongSide > other.LongSide &&
                 this.ShortSide > other.ShortSide)
             {
                 return 1;
             }
-            else
-            {
-                return 0;
-            }
+
+            return 0;
         }
 
         /// <summary>

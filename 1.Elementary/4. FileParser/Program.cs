@@ -27,8 +27,7 @@ namespace _4.FileParser
             {
                 IParse parser = new FileParser();
                 ShowArgs(args, demo);
-                string path = @"..\..\TextFiles\my.txt";
-                RefreshFile(path, demo);
+                RefreshFile(args[0], demo);
 
                 if (args.Length == 2)
                 {
@@ -45,7 +44,7 @@ namespace _4.FileParser
                     demo.Display(Properties.Resources.RESULT);
                     demo.Display(string.Format(
                         Properties.Resources.ONE_ARG, 
-                        File.ReadAllText(path)));
+                        File.ReadAllText(args[0])));
                 }
             }
             catch (ArgumentNullException ex)
