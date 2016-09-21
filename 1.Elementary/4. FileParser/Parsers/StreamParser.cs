@@ -89,7 +89,7 @@ namespace _4.FileParser.Parsers
         public override void Replace()
         {
             const string TEMP_FILE = "temp.txt";
-            using (StreamReader reader = 
+            using (StreamReader reader =
                     new StreamReader(PathToFile, Encoding.UTF8))
             {
                 using (StreamWriter writer = new StreamWriter(TEMP_FILE))
@@ -108,7 +108,19 @@ namespace _4.FileParser.Parsers
                 }
             }
 
-            File.WriteAllText(this.PathToFile, File.ReadAllText(TEMP_FILE));
+            using (StreamReader reader =
+                    new StreamReader(TEMP_FILE, Encoding.UTF8))
+            {
+                using (StreamWriter writer = new StreamWriter(PathToFile))
+                {
+                    while (!reader.EndOfStream)
+                    {
+                        string line = reader.ReadLine();
+                        writer.WriteLine(line);
+                    }
+                }
+            }
+            
             File.Delete(TEMP_FILE);
         }
     }

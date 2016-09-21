@@ -8,6 +8,7 @@ namespace _3.Triangle.View
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using Entities;
     using Properties;
 
@@ -22,7 +23,10 @@ namespace _3.Triangle.View
         /// <param name="message">Message to display.</param>
         public void Dislay(string message)
         {
-            Console.WriteLine(Resources.Display, message);
+            Console.WriteLine(
+                Resources.Display,
+                message,
+                CultureInfo.CurrentCulture);
         }
 
         /// <summary>
@@ -36,8 +40,21 @@ namespace _3.Triangle.View
             foreach (Triangle triangle in triangles)
             {
                 i++;
-                Console.WriteLine(Resources.ShowTwoParam, i, triangle);
+                Console.WriteLine(
+                    Resources.ShowTwoParam,
+                    i,
+                    triangle,
+                    CultureInfo.CurrentCulture);
             }
+        }
+
+        /// <summary>
+        /// Reading user answer.
+        /// </summary>
+        /// <returns>User answer.</returns>
+        public string ReadLine()
+        {
+            return Console.ReadLine();
         }
     }
 }

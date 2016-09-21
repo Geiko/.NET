@@ -7,6 +7,7 @@
 namespace _1.Chess.Entities
 {
     using System;
+    using System.Globalization;
     using System.IO;
     using Properties;
     using View;
@@ -31,8 +32,7 @@ namespace _1.Chess.Entities
         /// Maximal value of board side.
         /// </summary>
         private const int MaxValue = 80;
-
-
+        
         /// <summary>
         /// Interface reference for displaying result.
         /// </summary>
@@ -71,8 +71,8 @@ namespace _1.Chess.Entities
         /// <param name="height">Height of the chess board.</param>
         public ChessBoard(string width, string height)
         {
-            this.Width = int.Parse(width);
-            this.Height = int.Parse(height);
+            this.Width = int.Parse(width, CultureInfo.CurrentCulture);
+            this.Height = int.Parse(height, CultureInfo.CurrentCulture);
             this.InitializeCells();
         }
 
@@ -123,7 +123,8 @@ namespace _1.Chess.Entities
             {
                 if (value < MinValue || value > MaxValue)
                 {
-                    throw new ArgumentOutOfRangeException(string.Format(Resources.NoWidth, value));
+                    throw new ArgumentOutOfRangeException(
+                        string.Format(Resources.NoWidth, value));
                 }
 
                 this.width = value;

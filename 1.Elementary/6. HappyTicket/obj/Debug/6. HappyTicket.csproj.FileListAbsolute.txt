@@ -15,13 +15,3 @@ D:\My\IT\SoftServe\C#\PRACTICE\1.Elem\1.Elementary\6. HappyTicket\obj\Debug\_6.H
 D:\My\IT\SoftServe\C#\PRACTICE\1.Elem\1.Elementary\6. HappyTicket\obj\Debug\_6.HappyTicket.pdb
 D:\My\IT\SoftServe\C#\PRACTICE\1.Elem\1.Elementary\6. HappyTicket\bin\Debug\_6.HappyTicket.exe.CodeAnalysisLog.xml
 D:\My\IT\SoftServe\C#\PRACTICE\1.Elem\1.Elementary\6. HappyTicket\bin\Debug\_6.HappyTicket.exe.lastcodeanalysissucceeded
-D:\gh\dotNET\.NET\1.Elementary\6. HappyTicket\bin\Debug\_6.HappyTicket.exe.config
-D:\gh\dotNET\.NET\1.Elementary\6. HappyTicket\obj\Debug\_6.HappyTicket.exe
-D:\gh\dotNET\.NET\1.Elementary\6. HappyTicket\obj\Debug\_6.HappyTicket.pdb
-D:\gh\dotNET\.NET\1.Elementary\6. HappyTicket\bin\Debug\_6.HappyTicket.exe
-D:\gh\dotNET\.NET\1.Elementary\6. HappyTicket\bin\Debug\_6.HappyTicket.pdb
-D:\gh\dotNET\.NET\1.Elementary\6. HappyTicket\bin\Debug\_6.HappyTicket.exe.CodeAnalysisLog.xml
-D:\gh\dotNET\.NET\1.Elementary\6. HappyTicket\bin\Debug\_6.HappyTicket.exe.lastcodeanalysissucceeded
-D:\gh\dotNET\.NET\1.Elementary\6. HappyTicket\obj\Debug\6. HappyTicket.csprojResolveAssemblyReference.cache
-D:\gh\dotNET\.NET\1.Elementary\6. HappyTicket\obj\Debug\_6.HappyTicket.Properties.Resources.resources
-D:\gh\dotNET\.NET\1.Elementary\6. HappyTicket\obj\Debug\6. HappyTicket.csproj.GenerateResource.Cache

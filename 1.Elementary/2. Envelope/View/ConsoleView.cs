@@ -7,6 +7,7 @@
 namespace _2.Envelope.View
 {
     using System;
+    using System.Globalization;
     using Entities;
     using Properties;
 
@@ -21,7 +22,10 @@ namespace _2.Envelope.View
         /// <param name="message">Message to show.</param>
         public void Display(string message)
         {
-            Console.WriteLine(Resources.Show, message);
+            Console.WriteLine(
+                    Resources.Show, 
+                    message, 
+                    CultureInfo.CurrentCulture);
         }
 
         /// <summary>
@@ -31,8 +35,12 @@ namespace _2.Envelope.View
         /// <param name="envelope2">Second envelope.</param>
         public void FirstNested(Envelope envelope1, Envelope envelope2)
         {
-            Console.WriteLine(Resources.Nesting);
-            Console.WriteLine(Resources.Envelope1In2, envelope1, envelope2);
+            Console.WriteLine(Resources.Nesting, CultureInfo.CurrentCulture);
+            Console.WriteLine(
+                    Resources.Envelope1In2, 
+                    envelope1, 
+                    envelope2, 
+                    CultureInfo.CurrentCulture);
         }
 
         /// <summary>
@@ -42,8 +50,12 @@ namespace _2.Envelope.View
         /// <param name="envelope2">Second envelope.</param>
         public void SecondNested(Envelope envelope1, Envelope envelope2)
         {
-            Console.WriteLine(Resources.Nesting);
-            Console.WriteLine(Resources.Envelope2In1, envelope1, envelope2);
+            Console.WriteLine(Resources.Nesting, CultureInfo.CurrentCulture);
+            Console.WriteLine(
+                    Resources.Envelope2In1, 
+                    envelope1, 
+                    envelope2, 
+                    CultureInfo.CurrentCulture);
         }
 
         /// <summary>
@@ -53,9 +65,21 @@ namespace _2.Envelope.View
         /// <param name="envelope2">Second envelope.</param>
         public void NoNested(Envelope envelope1, Envelope envelope2)
         {
-            Console.WriteLine(Resources.Nesting);
+            Console.WriteLine(Resources.Nesting, CultureInfo.CurrentCulture);
             Console.WriteLine(
-                Resources.NoEnvelopeInput, envelope1, envelope2);
+                    Resources.NoEnvelopeInput, 
+                    envelope1, 
+                    envelope2, 
+                    CultureInfo.CurrentCulture);
+        }
+        
+        /// <summary>
+        /// Reading user answer.
+        /// </summary>
+        /// <returns>User answer.</returns>
+        public string ReadLine()
+        {
+            return Console.ReadLine();
         }
     }
 }

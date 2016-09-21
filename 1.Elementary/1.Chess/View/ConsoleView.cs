@@ -7,6 +7,7 @@
 namespace _1.Chess.View
 {
     using System;
+    using System.Globalization;
     using Entities;
     using Properties;
 
@@ -18,12 +19,12 @@ namespace _1.Chess.View
         /// <summary>
         /// View of Black cell.
         /// </summary>
-        private string blackCell = "*";
+        private const string BLACK = "*";
 
         /// <summary>
         /// View of White cell.
         /// </summary>
-        private string whiteCell = "  ";
+        private const string WHITE = "  ";
 
         /// <summary>
         /// Method to display message in Console.
@@ -31,7 +32,10 @@ namespace _1.Chess.View
         /// <param name="message">Message to show.</param>
         public void Display(string message)
         {
-            Console.WriteLine(Resources.Display, message);
+            Console.WriteLine(
+                Resources.Display,
+                message, 
+                CultureInfo.CurrentCulture);
         }
 
         /// <summary>
@@ -46,11 +50,11 @@ namespace _1.Chess.View
                 {
                     if (board.Cells[i, j] == true)
                     {
-                        Console.Write(this.blackCell);
+                        Console.Write(BLACK);
                     }
                     else
                     {
-                        Console.Write(this.whiteCell);
+                        Console.Write(WHITE);
                     }
                 }
 

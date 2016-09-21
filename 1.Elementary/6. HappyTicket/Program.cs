@@ -29,7 +29,7 @@ namespace _6.HappyTicket
             {
                 Passenger passenger = new Passenger();
                 passenger.AskAlgorithm();
-                string input = Console.ReadLine();
+                string input = view.ReadLine();
                 passenger.PathToAlgorithmFile =
                         string.IsNullOrEmpty(input) ?
                         @"..\..\TextFiles\Algorithm.txt" : 

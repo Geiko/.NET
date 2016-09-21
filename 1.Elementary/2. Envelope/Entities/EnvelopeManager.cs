@@ -121,7 +121,7 @@ namespace _2.Envelope.Entities
             while (true)
             {
                 this.view.Display(Resources.Input);
-                string customerSize = Console.ReadLine();
+                string customerSize = this.view.ReadLine();
                 if (customerSize == "out")
                 {
                     this.view.Display(Resources.By);
@@ -167,7 +167,7 @@ namespace _2.Envelope.Entities
         private bool IsContinue()
         {
             this.view.Display(Resources.Continue);
-            string answer = Console.ReadLine();
+            string answer = this.view.ReadLine();
             if (answer.ToLower() == "y" || answer.ToLower() == "yes")
             {
                 return true;

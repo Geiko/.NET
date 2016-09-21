@@ -27,5 +27,11 @@ namespace _6.HappyTicket.View
         /// </param>
         /// <param name="algorithm">Type of used algorithm.</param>
         void ShowResult(int happyTicketQuantity, Algorithm algorithm);
+
+        /// <summary>
+        /// Reading user answer.
+        /// </summary>
+        /// <returns>User answer.</returns>
+        string ReadLine();
     }
 }

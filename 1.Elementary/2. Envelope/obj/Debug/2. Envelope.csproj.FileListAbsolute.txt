@@ -19,6 +19,3 @@ D:\My\IT\SoftServe\C#\PRACTICE\1.Elem\1.Elementary\2. Envelope\obj\Debug\_2.Enve
 D:\My\IT\SoftServe\C#\PRACTICE\1.Elem\1.Elementary\2. Envelope\obj\Debug\2. Envelope.csproj.GenerateResource.Cache
 D:\My\IT\SoftServe\C#\PRACTICE\1.Elem\1.Elementary\2. Envelope\bin\Debug\_2.Envelope.exe.CodeAnalysisLog.xml
 D:\My\IT\SoftServe\C#\PRACTICE\1.Elem\1.Elementary\2. Envelope\bin\Debug\_2.Envelope.exe.lastcodeanalysissucceeded
-D:\gh\dotNET\.NET\1.Elementary\2. Envelope\bin\Debug\_2.Envelope.exe.config
-D:\gh\dotNET\.NET\1.Elementary\2. Envelope\obj\Debug\_2.Envelope.exe
-D:\gh\dotNET\.NET\1.Elementary\2. Envelope\obj\Debug\_2.Envelope.pdb

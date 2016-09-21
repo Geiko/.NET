@@ -8,6 +8,7 @@ namespace _7.NumericalSequence.Abstract
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.IO;
     using Demo;
 
@@ -59,7 +60,7 @@ namespace _7.NumericalSequence.Abstract
         /// <param name="upperLimit">The upper limit for numbers.</param>
         public BaseNumericalSequence(string upperLimit)
         {
-            this.UpperLimit = upperLimit.ConvertToInt();
+            this.UpperLimit = int.Parse(upperLimit, CultureInfo.CurrentCulture);
             this.Numbers = new List<int>();
         }
 
@@ -71,8 +72,8 @@ namespace _7.NumericalSequence.Abstract
         /// <param name="upperLimit">The upper limit for numbers.</param>
         public BaseNumericalSequence(string lowLimit, string upperLimit)
         {
-            this.LowLimit = lowLimit.ConvertToInt();
-            this.UpperLimit = upperLimit.ConvertToInt();
+            this.LowLimit = int.Parse(lowLimit, CultureInfo.CurrentCulture);
+            this.UpperLimit = int.Parse(upperLimit, CultureInfo.CurrentCulture);
             this.Numbers = new List<int>();
         }
 

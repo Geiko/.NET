@@ -73,7 +73,6 @@
     <Compile Include="Demo\ConsoleDemo.cs" />
     <Compile Include="Demo\IDemo.cs" />
     <Compile Include="GetNumericalSequences\FibonacciSequence.cs" />
-    <Compile Include="Abstract\StringConvertor.cs" />
     <Compile Include="Abstract\INumericalSequence.cs" />
     <Compile Include="GetNumericalSequences\NaturalSequence.cs" />
     <Compile Include="Abstract\BaseNumericalSequence.cs" />

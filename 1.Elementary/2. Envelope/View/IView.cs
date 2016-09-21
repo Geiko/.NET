@@ -39,5 +39,11 @@ namespace _2.Envelope.View
         /// <param name="envelope1">First envelope.</param>
         /// <param name="envelope2">Second envelope.</param>
         void NoNested(Envelope envelope1, Envelope envelope2);
+
+        /// <summary>
+        /// Reading user answer.
+        /// </summary>
+        /// <returns>User answer.</returns>
+        string ReadLine();
     }
 }

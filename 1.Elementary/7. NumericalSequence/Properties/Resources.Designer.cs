@@ -79,6 +79,15 @@ namespace _7.NumericalSequence.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ,.
+        /// </summary>
+        internal static string Comma {
+            get {
+                return ResourceManager.GetString("Comma", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dangers of Out Of Memory.
         /// </summary>
         internal static string DengerousOutOfMemory {

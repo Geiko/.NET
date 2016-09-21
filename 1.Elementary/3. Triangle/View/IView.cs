@@ -25,5 +25,11 @@ namespace _3.Triangle.View
         /// </summary>
         /// <param name="message">Message to display.</param>
         void Dislay(string message);
+
+        /// <summary>
+        /// Reading user answer.
+        /// </summary>
+        /// <returns>User answer</returns>
+        string ReadLine();
     }
 }

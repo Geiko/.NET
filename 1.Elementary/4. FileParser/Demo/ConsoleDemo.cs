@@ -8,6 +8,7 @@ namespace _4.FileParser.Demo
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
@@ -24,7 +25,7 @@ namespace _4.FileParser.Demo
         public void Display(string message)
         {
             this.ValidateMassege(message);
-            Console.WriteLine(message);
+            Console.WriteLine(message, CultureInfo.CurrentCulture);
         }
 
         /// <summary>
@@ -38,7 +39,9 @@ namespace _4.FileParser.Demo
         {
             this.ValidateEntries(stringEntries);
             Console.WriteLine(
-                    Properties.Resources.ENTERS_AMOUNT, stringEntries);
+                    Properties.Resources.ENTERS_AMOUNT, 
+                    stringEntries, 
+                    CultureInfo.CurrentCulture);
         }
 
         /// <summary>
@@ -50,7 +53,8 @@ namespace _4.FileParser.Demo
             if (string.IsNullOrEmpty(message))
             {
                 throw new ArgumentNullException(string.Format(
-                        Properties.Resources.STRING_NULL_EMPTY));
+                        Properties.Resources.STRING_NULL_EMPTY, 
+                        CultureInfo.CurrentCulture));
             }
         }
 

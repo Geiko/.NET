@@ -7,6 +7,7 @@
 namespace _5.Writing_Number.Demo
 {
     using System;
+    using System.Globalization;
     using System.IO;
     using Properties;
 
@@ -44,7 +45,10 @@ namespace _5.Writing_Number.Demo
         public void Show(string message)
         {
             this.ValidateString(message);
-            Console.WriteLine(Resources.Display, message);
+            Console.WriteLine(
+                Resources.Display, 
+                message, 
+                CultureInfo.CurrentCulture);
         }
 
         /// <summary>
@@ -56,7 +60,9 @@ namespace _5.Writing_Number.Demo
             if (string.IsNullOrEmpty(message))
             {
                 throw new ArgumentNullException(string.Format(
-                        Resources.MessageEmpty, message));
+                        Resources.MessageEmpty,
+                        message,
+                        CultureInfo.CurrentCulture));
             }
         }
     }

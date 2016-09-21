@@ -7,6 +7,7 @@
 namespace _6.HappyTicket.View
 {
     using System;
+    using System.Globalization;
     using Entities;
     using Entities.AlgorithmTypes;
     using Properties;
@@ -22,9 +23,12 @@ namespace _6.HappyTicket.View
         /// <param name="message">Message to be shown.</param>
         public void Show(string message)
         {
-            Console.WriteLine(Resources.Display, message);
+            Console.WriteLine(
+                Resources.Display, 
+                message, 
+                CultureInfo.CurrentCulture);
         }
-                
+
         /// <summary>
         /// Method to show result to console.
         /// </summary>
@@ -35,11 +39,21 @@ namespace _6.HappyTicket.View
         public void ShowResult(int happyTicketQuantity, Algorithm algorithm)
         {
             Console.WriteLine(
-                Resources.Result, 
-                Ticket.MinNumber, 
+                Resources.Result,
+                Ticket.MinNumber,
                 Ticket.MaxNumber,
-                happyTicketQuantity, 
-                algorithm);
+                happyTicketQuantity,
+                algorithm,
+                CultureInfo.CurrentCulture);
+        }
+
+        /// <summary>
+        /// Reading user answer.
+        /// </summary>
+        /// <returns>User answer.</returns>
+        public string ReadLine()
+        {
+            return Console.ReadLine();
         }
     }
 }

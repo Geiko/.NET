@@ -8,8 +8,8 @@ namespace _7.NumericalSequence.Demo
 {
     using System;
     using System.Collections.Generic;
-    using System.Text;
-    using _7.NumericalSequence.Properties;
+    using System.Globalization;
+    using Properties;
 
     /// <summary>
     /// Class for displaying info in console.
@@ -22,7 +22,10 @@ namespace _7.NumericalSequence.Demo
         /// <param name="message">Message for  displaying.</param>
         public void Show(string message)
         {
-            Console.WriteLine(Resources.Display, message);
+            Console.WriteLine(
+                Resources.Display, 
+                message, 
+                CultureInfo.CurrentCulture);
         }
 
         /// <summary>
@@ -31,20 +34,25 @@ namespace _7.NumericalSequence.Demo
         /// <param name="numbers">Collection for displaying.</param>
         public void Show(ICollection<int> numbers)
         {
-            StringBuilder builder = new StringBuilder();
             int i = 0;
             foreach (int n in numbers)
             {
                 if (i != 0)
                 {
-                    builder.Append(",");
-                }                
+                    Console.Write(
+                        Resources.Display, 
+                        Resources.Comma, 
+                        CultureInfo.CurrentCulture);
+                }
 
-                builder.Append(n);
+                Console.Write(
+                    Resources.Display, 
+                    n.ToString(), 
+                    CultureInfo.CurrentCulture);
                 i++;
             }
 
-            Console.WriteLine(Resources.Display, builder.ToString());
+            Console.WriteLine();
         }
     }
 }

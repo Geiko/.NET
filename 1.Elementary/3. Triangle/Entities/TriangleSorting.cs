@@ -8,6 +8,7 @@ namespace _3.Triangle.Entities
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.IO;
     using System.Text.RegularExpressions;
     using Properties;
@@ -91,7 +92,7 @@ namespace _3.Triangle.Entities
                 this.view.Dislay(Resources.Input);
                 this.view.Dislay(Resources.TriangleFormat);
                 this.view.Dislay(Resources.Divider);
-                string input = Console.ReadLine();
+                string input = this.view.ReadLine();
                 if (input.Trim().ToLower() == "out")
                 {
                     return null;
@@ -148,9 +149,9 @@ namespace _3.Triangle.Entities
 
             return new Triangle(
                 triangleParams[0],
-                double.Parse(triangleParams[1]),
-                double.Parse(triangleParams[2]),
-                double.Parse(triangleParams[3]));
+                double.Parse(triangleParams[1], CultureInfo.CurrentCulture),
+                double.Parse(triangleParams[2], CultureInfo.CurrentCulture),
+                double.Parse(triangleParams[3], CultureInfo.CurrentCulture));
         }
 
         /// <summary>
@@ -160,7 +161,7 @@ namespace _3.Triangle.Entities
         private bool IsContinue()
         {
             this.view.Dislay(Resources.IsContinue);
-            string userAnswer = Console.ReadLine();
+            string userAnswer = this.view.ReadLine();
             if (userAnswer.Trim().ToLower() == "y" || 
                        userAnswer.ToLower() == "yes")
             {
