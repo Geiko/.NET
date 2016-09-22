@@ -1,5 +1,0 @@
-D:\My\IT\SoftServe\SS\2 Convention\Elementary\Elementary\bin\Debug\Elementary.exe.config
-D:\My\IT\SoftServe\SS\2 Convention\Elementary\Elementary\bin\Debug\Elementary.exe
-D:\My\IT\SoftServe\SS\2 Convention\Elementary\Elementary\bin\Debug\Elementary.pdb
-D:\My\IT\SoftServe\SS\2 Convention\Elementary\Elementary\obj\Debug\Elementary.exe
-D:\My\IT\SoftServe\SS\2 Convention\Elementary\Elementary\obj\Debug\Elementary.pdb
