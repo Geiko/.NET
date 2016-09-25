@@ -1,0 +1,82 @@
+﻿@model IEnumerable<PipeStore.Models.Pipe>
+
+@{
+    ViewBag.Title = "Pipe & Tube Store";
+}
+
+<h2>Index - Pipe & Tube Store</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+    @using (Html.BeginForm("Index", "Pipes", FormMethod.Get))
+    {
+        <p>
+            Size:  @Html.TextBox("SearchString") &nbsp;&nbsp;&nbsp;
+            Material: @Html.DropDownList("pipeMaterial", "All") &nbsp;&nbsp;&nbsp;
+            <input type="submit" class="btn btn-success" value="Filter" />
+        </p>
+    }
+</p>
+
+<table class="table table-bordered table-condensed table-hover table-striped">
+    <tr class="success">
+        <th>
+            @Html.DisplayNameFor(model => model.Size)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Standard)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Material)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReleaseDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Weight)
+        </th>
+        <th>
+            BUY
+        </th>
+        <th>
+            Arrange
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Size)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Standard)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Material)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReleaseDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Weight)
+            </td>
+            <td>
+                @*<a href='@Url.Action( "Create", "Purchases", new { id = item.Id })'>*@
+                    <img alt="Cover" src="@item.ImageUrl" width="50" height="50" />
+                @*</a>*@
+            </td>
+            <td class="text-center">
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
+</table>
