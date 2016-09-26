@@ -187,11 +187,20 @@
     <Compile Include="Migrations\201609252003003_imgName.Designer.cs">
       <DependentUpon>201609252003003_imgName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609260653420_InStock.cs" />
+    <Compile Include="Migrations\201609260653420_InStock.Designer.cs">
+      <DependentUpon>201609260653420_InStock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609260731358_Manufacturer.cs" />
+    <Compile Include="Migrations\201609260731358_Manufacturer.Designer.cs">
+      <DependentUpon>201609260731358_Manufacturer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Pipe.cs" />
+    <Compile Include="Models\PipeDBContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -207,7 +216,9 @@
     <Content Include="Content\img\pvc.jpg" />
     <Content Include="Content\img\stainless.jpg" />
     <Content Include="Content\img\steel.jpg" />
+    <Content Include="Content\img\titan - Copy.jpeg" />
     <Content Include="Content\img\titan.jpeg" />
+    <Content Include="Content\img\titan.jpg" />
     <Content Include="Content\img\Zirconium.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -288,6 +299,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609252003003_imgName.resx">
       <DependentUpon>201609252003003_imgName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609260653420_InStock.resx">
+      <DependentUpon>201609260653420_InStock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609260731358_Manufacturer.resx">
+      <DependentUpon>201609260731358_Manufacturer.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

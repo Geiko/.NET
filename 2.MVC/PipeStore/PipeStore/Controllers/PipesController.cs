@@ -68,7 +68,7 @@ namespace PipeStore.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Size,Standard,ReleaseDate,Material,Price,Weight,ImageUrl")] Pipe pipe)
+        public ActionResult Create([Bind(Include = "ID,Size,Standard,Manufacturer,ReleaseDate,Material,Price,InStock,ImageUrl")] Pipe pipe)
         {
             if (ModelState.IsValid)
             {
@@ -100,7 +100,7 @@ namespace PipeStore.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Size,Standard,ReleaseDate,Material,Price,Weight,ImageUrl")] Pipe pipe)
+        public ActionResult Edit([Bind(Include = "ID,Size,Standard,Manufacturer,ReleaseDate,Material,Price,InStock,ImageUrl")] Pipe pipe)
         {
             if (ModelState.IsValid)
             {

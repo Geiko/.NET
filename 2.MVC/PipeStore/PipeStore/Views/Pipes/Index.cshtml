@@ -4,7 +4,7 @@
     ViewBag.Title = "Pipe & Tube Store";
 }
 
-<h2>Index - Pipe & Tube Store</h2>
+<h2>Pipes</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -30,13 +30,16 @@
             @Html.DisplayNameFor(model => model.Material)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Manufacturer)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.ReleaseDate)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Price)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Weight)
+            @Html.DisplayNameFor(model => model.InStock)
         </th>
         <th>
             BUY
@@ -59,17 +62,20 @@
                 @Html.DisplayFor(modelItem => item.Material)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.Manufacturer)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.ReleaseDate)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Weight)
+                @Html.DisplayFor(modelItem => item.InStock)
             </td>
             <td>
                 @*<a href='@Url.Action( "Create", "Purchases", new { id = item.Id })'>*@
-                    <img alt="Cover" src="@item.ImageUrl" width="50" height="50" />
+                    <img alt="Cover" src="@item.ImageUrl" width="30" height="30" />
                 @*</a>*@
             </td>
             <td class="text-center">

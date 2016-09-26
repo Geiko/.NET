@@ -18,6 +18,11 @@ namespace PipeStore.Models
         [StringLength(60, MinimumLength = 3)]
         public string Standard { get; set; }
 
+        [Display(Name = "Manufacturer")]
+        [Required]
+        [StringLength(60, MinimumLength = 2)]
+        public string Manufacturer { get; set; }
+
         [Display(Name = "Release")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
@@ -32,17 +37,12 @@ namespace PipeStore.Models
         [DataType(DataType.Currency)]
         public decimal Price { get; set; }
 
-        [Display(Name = "Weight, kg")]
+        [Display(Name = "In stock, kg")]
         [Range(1, 20000)]
-        public double Weight { get; set; }
+        public double InStock { get; set; }
 
         [Display(Name = "Image URL")]
         [StringLength(1024)]
         public string ImageUrl { get; set; }
-    }
-
-    public class PipeDBContext : DbContext
-    {
-        public DbSet<Pipe> Pipes { get; set; }
     }
 }

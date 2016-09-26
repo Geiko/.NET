@@ -140,3 +140,5 @@ D:\My\IT\SoftServe\C#\PRACTICE\2.MVC\PipeStore\PipeStore\obj\Debug\PipeStore.Mig
 D:\My\IT\SoftServe\C#\PRACTICE\2.MVC\PipeStore\PipeStore\obj\Debug\PipeStore.csproj.GenerateResource.Cache
 D:\My\IT\SoftServe\C#\PRACTICE\2.MVC\PipeStore\PipeStore\obj\Debug\PipeStore.Migrations.Img.resources
 D:\My\IT\SoftServe\C#\PRACTICE\2.MVC\PipeStore\PipeStore\obj\Debug\PipeStore.Migrations.imgName.resources
+D:\My\IT\SoftServe\C#\PRACTICE\2.MVC\PipeStore\PipeStore\obj\Debug\PipeStore.Migrations.InStock.resources
+D:\My\IT\SoftServe\C#\PRACTICE\2.MVC\PipeStore\PipeStore\obj\Debug\PipeStore.Migrations.Manufacturer.resources

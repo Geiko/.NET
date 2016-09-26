@@ -19,45 +19,49 @@ namespace PipeStore.Migrations
 
                  new Pipe
                  {
-                     Size = "325x15 mm ndl",
-                     Standard = "GOST 8732-78",
+                     Size = "325x15xndl mm",
+                     Standard = "ANSI 3456",
+                     Manufacturer = "China",
                      ReleaseDate = DateTime.Parse("2015-1-11"),
                      Material = "st.20",
                      Price = 1898.60M,
-                     Weight = 8330,
+                     InStock = 8330,
                      ImageUrl = "/Content/img/big_steel.jpg"
                  },
 
                new Pipe
                {
                    Size = "159x6x9000 mm",
-                   Standard = "GOST 9940-81",
+                   Standard = "ANSI 7986",
+                   Manufacturer = "Italy",
                    ReleaseDate = DateTime.Parse("2016-5-12"),
                    Material = "st.12X18H10T",
                    Price = 6744.20M,
-                   Weight = 5232,
+                   InStock = 5232,
                    ImageUrl = "/Content/img/stainless.jpg"
                },
 
                new Pipe
                {
-                   Size = "32x6 mm ndl",
+                   Size = "32x6xndl mm",
                    Standard = "TU14-3-987-78",
+                   Manufacturer = "Ukraine",
                    ReleaseDate = DateTime.Parse("2012-9-06"),
                    Material = "Copper M1",
                    Price = 12476.20M,
-                   Weight = 158,
+                   InStock = 158,
                    ImageUrl = "/Content/img/copper.jpg"
                },
 
                new Pipe
                {
-                   Size = "3/4\"",
-                   Standard = "GOST 3262-78",
+                   Size = "3/4\"x3,2x6000 mm",
+                   Standard = "ANSI 8976",
+                   Manufacturer = "China",
                    ReleaseDate = DateTime.Parse("2016-7-06"),
                    Material = "PVC",
                    Price = 3476.20M,
-                   Weight = 786,
+                   InStock = 786,
                    ImageUrl = "/Content/img/pvc.jpg"
                },
 
@@ -65,10 +69,11 @@ namespace PipeStore.Migrations
                  {
                      Size = "219x10x2000x5000 mm",
                      Standard = "GOST 8732-78",
+                     Manufacturer = "Russia",
                      ReleaseDate = DateTime.Parse("2015-5-12"),
                      Material = "st.45",
                      Price = 1999.20M,
-                     Weight = 7232,
+                     InStock = 7232,
                      ImageUrl = "/Content/img/boile.jpg"
                  },
 
@@ -76,54 +81,59 @@ namespace PipeStore.Migrations
                {
                    Size = "25p x 2p x 6000 mm",
                    Standard = "TU 14-3-654-78",
+                   Manufacturer = "Ukraine",
                    ReleaseDate = DateTime.Parse("2016-9-06"),
                    Material = "BT-1-0",
                    Price = 50476.20M,
-                   Weight = 38,
-                   ImageUrl = "Content/img/titan.jpeg"
+                   InStock = 38,
+                   ImageUrl = "Content/img/titan.jpg"
                },
 
                new Pipe
                {
-                   Size = "14 v x 2v x 4000 mm",
+                   Size = "14v x 2v x 4000 mm",
                    Standard = "TU14-3-654-78",
+                   Manufacturer = "Ukraine",
                    ReleaseDate = DateTime.Parse("2016-9-06"),
                    Material = "Zirconium",
                    Price = 103476.20M,
-                   Weight = 456,
+                   InStock = 456,
                    ImageUrl = "/Content/img/Zirconium.jpg"
                },
 
                new Pipe
                {
-                   Size = "133x6 mm ndl",
-                   Standard = "GOST 9940-81",
+                   Size = "133x6xndl mm",
+                   Standard = "ANSI 976",
+                   Manufacturer = "Germany",
                    ReleaseDate = DateTime.Parse("2016-5-12"),
                    Material = "st.10X23H18",
                    Price = 15888.20M,
-                   Weight = 3232,
+                   InStock = 3232,
                    ImageUrl = "/Content/img/stainless.jpg"
                },
 
                new Pipe
                {
-                   Size = "8v x 1p mm ndl",
+                   Size = "8v x 1p x ndl mm",
                    Standard = "TU14-3-987-78",
+                   Manufacturer = "Ukraine",
                    ReleaseDate = DateTime.Parse("2003-9-06"),
                    Material = "Copper M1",
                    Price = 17476.20M,
-                   Weight = 45,
+                   InStock = 45,
                    ImageUrl = "/Content/img/copper.jpg"
                },
 
                new Pipe
                {
-                   Size = "108x5 mm ndl",
+                   Size = "108x5xndl mm",
                    Standard = "GOST 9940-81",
+                   Manufacturer = "China",
                    ReleaseDate = DateTime.Parse("2016-2-12"),
                    Material = "st.10X23H18",
                    Price = 16888.20M,
-                   Weight = 2232,
+                   InStock = 2232,
                    ImageUrl = "/Content/img/stainless.jpg"
                },
 
@@ -131,10 +141,11 @@ namespace PipeStore.Migrations
                {
                    Size = "108x8x3000-6000 mm",
                    Standard = "TU14-3-987-78",
+                   Manufacturer = "Ukraine",
                    ReleaseDate = DateTime.Parse("2003-9-06"),
                    Material = "Aluminum",
                    Price = 4667.20M,
-                   Weight = 145,
+                   InStock = 145,
                    ImageUrl = "/Content/img/aluminum.jpg"
                },
 
@@ -142,10 +153,11 @@ namespace PipeStore.Migrations
                 {
                     Size = "630x50x6000 mm",
                     Standard = "GOST 8732-78",
+                    Manufacturer = "Russia",
                     ReleaseDate = DateTime.Parse("2014-1-11"),
                     Material = "st.20",
                     Price = 1578.33M,
-                    Weight = 9232,
+                    InStock = 9232,
                     ImageUrl = "/Content/img/big_steel2.jpg"
                 }
            );
