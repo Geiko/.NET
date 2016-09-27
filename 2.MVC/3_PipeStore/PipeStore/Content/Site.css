@@ -17,21 +17,21 @@
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
-input,
 select,
+input,
 textarea {
-    max-width: 280px;
+    max-width: 140px;
 }
 
-th{
+th {
     text-align: center;
 }
 
-td{
-    padding: 5px 15px!important;
-    text-align:right!important;
+td {
+    padding: 5px 15px !important;
+    text-align: right !important;
 }
 
-.tubeImg{
-    padding: 0 30px 0 0!important;
+.tubeImg {
+    padding: 0 30px 0 0 !important;
 }

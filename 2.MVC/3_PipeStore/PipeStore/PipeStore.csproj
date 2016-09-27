@@ -184,8 +184,9 @@
     <Compile Include="Controllers\HelloWorldController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MaterialsController.cs" />
     <Compile Include="Controllers\PipesController.cs" />
-    <Compile Include="Controllers\StandardsController.cs" />
+    <Compile Include="Controllers\PipeStandardsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -213,13 +214,26 @@
     <Compile Include="Migrations\201609271159560_Rating2.Designer.cs">
       <DependentUpon>201609271159560_Rating2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609271914528_Rating3.cs" />
+    <Compile Include="Migrations\201609271914528_Rating3.Designer.cs">
+      <DependentUpon>201609271914528_Rating3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609271928590_Rating4.cs" />
+    <Compile Include="Migrations\201609271928590_Rating4.Designer.cs">
+      <DependentUpon>201609271928590_Rating4.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Material.cs" />
     <Compile Include="Models\Pipe.cs" />
     <Compile Include="Models\PipeDBContext.cs" />
-    <Compile Include="Models\PipeInitializer.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\PipeListViewModel.cs" />
     <Compile Include="Models\PipeStandard.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -298,6 +312,16 @@
     <Content Include="Views\Pipes\Details.cshtml" />
     <Content Include="Views\Pipes\Edit.cshtml" />
     <Content Include="Views\Pipes\Index.cshtml" />
+    <Content Include="Views\Materials\Create.cshtml" />
+    <Content Include="Views\Materials\Delete.cshtml" />
+    <Content Include="Views\Materials\Details.cshtml" />
+    <Content Include="Views\Materials\Edit.cshtml" />
+    <Content Include="Views\Materials\Index.cshtml" />
+    <Content Include="Views\PipeStandards\Create.cshtml" />
+    <Content Include="Views\PipeStandards\Delete.cshtml" />
+    <Content Include="Views\PipeStandards\Details.cshtml" />
+    <Content Include="Views\PipeStandards\Edit.cshtml" />
+    <Content Include="Views\PipeStandards\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -329,6 +353,16 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609271159560_Rating2.resx">
       <DependentUpon>201609271159560_Rating2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609271914528_Rating3.resx">
+      <DependentUpon>201609271914528_Rating3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609271928590_Rating4.resx">
+      <DependentUpon>201609271928590_Rating4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

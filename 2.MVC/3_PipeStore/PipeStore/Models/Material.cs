@@ -4,17 +4,17 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PipeStore.Models
 {
-    public class PipeStandard
+    public class Material
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Standard is required")]
-        [StringLength(60, MinimumLength = 2, ErrorMessage = "Standard's name shold be in range 2-60 symbols")]
-        [DisplayName("Standard")]
-        public string Title { get; set; }
+        [Required(ErrorMessage = "Material is required")]
+        [StringLength(60, MinimumLength = 1, ErrorMessage = "Material's name shold be in range 1-60 symbols")]
+        [DisplayName("Material")]
+        public string Name { get; set; }
 
         public virtual ICollection<Pipe> Pipes { get; set; }
-        public PipeStandard()
+        public Material()
         {
             Pipes = new List<Pipe>();
         }

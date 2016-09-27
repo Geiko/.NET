@@ -4,7 +4,6 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using PipeStore.Models;
 using PipeStore.ViewModels;
@@ -16,28 +15,18 @@ namespace PipeStore.Controllers
         private PipeDBContext db = new PipeDBContext();
 
         // GET: Pipes
-        public ActionResult Index(string pipeMaterial, string searchString, int? standardId)
+        public ActionResult Index(
+            int? materialId, int? standardId, string searchString)
         {
-            var pipes = db.Pipes.Include(p => p.PipeStandard);
-
-
-            var materials = new List<string>();
-
-            var MaterialQry = from d in db.Pipes
-                           orderby d.Material
-                           select d.Material;
-
-            materials.AddRange(MaterialQry.Distinct());
-            ViewBag.pipeMaterial = new SelectList(materials);     
-
+            var pipes = db.Pipes.Include(p => p.PipeStandard);            
             if (!String.IsNullOrEmpty(searchString))
             {
                 pipes = pipes.Where(p => p.Size.Contains(searchString));
             }
 
-            if (!string.IsNullOrEmpty(pipeMaterial))
+            if (materialId != null && materialId != 0)
             {
-                pipes = pipes.Where(p => p.Material == pipeMaterial);
+                pipes = pipes.Where(p => p.MaterialId == materialId);
             }
 
             if (standardId != null && standardId != 0)
@@ -45,14 +34,17 @@ namespace PipeStore.Controllers
                 pipes = pipes.Where(p => p.PipeStandardId == standardId);
             }
 
+            var materials = db.Materials.ToList();
+            materials.Insert(0, new Material { Name = "All" });
             var standards = db.PipeStandards.ToList();
-            standards.ToList().Insert(0, new PipeStandard { Title = "All" });
-
+            standards.Insert(0, new PipeStandard { Title = "All" });
             PipeListViewModel plvModel = new PipeListViewModel
             {
                 Pipes = pipes.ToList(),
-                PipeStandards = new SelectList(standards, "Id", "Title")
+                PipeStandards = new SelectList(standards, "Id", "Title", 0),
+                Materials = new SelectList(materials, "Id", "Name", 0)
             };
+
             return View(plvModel);
         }
 
@@ -63,35 +55,37 @@ namespace PipeStore.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //var pipes = db.Pipes.Include(d => d.Standard);
-            //Pipe pipe = pipes.FirstOrDefault(d => d.Id == id);
+            
             Pipe pipe = db.Pipes.Find(id);
             if (pipe == null)
             {
                 return HttpNotFound();
             }
+
             return View(pipe);
         }
 
         // GET: Pipes/Create
         public ActionResult Create()
         {
-            //ViewBag.StandardBag = new SelectList(db.PipeStandards, "Id", "Title", 2);
-
             List<PipeStandard> standards = db.PipeStandards.ToList();
+            List<Material> materials = db.Materials.ToList();
             PipeListViewModel plvModel = new PipeListViewModel
             {
-                PipeStandards = new SelectList(standards, "Id", "Title")
+                PipeStandards = new SelectList(standards, "Id", "Title"),
+                Materials = new SelectList(materials, "Id", "Name")
             };
+
             return View(plvModel);
         }
 
         // POST: Pipes/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, 
+        // please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Size,PipeStandard,PipeStandardId,Manufacturer,ReleaseDate,Material,Price,InStock,ImageUrl")] Pipe pipe)
+        public ActionResult Create([Bind(Include ="Id,Size,PipeStandard,PipeStandardId,Material,MaterialId,Manufacturer,ReleaseDate,Material,Price,InStock,ImageUrl")] Pipe pipe)
         {
             if (ModelState.IsValid)
             {
@@ -99,13 +93,13 @@ namespace PipeStore.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            //PipeListViewModel plvModel = new PipeListViewModel
-            //{
-            //    Pipe = pipe
-            //};
-            ViewBag.StandardBag = new SelectList(db.PipeStandards, "Id", "Title", pipe.PipeStandardId);
 
-            return View(pipe);
+            PipeListViewModel plvModel = new PipeListViewModel
+            {
+                Pipe = pipe
+            };
+
+            return View(plvModel);
         }
 
         // GET: Pipes/Edit/5
@@ -123,20 +117,23 @@ namespace PipeStore.Controllers
             }
 
             List<PipeStandard> standards = db.PipeStandards.ToList();
+            List<Material> materials = db.Materials.ToList();
             PipeListViewModel plvModel = new PipeListViewModel
             {
                 Pipe = pipe,
-                PipeStandards = new SelectList(standards, "Id", "Title")
+                PipeStandards = new SelectList(standards, "Id", "Title"),
+                Materials = new SelectList(materials, "Id", "Name")
             };
             return View(plvModel);
         }
 
         // POST: Pipes/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, 
+        // please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Size,PipeStandard,PipeStandardId,Manufacturer,ReleaseDate,Material,Price,InStock,ImageUrl")] Pipe pipe)
+        public ActionResult Edit([Bind(Include = "Id,Size,PipeStandard,PipeStandardId,Material,MaterialId,Manufacturer,ReleaseDate,Material,Price,InStock,ImageUrl")] Pipe pipe)
         {
             if (ModelState.IsValid)
             {

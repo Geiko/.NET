@@ -10,7 +10,7 @@ namespace PipeStore.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("Index", "Pipes");
         }
 
         public ActionResult About()

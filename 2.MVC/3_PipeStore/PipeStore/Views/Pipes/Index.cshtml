@@ -14,7 +14,7 @@
         @using (Html.BeginForm())
         {
             <div class="form-inline">
-                
+
                 <div class="form-group">
                     <label>Size:</label>
                     @Html.TextBox("SearchString")
@@ -22,13 +22,12 @@
 
                 <div class="form-group">
                     <label>Standard:</label>
-                    @Html.DropDownList("standard", Model.PipeStandards as SelectList, htmlAttributes: new { @class = "form-control" })
+                    @Html.DropDownList("standardId", Model.PipeStandards as SelectList, htmlAttributes: new { @class = "form-control" })
                 </div>&nbsp;&nbsp;&nbsp;
 
-                                 
                 <div class="form-group">
                     <label>Material:</label>
-                   @Html.DropDownList("pipeMaterial", "All")
+                    @Html.DropDownList("materialId", Model.Materials as SelectList, htmlAttributes: new { @class = "form-control" })
                 </div>&nbsp;&nbsp;&nbsp;
 
                 <div class="form-group">
@@ -51,7 +50,7 @@
                 @Html.DisplayNameFor(model => model.Pipes.FirstOrDefault().PipeStandard.Title)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Pipes.FirstOrDefault().Material)
+                @Html.DisplayNameFor(model => model.Pipes.FirstOrDefault().Material.Name)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Pipes.FirstOrDefault().Manufacturer)
@@ -83,7 +82,7 @@
                     @Html.DisplayFor(modelItem => item.PipeStandard.Title)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Material)
+                    @Html.DisplayFor(modelItem => item.Material.Name)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Manufacturer)

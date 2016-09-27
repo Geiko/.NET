@@ -1,12 +1,10 @@
-﻿@*@model PipeStore.Models.Pipe*@
-
-@model PipeStore.ViewModels.PipeListViewModel
+﻿@model PipeStore.ViewModels.PipeListViewModel
 
 @{
     ViewBag.Title = "Create";
 }
 
-<h2>Create222</h2>
+<h2>Create</h2>
 
 
 @using (Html.BeginForm())
@@ -28,17 +26,17 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Pipe.PipeStandard.Title, "StandardId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Pipe.PipeStandardId, Model.PipeStandards, htmlAttributes: new { @class = "control-label col-md-2" })
-                @Html.ValidationMessageFor(model => model.Pipe. PipeStandard.Title, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.Pipe.PipeStandardId, Model.PipeStandards, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Pipe.PipeStandard.Title, "", new { @class = "text-danger" })
             </div>
         </div>
-        @*--------------------------*@
+
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Pipe.Material, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Pipe.Material.Name, "MaterialId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Pipe.Material, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Pipe.Material, "", new { @class = "text-danger" })
+                @Html.DropDownList("MaterialId", Model.Materials, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Pipe.Material.Name, "", new { @class = "text-danger" })
             </div>
         </div>
 
