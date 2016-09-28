@@ -13,6 +13,8 @@
     <p>
         @using (Html.BeginForm())
         {
+            @Html.Hidden("sortInfo", Model.SortInfo)
+
             <div class="form-inline">
 
                 <div class="form-group">
@@ -35,34 +37,50 @@
                     <input type="submit" class="btn btn-success" value="Filter" />
                 </div>
 
-            </div><br />
+            </div>
         }
     </p>
     }
+    <p style="color:blue; font-size:x-small;">
+        * to sort data  click on column title
     </p>
 
     <table class="table table-bordered table-condensed table-hover table-striped">
         <tr class="success">
             <th>
-                @Html.DisplayNameFor(model => model.Pipes.FirstOrDefault().Size)
+                <a href="#" data-sortfield="Size" class="header">
+                    @Html.DisplayNameFor(model => model.Pipes.FirstOrDefault().Size)
+                </a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Pipes.FirstOrDefault().PipeStandard.Title)
+                <a href="#" data-sortfield="PipeStandard" class="header">
+                    @Html.DisplayNameFor(model => model.Pipes.FirstOrDefault().PipeStandard.Title)
+                </a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Pipes.FirstOrDefault().Material.Name)
+                <a href="#" data-sortfield="Material" class="header">
+                    @Html.DisplayNameFor(model => model.Pipes.FirstOrDefault().Material.Name)
+                </a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Pipes.FirstOrDefault().Manufacturer)
+                <a href="#" data-sortfield="Manufacturer" class="header">
+                    @Html.DisplayNameFor(model => model.Pipes.FirstOrDefault().Manufacturer)
+                </a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Pipes.FirstOrDefault().ReleaseDate)
+                <a href="#" data-sortfield="ReleaseDate" class="header">
+                    @Html.DisplayNameFor(model => model.Pipes.FirstOrDefault().ReleaseDate)
+                </a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Pipes.FirstOrDefault().Price)
+                <a href="#" data-sortfield="Price" class="header">
+                    @Html.DisplayNameFor(model => model.Pipes.FirstOrDefault().Price)
+                </a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Pipes.FirstOrDefault().InStock)
+                <a href="#" data-sortfield="InStock" class="header">
+                    @Html.DisplayNameFor(model => model.Pipes.FirstOrDefault().InStock)
+                </a>
             </th>
             <th>
                 BUY
@@ -97,9 +115,7 @@
                     @Html.DisplayFor(modelItem => item.InStock)
                 </td>
                 <td>
-                    @*<a href='@Url.Action( "Create", "Purchases", new { id = item.Id })'>*@
                     <img alt="Cover" src="@item.ImageUrl" width="30" height="30" />
-                    @*</a>*@
                 </td>
                 <td class="text-center">
                     @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
@@ -109,3 +125,18 @@
             </tr>
         }
     </table>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            $(".header").click(function (evt) {
+
+                var sortfield = $(evt.target).data("sortfield");
+                $("#sortInfo").val(sortfield);
+                $("form").submit();
+
+            });
+        });
+
+    </script>

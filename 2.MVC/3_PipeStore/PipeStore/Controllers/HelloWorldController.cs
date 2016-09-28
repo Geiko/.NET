@@ -1,11 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-
+﻿//-----------------------------------------------------------------------
+// <copyright file="HelloWorldController.cs" company="SoftServe">
+//     Copyright (c) SoftServe. All rights reserved.
+// </copyright>
+// <author>Kostiantyn Geiko</author>
+//-----------------------------------------------------------------------
 namespace PipeStore.Controllers
 {
+    using System.Web;
+    using System.Web.Mvc;
+
     public class HelloWorldController : Controller
     {
         // GET: HelloWorld

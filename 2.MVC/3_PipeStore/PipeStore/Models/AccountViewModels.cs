@@ -1,8 +1,14 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-
+﻿//-----------------------------------------------------------------------
+// <copyright file="AccountViewModels.cs" company="SoftServe">
+//     Copyright (c) SoftServe. All rights reserved.
+// </copyright>
+// <author>Kostiantyn Geiko</author>
+//-----------------------------------------------------------------------
 namespace PipeStore.Models
 {
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+
     public class ExternalLoginConfirmationViewModel
     {
         [Required]

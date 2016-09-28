@@ -1,11 +1,20 @@
-﻿using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web.Mvc;
-using PipeStore.Models;
-
+﻿//-----------------------------------------------------------------------
+// <copyright file="MaterialsController.cs" company="SoftServe">
+//     Copyright (c) SoftServe. All rights reserved.
+// </copyright>
+// <author>Kostiantyn Geiko</author>
+//-----------------------------------------------------------------------
 namespace PipeStore.Controllers
 {
+    using System.Data.Entity;
+    using System.Linq;
+    using System.Net;
+    using System.Web.Mvc;
+    using PipeStore.Models;
+
+    /// <summary>
+    /// It is a controller for pipe material.
+    /// </summary>
     public class MaterialsController : Controller
     {
         private PipeDBContext db = new PipeDBContext();

@@ -1,24 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web.Mvc;
-using PipeStore.Models;
-using PipeStore.ViewModels;
-
+﻿//-----------------------------------------------------------------------
+// <copyright file="PipesController.cs" company="SoftServe">
+//     Copyright (c) SoftServe. All rights reserved.
+// </copyright>
+// <author>Kostiantyn Geiko</author>
+//-----------------------------------------------------------------------
 namespace PipeStore.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Data;
+    using System.Data.Entity;
+    using System.Linq;
+    using System.Net;
+    using System.Web.Mvc;
+    using PipeStore.Models;
+    using PipeStore.ViewModels;
+
+    /// <summary>
+    /// It is a controller for pipes.
+    /// </summary>
     public class PipesController : Controller
     {
         private PipeDBContext db = new PipeDBContext();
 
         // GET: Pipes
         public ActionResult Index(
-            int? materialId, int? standardId, string searchString)
+            string sortInfo,
+            int? materialId,
+            int? standardId,
+            string searchString)
         {
-            var pipes = db.Pipes.Include(p => p.PipeStandard);            
+            IQueryable<Pipe> pipes = db.Pipes.Include(p => p.PipeStandard);
             if (!String.IsNullOrEmpty(searchString))
             {
                 pipes = pipes.Where(p => p.Size.Contains(searchString));
@@ -45,7 +57,45 @@ namespace PipeStore.Controllers
                 Materials = new SelectList(materials, "Id", "Name", 0)
             };
 
-            return View(plvModel);
+            if (sortInfo == null)
+            {
+                return View(plvModel);
+            }
+
+            switch (sortInfo)
+            {
+                case "Size":
+                    pipes = pipes.OrderBy(p => p.Size);
+                    break;
+                case "PipeStandard":
+                    pipes = pipes.OrderBy(p => p.PipeStandard.Title);
+                    break;
+                case "Material":
+                    pipes = pipes.OrderBy(p => p.Material.Name);
+                    break;
+                case "Manufacturer":
+                    pipes = pipes.OrderBy(p => p.Manufacturer);
+                    break;
+                case "ReleaseDate":
+                    pipes = pipes.OrderBy(p => p.ReleaseDate);
+                    break;
+                case "Price":
+                    pipes = pipes.OrderBy(p => p.Price);
+                    break;
+                case "InStock":
+                    pipes = pipes.OrderBy(p => p.InStock);
+                    break;
+            }
+
+            PipeListViewModel plvModel2 = new PipeListViewModel
+            {
+                Pipes = pipes.ToList(),
+                PipeStandards = new SelectList(standards, "Id", "Title", 0),
+                Materials = new SelectList(materials, "Id", "Name", 0),
+                SortInfo = sortInfo
+            };
+
+            return View(plvModel2);
         }
 
         // GET: Pipes/Details/5
@@ -55,7 +105,7 @@ namespace PipeStore.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            
+
             Pipe pipe = db.Pipes.Find(id);
             if (pipe == null)
             {
@@ -85,7 +135,8 @@ namespace PipeStore.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include ="Id,Size,PipeStandard,PipeStandardId,Material,MaterialId,Manufacturer,ReleaseDate,Material,Price,InStock,ImageUrl")] Pipe pipe)
+        public ActionResult Create(
+            [Bind(Include = "Id,Size,PipeStandard,PipeStandardId,Material,MaterialId,Manufacturer,ReleaseDate,Material,Price,InStock,ImageUrl")] Pipe pipe)
         {
             if (ModelState.IsValid)
             {
@@ -133,7 +184,8 @@ namespace PipeStore.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Size,PipeStandard,PipeStandardId,Material,MaterialId,Manufacturer,ReleaseDate,Material,Price,InStock,ImageUrl")] Pipe pipe)
+        public ActionResult Edit(
+            [Bind(Include = "Id,Size,PipeStandard,PipeStandardId,Material,MaterialId,Manufacturer,ReleaseDate,Material,Price,InStock,ImageUrl")] Pipe pipe)
         {
             if (ModelState.IsValid)
             {

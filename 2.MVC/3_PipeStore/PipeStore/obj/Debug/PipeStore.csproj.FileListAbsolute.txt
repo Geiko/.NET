@@ -233,3 +233,4 @@ D:\gh\DotNET\.NET\2.MVC\3_PipeStore\PipeStore\obj\Debug\PipeStore.dll
 D:\gh\DotNET\.NET\2.MVC\3_PipeStore\PipeStore\obj\Debug\PipeStore.pdb
 D:\gh\DotNET\.NET\2.MVC\3_PipeStore\PipeStore\obj\Debug\PipeStore.Migrations.Rating3.resources
 D:\gh\DotNET\.NET\2.MVC\3_PipeStore\PipeStore\obj\Debug\PipeStore.Migrations.Rating4.resources
+D:\gh\DotNET\.NET\2.MVC\3_PipeStore\PipeStore\obj\Debug\PipeStore.Properties.Resources.resources
