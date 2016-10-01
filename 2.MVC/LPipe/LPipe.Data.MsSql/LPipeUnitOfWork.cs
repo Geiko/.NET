@@ -1,4 +1,4 @@
-﻿namespace VolleyManagement.Data.MsSql
+﻿namespace LPipeManagement.Data.MsSql
 {
     using System.Data.Entity.Infrastructure;
     using System.Threading.Tasks;
@@ -14,21 +14,21 @@
         /// <summary>
         /// Context of the data source.
         /// </summary>
-        private readonly VolleyManagementEntities _context;
+        private readonly LPipeEntities _context;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="VolleyUnitOfWork"/> class.
+        /// Initializes a new instance of the <see cref="LPipeUnitOfWork"/> class.
         /// </summary>
-        public VolleyUnitOfWork()
+        public LPipeUnitOfWork()
         {
-            _context = new VolleyManagementEntities();
+            _context = new LPipeEntities();
             ((IObjectContextAdapter)_context).ObjectContext.ContextOptions.LazyLoadingEnabled = true;
         }
 
         /// <summary>
         /// Gets context of the data source.
         /// </summary>
-        internal VolleyManagementEntities Context
+        internal LPipeEntities Context
         {
             get { return this._context; }
         }

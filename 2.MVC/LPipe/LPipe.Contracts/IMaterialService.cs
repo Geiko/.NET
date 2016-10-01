@@ -1,6 +1,5 @@
 ﻿using LPipe.Domain;
-using LPipe.Domain.MaterialAgregate.MaterialsAgregate;
-using LPipe.Domain.PipesAgregate;
+using LPipe.Domain.MaterialsAggregate;
 using System;
 using System.Collections.Generic;
 using System.Linq;

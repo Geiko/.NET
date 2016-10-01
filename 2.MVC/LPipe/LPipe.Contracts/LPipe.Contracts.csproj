@@ -40,10 +40,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IMaterialRepositiry.cs" />
     <Compile Include="IMaterialService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LPipe.Data\LPipe.Data.csproj">
+      <Project>{61178fd6-2ed2-44c8-b7cd-63579a3a3f7c}</Project>
+      <Name>LPipe.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LPipe.Domain\LPipe.Domain.csproj">
       <Project>{3469d4fa-354c-4ebe-9974-681925ee3280}</Project>
       <Name>LPipe.Domain</Name>

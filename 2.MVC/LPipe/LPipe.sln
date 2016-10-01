@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{220D2251-74D1-4E50-A8B0-95B6C98D2193}"
 EndProject
@@ -22,6 +22,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LPipe.UI", "LPipe.UI\LPipe.UI.csproj", "{1497301C-F323-42B4-A80A-346FF38B9AE2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LPipe.Services", "LPipe.Services\LPipe.Services.csproj", "{825B04EE-2D54-4052-9178-E924379D7FEB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LPipe.Crosscutting", "LPipe.Crosscutting\LPipe.Crosscutting.csproj", "{4082B3C3-1D22-4B62-94F4-17AE4EE4D1B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LPipe.Crosscutting.Contracts", "LPipe.Crosscutting.Contracts\LPipe.Crosscutting.Contracts.csproj", "{C45BC149-A605-4117-8F0A-C69FA6C6FA5C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +57,14 @@ Global
 		{825B04EE-2D54-4052-9178-E924379D7FEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{825B04EE-2D54-4052-9178-E924379D7FEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{825B04EE-2D54-4052-9178-E924379D7FEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4082B3C3-1D22-4B62-94F4-17AE4EE4D1B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4082B3C3-1D22-4B62-94F4-17AE4EE4D1B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4082B3C3-1D22-4B62-94F4-17AE4EE4D1B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4082B3C3-1D22-4B62-94F4-17AE4EE4D1B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C45BC149-A605-4117-8F0A-C69FA6C6FA5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C45BC149-A605-4117-8F0A-C69FA6C6FA5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C45BC149-A605-4117-8F0A-C69FA6C6FA5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C45BC149-A605-4117-8F0A-C69FA6C6FA5C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,5 +76,7 @@ Global
 		{D4A2EE6D-8557-4EE3-8A2D-6390D9B6D419} = {220D2251-74D1-4E50-A8B0-95B6C98D2193}
 		{1497301C-F323-42B4-A80A-346FF38B9AE2} = {27EC2F7E-293C-4925-ACED-0B4ACC462C18}
 		{825B04EE-2D54-4052-9178-E924379D7FEB} = {220D2251-74D1-4E50-A8B0-95B6C98D2193}
+		{4082B3C3-1D22-4B62-94F4-17AE4EE4D1B5} = {1117B078-54C8-4448-86AD-0CBE9BCE1617}
+		{C45BC149-A605-4117-8F0A-C69FA6C6FA5C} = {1117B078-54C8-4448-86AD-0CBE9BCE1617}
 	EndGlobalSection
 EndGlobal

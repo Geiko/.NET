@@ -12,11 +12,11 @@ namespace LPipe.Data.MsSql.Entities
         
         public string Name { get; set; }
         
-        public virtual ICollection<PipeEntity> Pipes { get; set; }
+        //public virtual ICollection<PipeEntity> Pipes { get; set; }
         
-        public MaterialEntity()
-        {
-            Pipes = new List<PipeEntity>();
-        }
+        //public MaterialEntity()
+        //{
+        //    Pipes = new List<PipeEntity>();
+        //}
     }
 }

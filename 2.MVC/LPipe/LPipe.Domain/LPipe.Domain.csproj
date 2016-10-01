@@ -41,10 +41,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MaterialsAgregate\IMaterialRepositiry.cs" />
-    <Compile Include="MaterialsAgregate\Material.cs" />
-    <Compile Include="PipesAgregate\Pipe.cs" />
+    <Compile Include="MaterialsAggregate\Material.cs" />
+    <Compile Include="MaterialsAggregate\MaterialValidation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LPipe.Crosscutting.Contracts\LPipe.Crosscutting.Contracts.csproj">
+      <Project>{c45bc149-a605-4117-8f0a-c69fa6c6fa5c}</Project>
+      <Name>LPipe.Crosscutting.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LPipe.Data\LPipe.Data.csproj">
+      <Project>{61178fd6-2ed2-44c8-b7cd-63579a3a3f7c}</Project>
+      <Name>LPipe.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

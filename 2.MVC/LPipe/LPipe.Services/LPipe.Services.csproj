@@ -48,6 +48,18 @@
       <Project>{D4A2EE6D-8557-4EE3-8A2D-6390D9B6D419}</Project>
       <Name>LPipe.Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LPipe.Crosscutting.Contracts\LPipe.Crosscutting.Contracts.csproj">
+      <Project>{c45bc149-a605-4117-8f0a-c69fa6c6fa5c}</Project>
+      <Name>LPipe.Crosscutting.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LPipe.Crosscutting\LPipe.Crosscutting.csproj">
+      <Project>{4082b3c3-1d22-4b62-94f4-17ae4ee4d1b5}</Project>
+      <Name>LPipe.Crosscutting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LPipe.Data\LPipe.Data.csproj">
+      <Project>{61178fd6-2ed2-44c8-b7cd-63579a3a3f7c}</Project>
+      <Name>LPipe.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LPipe.Domain\LPipe.Domain.csproj">
       <Project>{3469d4fa-354c-4ebe-9974-681925ee3280}</Project>
       <Name>LPipe.Domain</Name>

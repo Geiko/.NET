@@ -1,0 +1,5 @@
+D:\My\IT\SoftServe\C#\PRACTICE\2.2. MVC Layers, UnitTests\LPipe\LPipe.Data\bin\Debug\LPipe.Data.dll
+D:\My\IT\SoftServe\C#\PRACTICE\2.2. MVC Layers, UnitTests\LPipe\LPipe.Data\bin\Debug\LPipe.Data.pdb
+D:\My\IT\SoftServe\C#\PRACTICE\2.2. MVC Layers, UnitTests\LPipe\LPipe.Data\obj\Debug\LPipe.Data.csprojResolveAssemblyReference.cache
+D:\My\IT\SoftServe\C#\PRACTICE\2.2. MVC Layers, UnitTests\LPipe\LPipe.Data\obj\Debug\LPipe.Data.dll
+D:\My\IT\SoftServe\C#\PRACTICE\2.2. MVC Layers, UnitTests\LPipe\LPipe.Data\obj\Debug\LPipe.Data.pdb

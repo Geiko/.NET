@@ -1,6 +1,5 @@
 ﻿namespace LPipe.Data.MsSql.Context
 {
-    using Migrations;
     using System.Data.Entity;
     using LPipe.Data.MsSql.Context.Migrations;
 

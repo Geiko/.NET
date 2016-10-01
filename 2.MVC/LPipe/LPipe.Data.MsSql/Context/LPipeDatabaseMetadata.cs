@@ -1,10 +1,8 @@
-﻿namespace LPipe.Data.MsSql.Context
-{
-    class LPipeDatabaseMetadata
-    {
-        internal static class VolleyDatabaseMetadata
-        {
+﻿using System.Data.Entity;
 
-        }
+namespace LPipe.Data.MsSql.Context
+{
+    internal class LPipeManagementEntities : DbContext
+    {
     }
 }

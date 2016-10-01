@@ -94,6 +94,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Mvc\Mappers\DomainToViewModel.cs" />
+    <Compile Include="Areas\Mvc\Mappers\ViewModelToDomain.cs" />
+    <Compile Include="Areas\Mvc\MvcAreaRegistration.cs" />
+    <Compile Include="Areas\Mvc\ViewModels\Materials\MaterialViewModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -102,6 +106,7 @@
   <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
+    <Content Include="Areas\Mvc\Views\web.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -111,8 +116,32 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Mvc\Controllers\Domain\" />
+    <Folder Include="Areas\Mvc\Views\Shared\" />
     <Folder Include="Controllers\" />
     <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LPipe.Contracts\LPipe.Contracts.csproj">
+      <Project>{d4a2ee6d-8557-4ee3-8a2d-6390d9b6d419}</Project>
+      <Name>LPipe.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LPipe.Crosscutting.Contracts\LPipe.Crosscutting.Contracts.csproj">
+      <Project>{c45bc149-a605-4117-8f0a-c69fa6c6fa5c}</Project>
+      <Name>LPipe.Crosscutting.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LPipe.Data.MsSql\LPipe.Data.MsSql.csproj">
+      <Project>{319ba344-9b38-4a34-8626-d5d478d12f39}</Project>
+      <Name>LPipe.Data.MsSql</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LPipe.Domain\LPipe.Domain.csproj">
+      <Project>{3469d4fa-354c-4ebe-9974-681925ee3280}</Project>
+      <Name>LPipe.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LPipe.Services\LPipe.Services.csproj">
+      <Project>{825b04ee-2d54-4052-9178-e924379d7feb}</Project>
+      <Name>LPipe.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
