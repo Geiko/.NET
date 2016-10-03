@@ -10,11 +10,10 @@ namespace LPipe.Contracts
 {
     public interface IMaterialService
     {
-        IEnumerable<Material> GetMaterialList();
-        Material GetMaterial(int id);
-        void Create(Material item);
-        void Update(Material item);
+        IList<Material> Get();
+        Material Get(int id);
+        void Create(Material material);
+        void Edit(Material material);
         void Delete(int id);
-        void Save();
     }
 }

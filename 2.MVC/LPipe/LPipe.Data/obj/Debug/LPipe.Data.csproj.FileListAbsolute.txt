@@ -3,3 +3,13 @@ D:\My\IT\SoftServe\C#\PRACTICE\2.2. MVC Layers, UnitTests\LPipe\LPipe.Data\bin\D
 D:\My\IT\SoftServe\C#\PRACTICE\2.2. MVC Layers, UnitTests\LPipe\LPipe.Data\obj\Debug\LPipe.Data.csprojResolveAssemblyReference.cache
 D:\My\IT\SoftServe\C#\PRACTICE\2.2. MVC Layers, UnitTests\LPipe\LPipe.Data\obj\Debug\LPipe.Data.dll
 D:\My\IT\SoftServe\C#\PRACTICE\2.2. MVC Layers, UnitTests\LPipe\LPipe.Data\obj\Debug\LPipe.Data.pdb
+D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Data\bin\Debug\LPipe.Data.dll.config
+D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Data\bin\Debug\LPipe.Data.dll
+D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Data\bin\Debug\LPipe.Data.pdb
+D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Data\bin\Debug\EntityFramework.dll
+D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Data\bin\Debug\EntityFramework.SqlServer.dll
+D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Data\bin\Debug\EntityFramework.xml
+D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Data\bin\Debug\EntityFramework.SqlServer.xml
+D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Data\obj\Debug\LPipe.Data.dll
+D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Data\obj\Debug\LPipe.Data.pdb
+D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Data\obj\Debug\LPipe.Data.csprojResolveAssemblyReference.cache

@@ -52,18 +52,19 @@
     <Compile Include="Class1.cs" />
     <Compile Include="Context\LPipeDatabaseInitializer.cs" />
     <Compile Include="Context\LPipeDatabaseMetadata.cs" />
-    <Compile Include="Context\LPipeManagementEntities.cs" />
+    <Compile Include="Context\LPipeEntities.cs" />
     <Compile Include="Context\Migrations\LPipeContextConfiguration.cs" />
     <Compile Include="Entities\MaterialEntity.cs" />
-    <Compile Include="Entities\PipeEntity.cs" />
+    <Compile Include="Entities\ValidationConstants.cs" />
     <Compile Include="LPipeUnitOfWork.cs" />
     <Compile Include="Mappers\DomainToDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Queries\MaterialQueries.cs" />
     <Compile Include="Repositories\MaterialRepository.cs" />
+    <Compile Include="Repositories\Specifications\MaterialStorageSpecification.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Infrastructure\" />
-    <Folder Include="Queries\" />
     <Folder Include="Sql\" />
   </ItemGroup>
   <ItemGroup>
@@ -71,10 +72,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LPipe.Contracts\LPipe.Contracts.csproj">
-      <Project>{d4a2ee6d-8557-4ee3-8a2d-6390d9b6d419}</Project>
-      <Name>LPipe.Contracts</Name>
-    </ProjectReference>
     <ProjectReference Include="..\LPipe.Crosscutting.Contracts\LPipe.Crosscutting.Contracts.csproj">
       <Project>{c45bc149-a605-4117-8f0a-c69fa6c6fa5c}</Project>
       <Name>LPipe.Crosscutting.Contracts</Name>

@@ -1,31 +1,16 @@
-﻿
+﻿using LPipe.Domain.MaterialsAggregate;
+using LPipe.UI.Areas.Mvc.ViewModels.Materials;
 namespace LPipe.UI.Areas.Mvc.Mappers
 {
-    using LPipe.Domain.MaterialsAggregate.Material;
-    using LPipe.Domain.MaterialsAggregate;
-    using LPipe.UI.Areas.Mvc.ViewModels.Materials;
-    using System.Collections.Generic;
-
-    /// <summary>
-    /// Maps Domain models to view models
-    /// </summary>
-    public static class DomainToViewModel
+    public static class ViewModelToDomain
     {
-        /// <summary>
-        /// Maps Tournament.
-        /// </summary>
-        /// <param name="tournament">Tournament Domain model</param>
-        /// <returns>Tournament view model</returns>
-        public static MaterialViewModel Map(Material material)
+        public static Material Map(MaterialViewModel materialViewModel)
         {
-            return new MaterialViewModel
+            return new Material
             {
-                Id = material.Id,
-                Name = material.Name,
-                //Pipes { get; set; }   
+                Id = materialViewModel.Id,
+                Name = materialViewModel.Name,
             };
         }
     }
 }
- 
-           

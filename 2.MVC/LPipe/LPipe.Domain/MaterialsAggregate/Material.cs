@@ -11,7 +11,27 @@ namespace LPipe.Domain.MaterialsAggregate
     public class Material
     {
         public int Id { get; set; }
+
+        [StringLength(50, MinimumLength = 1)]
+        private string name;
+
+        public string Name
+        {
+            get 
+            { 
+                return name; 
+            }
+
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentNullException("Material Name is not valid.");
+                } 
+                
+                name = value;
+            }
+        }
         
-        public string Name { get; set; }
     }
 }

@@ -2,7 +2,8 @@
 
 namespace LPipe.Data.MsSql.Context
 {
-    internal class LPipeManagementEntities : DbContext
+    internal class LPipeDatabaseMetadata
     {
+        public const string MATERIALS_TABLE_NAME = "Materials";
     }
 }

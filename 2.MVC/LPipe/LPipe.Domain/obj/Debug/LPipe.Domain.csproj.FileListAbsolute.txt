@@ -7,3 +7,12 @@ D:\My\IT\SoftServe\C#\PRACTICE\2.2. MVC Layers, UnitTests\LPipe\LPipe.Domain\bin
 D:\My\IT\SoftServe\C#\PRACTICE\2.2. MVC Layers, UnitTests\LPipe\LPipe.Domain\bin\Debug\LPipe.Data.dll
 D:\My\IT\SoftServe\C#\PRACTICE\2.2. MVC Layers, UnitTests\LPipe\LPipe.Domain\bin\Debug\LPipe.Crosscutting.Contracts.pdb
 D:\My\IT\SoftServe\C#\PRACTICE\2.2. MVC Layers, UnitTests\LPipe\LPipe.Domain\bin\Debug\LPipe.Data.pdb
+D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Domain\bin\Debug\LPipe.Domain.dll
+D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Domain\bin\Debug\LPipe.Domain.pdb
+D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Domain\bin\Debug\LPipe.Crosscutting.Contracts.dll
+D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Domain\bin\Debug\LPipe.Data.dll
+D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Domain\bin\Debug\LPipe.Crosscutting.Contracts.pdb
+D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Domain\bin\Debug\LPipe.Data.pdb
+D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Domain\obj\Debug\LPipe.Domain.csprojResolveAssemblyReference.cache
+D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Domain\obj\Debug\LPipe.Domain.dll
+D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Domain\obj\Debug\LPipe.Domain.pdb

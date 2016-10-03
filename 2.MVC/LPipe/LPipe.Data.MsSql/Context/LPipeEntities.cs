@@ -5,12 +5,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity.ModelConfiguration.Conventions;
+using LPipe.Domain.MaterialsAggregate;
 
 namespace LPipe.Data.MsSql.Context
 {
-    class LPipeEntities : DbContext
+    internal class LPipeEntities : DbContext
     {
-        #region Constructor
         /// <summary>
         /// Initializes static members of the <see cref="LPipeEntities"/> class.
         /// </summary>
@@ -26,17 +27,35 @@ namespace LPipe.Data.MsSql.Context
             : base("LPipeEntities")
         {
         }
-        #endregion
 
 
-        /// <summary>
-        /// Gets or sets the materials.
-        /// </summary>
+
         public DbSet<MaterialEntity> Materials { get; set; }
 
 
 
-        // Mapping Configuration  ???????????????
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        { 
+            modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
+            ConfigureMaterials(modelBuilder);
+            base.OnModelCreating(modelBuilder);
+        }
 
+
+        private static void ConfigureMaterials(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<MaterialEntity>()
+                .ToTable(LPipeDatabaseMetadata.MATERIALS_TABLE_NAME)
+                .HasKey(t => t.Id);
+
+            // Name
+            modelBuilder.Entity<MaterialEntity>()
+                .Property(t => t.Name)
+                .IsRequired()
+                .IsUnicode()
+                .IsVariableLength()
+                .HasMaxLength(ValidationConstants.Material.MAX_NAME_LENGTH);
+        }
     }
 }
+

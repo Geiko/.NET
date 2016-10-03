@@ -7,3 +7,12 @@ D:\My\IT\SoftServe\C#\PRACTICE\2.2. MVC Layers, UnitTests\LPipe\LPipe.Contracts\
 D:\My\IT\SoftServe\C#\PRACTICE\2.2. MVC Layers, UnitTests\LPipe\LPipe.Contracts\obj\Debug\LPipe.Contracts.pdb
 D:\My\IT\SoftServe\C#\PRACTICE\2.2. MVC Layers, UnitTests\LPipe\LPipe.Contracts\bin\Debug\LPipe.Data.dll
 D:\My\IT\SoftServe\C#\PRACTICE\2.2. MVC Layers, UnitTests\LPipe\LPipe.Contracts\bin\Debug\LPipe.Data.pdb
+D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Contracts\bin\Debug\LPipe.Contracts.dll
+D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Contracts\bin\Debug\LPipe.Contracts.pdb
+D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Contracts\bin\Debug\LPipe.Domain.dll
+D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Contracts\bin\Debug\LPipe.Data.dll
+D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Contracts\bin\Debug\LPipe.Domain.pdb
+D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Contracts\bin\Debug\LPipe.Data.pdb
+D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Contracts\obj\Debug\LPipe.Contracts.csprojResolveAssemblyReference.cache
+D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Contracts\obj\Debug\LPipe.Contracts.dll
+D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Contracts\obj\Debug\LPipe.Contracts.pdb

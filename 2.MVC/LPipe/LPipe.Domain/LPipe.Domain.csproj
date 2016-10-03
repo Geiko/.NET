@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MaterialsAggregate\IMaterialRepository.cs" />
     <Compile Include="MaterialsAggregate\Material.cs" />
     <Compile Include="MaterialsAggregate\MaterialValidation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

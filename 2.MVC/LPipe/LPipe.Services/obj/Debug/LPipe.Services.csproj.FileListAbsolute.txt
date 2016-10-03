@@ -13,3 +13,18 @@ D:\My\IT\SoftServe\C#\PRACTICE\2.2. MVC Layers, UnitTests\LPipe\LPipe.Services\b
 D:\My\IT\SoftServe\C#\PRACTICE\2.2. MVC Layers, UnitTests\LPipe\LPipe.Services\bin\Debug\LPipe.Crosscutting.Contracts.pdb
 D:\My\IT\SoftServe\C#\PRACTICE\2.2. MVC Layers, UnitTests\LPipe\LPipe.Services\bin\Debug\LPipe.Crosscutting.pdb
 D:\My\IT\SoftServe\C#\PRACTICE\2.2. MVC Layers, UnitTests\LPipe\LPipe.Services\bin\Debug\LPipe.Data.pdb
+D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Services\bin\Debug\LPipe.Services.dll
+D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Services\bin\Debug\LPipe.Services.pdb
+D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Services\bin\Debug\LPipe.Contracts.dll
+D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Services\bin\Debug\LPipe.Crosscutting.Contracts.dll
+D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Services\bin\Debug\LPipe.Crosscutting.dll
+D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Services\bin\Debug\LPipe.Data.dll
+D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Services\bin\Debug\LPipe.Domain.dll
+D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Services\bin\Debug\LPipe.Contracts.pdb
+D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Services\bin\Debug\LPipe.Crosscutting.Contracts.pdb
+D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Services\bin\Debug\LPipe.Crosscutting.pdb
+D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Services\bin\Debug\LPipe.Data.pdb
+D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Services\bin\Debug\LPipe.Domain.pdb
+D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Services\obj\Debug\LPipe.Services.csprojResolveAssemblyReference.cache
+D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Services\obj\Debug\LPipe.Services.dll
+D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Services\obj\Debug\LPipe.Services.pdb

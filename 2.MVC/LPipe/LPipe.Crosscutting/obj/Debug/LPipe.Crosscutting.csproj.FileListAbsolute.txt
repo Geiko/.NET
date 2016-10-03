@@ -5,3 +5,10 @@ D:\My\IT\SoftServe\C#\PRACTICE\2.2. MVC Layers, UnitTests\LPipe\LPipe.Crosscutti
 D:\My\IT\SoftServe\C#\PRACTICE\2.2. MVC Layers, UnitTests\LPipe\LPipe.Crosscutting\obj\Debug\LPipe.Crosscutting.csprojResolveAssemblyReference.cache
 D:\My\IT\SoftServe\C#\PRACTICE\2.2. MVC Layers, UnitTests\LPipe\LPipe.Crosscutting\obj\Debug\LPipe.Crosscutting.dll
 D:\My\IT\SoftServe\C#\PRACTICE\2.2. MVC Layers, UnitTests\LPipe\LPipe.Crosscutting\obj\Debug\LPipe.Crosscutting.pdb
+D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Crosscutting\bin\Debug\LPipe.Crosscutting.dll
+D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Crosscutting\bin\Debug\LPipe.Crosscutting.pdb
+D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Crosscutting\bin\Debug\LPipe.Crosscutting.Contracts.dll
+D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Crosscutting\bin\Debug\LPipe.Crosscutting.Contracts.pdb
+D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Crosscutting\obj\Debug\LPipe.Crosscutting.csprojResolveAssemblyReference.cache
+D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Crosscutting\obj\Debug\LPipe.Crosscutting.dll
+D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Crosscutting\obj\Debug\LPipe.Crosscutting.pdb

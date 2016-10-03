@@ -2,20 +2,19 @@
 {
     using System.Data.Entity;
     using LPipe.Data.MsSql.Context.Migrations;
+    using LPipe.Domain.MaterialsAggregate;
+    using LPipe.Data.MsSql.Entities;
 
+    //internal class LPipeDatabaseInitializer
+    //    : MigrateDatabaseToLatestVersion<LPipeEntities, LPipeContextConfiguration>
     internal class LPipeDatabaseInitializer
-        : MigrateDatabaseToLatestVersion<LPipeEntities, LPipeContextConfiguration>
+        : DropCreateDatabaseAlways<LPipeEntities>
     {
+        protected override void Seed(LPipeEntities context)
+        {
+            context.Materials.Add(new MaterialEntity { Name = "Copper" });
+            context.Materials.Add(new MaterialEntity { Name = "Aliuminum" });
+            context.Materials.Add(new MaterialEntity { Name = "Steel 20" });
+        }
     }
 }
-
-//namespace VolleyManagement.Data.MsSql.Context
-//{
-//    using System.Data.Entity;
-//    using VolleyManagement.Data.MsSql.Context.Migrations;
-    
-//    internal class VolleyManagementDatabaseInitializer
-//        : MigrateDatabaseToLatestVersion<VolleyManagementEntities, VolleyContextConfiguration>
-//    {
-//    }
-//}

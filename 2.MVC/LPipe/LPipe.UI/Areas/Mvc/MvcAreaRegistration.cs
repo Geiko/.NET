@@ -12,12 +12,12 @@ namespace LPipe.UI.Areas.Mvc
             }
         }
 
-        public override void RegisterArea(AreaRegistrationContext context) 
+        public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
                 "Mvc_default",
                 "Mvc/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                new { action = "Index", controller = "Materials", id = UrlParameter.Optional }
             );
         }
     }
