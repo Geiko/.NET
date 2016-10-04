@@ -8,6 +8,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccess", "DataAccess", "{7F12E755-F762-42F1-9811-83E306E8901A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{1117B078-54C8-4448-86AD-0CBE9BCE1617}"
+	ProjectSection(SolutionItems) = preProject
+		LPipe.Data.MsSql\LPipeContextConfiguration.cs = LPipe.Data.MsSql\LPipeContextConfiguration.cs
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{27EC2F7E-293C-4925-ACED-0B4ACC462C18}"
 EndProject

@@ -53,12 +53,26 @@
     <Compile Include="Context\LPipeDatabaseInitializer.cs" />
     <Compile Include="Context\LPipeDatabaseMetadata.cs" />
     <Compile Include="Context\LPipeEntities.cs" />
-    <Compile Include="Context\Migrations\LPipeContextConfiguration.cs" />
     <Compile Include="Entities\MaterialEntity.cs" />
     <Compile Include="Entities\ValidationConstants.cs" />
     <Compile Include="LPipeUnitOfWork.cs" />
     <Compile Include="Mappers\DomainToDal.cs" />
+    <Compile Include="Migrations\201610031816160_Initial.cs" />
+    <Compile Include="Migrations\201610031816160_Initial.Designer.cs">
+      <DependentUpon>201610031816160_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="Queries\MaterialQueries.cs" />
     <Compile Include="Repositories\MaterialRepository.cs" />
     <Compile Include="Repositories\Specifications\MaterialStorageSpecification.cs" />
@@ -70,6 +84,10 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LPipe.Crosscutting.Contracts\LPipe.Crosscutting.Contracts.csproj">
@@ -88,6 +106,15 @@
       <Project>{3469d4fa-354c-4ebe-9974-681925ee3280}</Project>
       <Name>LPipe.Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201610031816160_Initial.resx">
+      <DependentUpon>201610031816160_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -12,17 +12,6 @@ namespace LPipe.Data.MsSql.Context
 {
     internal class LPipeEntities : DbContext
     {
-        /// <summary>
-        /// Initializes static members of the <see cref="LPipeEntities"/> class.
-        /// </summary>
-        static LPipeEntities()
-        {
-            Database.SetInitializer(new LPipeDatabaseInitializer());
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="LPipeEntities" /> class.
-        /// </summary>
         public LPipeEntities()
             : base("LPipeEntities")
         {

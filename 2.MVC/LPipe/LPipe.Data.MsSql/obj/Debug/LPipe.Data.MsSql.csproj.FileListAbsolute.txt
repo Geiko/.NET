@@ -32,5 +32,8 @@ D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Data.MsSql\bin\Debug\LPipe
 D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Data.MsSql\bin\Debug\EntityFramework.xml
 D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Data.MsSql\bin\Debug\EntityFramework.SqlServer.xml
 D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Data.MsSql\obj\Debug\LPipe.Data.MsSql.csprojResolveAssemblyReference.cache
+D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Data.MsSql\obj\Debug\LPipe.Data.MsSql.Properties.Resources.resources
+D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Data.MsSql\obj\Debug\LPipe.Data.MsSql.csproj.GenerateResource.Cache
 D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Data.MsSql\obj\Debug\LPipe.Data.MsSql.dll
 D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Data.MsSql\obj\Debug\LPipe.Data.MsSql.pdb
+D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Data.MsSql\obj\Debug\LPipe.Data.MsSql.Migrations.Initial.resources

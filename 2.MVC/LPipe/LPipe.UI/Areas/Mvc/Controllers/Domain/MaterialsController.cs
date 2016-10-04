@@ -14,6 +14,7 @@ using LPipe.Data.Contracts;
 using LPipe.Data.Queries.Material;
 using LPipe.Data.Queries.Common;
 using LPipe.Data.MsSql.Queries;
+using System.Net;
 
 namespace LPipe.UI.Areas.Mvc.Controllers.Domain
 {
@@ -25,6 +26,9 @@ namespace LPipe.UI.Areas.Mvc.Controllers.Domain
         public MaterialController()
         {
             IUnitOfWork unitOfWork = new LPipeUnitOfWork();
+                      
+            IQuery<Material, FindByIdCriteria> getMaterialByIdQuery =
+                new MaterialQueries(unitOfWork);
 
             IQuery<List<Material>, GetAllCriteria> getAllMaterialsQuery =
                 new MaterialQueries(unitOfWork);
@@ -34,7 +38,7 @@ namespace LPipe.UI.Areas.Mvc.Controllers.Domain
 
             IMaterialService materialService = 
                 new MaterialService(
-                    materialRepository, getAllMaterialsQuery);
+                    materialRepository, getAllMaterialsQuery, getMaterialByIdQuery);
 
             this._materialService = materialService;             
         }
@@ -48,22 +52,35 @@ namespace LPipe.UI.Areas.Mvc.Controllers.Domain
                                          .ToList()
                                          .Select(m => MaterialViewModel.Map(m));
             return View(materials);
-        }
-        
+        }      
 
 
 
         // GET: Mvc/Material/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
-            return View();
+            //return View(); 
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Material material = this._materialService.Get((int)id);
+            if (material == null)
+            {
+                return HttpNotFound();
+            }
+            return View(MaterialViewModel.Map(material));
         }
+
+
 
         // GET: Mvc/Material/Create
         public ActionResult Create()
         {
             return View();
         }
+
+
 
         // POST: Mvc/Material/Create
         [HttpPost]

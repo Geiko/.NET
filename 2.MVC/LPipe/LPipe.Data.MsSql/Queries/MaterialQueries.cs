@@ -27,7 +27,8 @@
         public Material Execute(FindByIdCriteria criteria)
         {
             return _unitOfWork.Context.Materials.Where(
-                t => t.Id == criteria.Id).Select(GetMaterialMapping()).SingleOrDefault();
+                m => m.Id == criteria.Id)
+                .Select(GetMaterialMapping()).SingleOrDefault();
         }
 
         public List<Material> Execute(GetAllCriteria criteria)
