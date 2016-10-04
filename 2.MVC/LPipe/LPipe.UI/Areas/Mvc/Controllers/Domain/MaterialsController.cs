@@ -23,24 +23,24 @@ namespace LPipe.UI.Areas.Mvc.Controllers.Domain
         private readonly IMaterialService _materialService;
 
 
-        public MaterialController()
+        public MaterialController(IMaterialService materialService)
         {
-            IUnitOfWork unitOfWork = new LPipeUnitOfWork();
-                      
-            IQuery<Material, FindByIdCriteria> getMaterialByIdQuery =
-                new MaterialQueries(unitOfWork);
+            //IUnitOfWork unitOfWork = new LPipeUnitOfWork();
 
-            IQuery<List<Material>, GetAllCriteria> getAllMaterialsQuery =
-                new MaterialQueries(unitOfWork);
+            //IQuery<Material, FindByIdCriteria> getMaterialByIdQuery =
+            //    new MaterialQueries(unitOfWork);
 
-            IMaterialRepository materialRepository = 
-                new MaterialRepository(unitOfWork);
+            //IQuery<List<Material>, GetAllCriteria> getAllMaterialsQuery =
+            //    new MaterialQueries(unitOfWork);
 
-            IMaterialService materialService = 
-                new MaterialService(
-                    materialRepository, getAllMaterialsQuery, getMaterialByIdQuery);
+            //IMaterialRepository materialRepository = 
+            //    new MaterialRepository(unitOfWork);
 
-            this._materialService = materialService;             
+            //IMaterialService materialService = 
+            //    new MaterialService(
+            //        materialRepository, getAllMaterialsQuery, getMaterialByIdQuery);
+
+            this._materialService = materialService;
         }
 
 

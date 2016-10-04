@@ -22,10 +22,14 @@ namespace LPipe.Services
         //private readonly IQuery<Material, UniqueMaterialCriteria> _uniqueMaterialQuery;
 
         public MaterialService(
-            IMaterialRepository materialRepository,
-            IQuery<List<Material>, GetAllCriteria> getAllMaterialsQuery,            
-            IQuery<Material, FindByIdCriteria> getMaterialByIdQuery)
+            //IMaterialRepository materialRepository,
+            //IQuery<List<Material>, GetAllCriteria> getAllMaterialsQuery           
+            //IQuery<Material, FindByIdCriteria> getMaterialByIdQuery
+            )
         {
+            IQuery<List<Material>, GetAllCriteria> getAllMaterialsQuery =
+                new MaterialQueries(unitOfWork);
+
             _getAllMaterialsQuery = getAllMaterialsQuery;
             _getMaterialByIdQuery = getMaterialByIdQuery;
         }

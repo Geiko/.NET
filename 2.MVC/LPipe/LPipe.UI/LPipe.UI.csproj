@@ -56,6 +56,15 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.3.2.0.0\lib\net45-full\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Common">
+      <HintPath>..\packages\Ninject.Web.Common.3.2.0.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Mvc">
+      <HintPath>..\packages\Ninject.MVC5.3.2.1.0\lib\net45-full\Ninject.Web.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -72,6 +81,9 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WebActivatorEx">
+      <HintPath>..\packages\WebActivatorEx.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Web.Razor">
@@ -121,6 +133,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Mvc\Controllers\Domain\MaterialsController.cs" />
     <Compile Include="Areas\Mvc\Mappers\DomainToViewModel.cs" />
@@ -131,6 +144,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -156,10 +170,6 @@
     <ProjectReference Include="..\LPipe.Contracts\LPipe.Contracts.csproj">
       <Project>{d4a2ee6d-8557-4ee3-8a2d-6390d9b6d419}</Project>
       <Name>LPipe.Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\LPipe.Crosscutting.Contracts\LPipe.Crosscutting.Contracts.csproj">
-      <Project>{c45bc149-a605-4117-8f0a-c69fa6c6fa5c}</Project>
-      <Name>LPipe.Crosscutting.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\LPipe.Data.MsSql\LPipe.Data.MsSql.csproj">
       <Project>{319ba344-9b38-4a34-8626-d5d478d12f39}</Project>

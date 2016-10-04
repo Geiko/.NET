@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4082B3C3-1D22-4B62-94F4-17AE4EE4D1B5}</ProjectGuid>
+    <ProjectGuid>{CB11810B-6E50-4147-BB30-20DB1CA23CEC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>LPipe.Crosscutting</RootNamespace>
@@ -41,19 +41,7 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Specifications\AndSpecification.cs" />
-    <Compile Include="Specifications\CompositeSpecification.cs" />
-    <Compile Include="Specifications\ExpressionSpecification.cs" />
-    <Compile Include="Specifications\NotSpecification.cs" />
-    <Compile Include="Specifications\OrSpecification.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\LPipe.Crosscutting.Contracts\LPipe.Crosscutting.Contracts.csproj">
-      <Project>{c45bc149-a605-4117-8f0a-c69fa6c6fa5c}</Project>
-      <Name>LPipe.Crosscutting.Contracts</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

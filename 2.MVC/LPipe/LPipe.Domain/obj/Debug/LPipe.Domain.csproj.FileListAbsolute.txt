@@ -16,3 +16,9 @@ D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Domain\bin\Debug\LPipe.Dat
 D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Domain\obj\Debug\LPipe.Domain.csprojResolveAssemblyReference.cache
 D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Domain\obj\Debug\LPipe.Domain.dll
 D:\My\IT\SoftServe\C#\PRACTICE\2_2_Layers\LPipe\LPipe.Domain\obj\Debug\LPipe.Domain.pdb
+D:\gh\DotNET\.NET\2.MVC\LPipe\LPipe.Domain\bin\Debug\LPipe.Domain.dll
+D:\gh\DotNET\.NET\2.MVC\LPipe\LPipe.Domain\bin\Debug\LPipe.Domain.pdb
+D:\gh\DotNET\.NET\2.MVC\LPipe\LPipe.Domain\bin\Debug\LPipe.Data.dll
+D:\gh\DotNET\.NET\2.MVC\LPipe\LPipe.Domain\bin\Debug\LPipe.Data.pdb
+D:\gh\DotNET\.NET\2.MVC\LPipe\LPipe.Domain\obj\Debug\LPipe.Domain.dll
+D:\gh\DotNET\.NET\2.MVC\LPipe\LPipe.Domain\obj\Debug\LPipe.Domain.pdb

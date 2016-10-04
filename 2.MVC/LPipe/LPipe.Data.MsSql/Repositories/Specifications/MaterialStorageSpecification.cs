@@ -2,7 +2,6 @@
 {
     using LPipe.Crosscutting.Contracts.Specifications;
     using LPipe.Crosscutting.Specifications;
-    //using LPipe.Crosscutting.Specifications;
     using LPipe.Data.MsSql.Entities;
 
     /// <summary>
@@ -20,7 +19,7 @@
             var name = new ExpressionSpecification<MaterialEntity>(t =>
                                 !string.IsNullOrEmpty(t.Name)
                                 && t.Name.Length < ValidationConstants.Material.MAX_NAME_LENGTH);
-            
+
             return name.IsSatisfiedBy(entity);
         }
     }
