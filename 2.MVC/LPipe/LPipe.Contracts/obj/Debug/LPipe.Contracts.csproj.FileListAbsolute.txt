@@ -25,3 +25,12 @@ D:\gh\DotNET\.NET\2.MVC\LPipe\LPipe.Contracts\bin\Debug\LPipe.Data.pdb
 D:\gh\DotNET\.NET\2.MVC\LPipe\LPipe.Contracts\obj\Debug\LPipe.Contracts.csprojResolveAssemblyReference.cache
 D:\gh\DotNET\.NET\2.MVC\LPipe\LPipe.Contracts\obj\Debug\LPipe.Contracts.dll
 D:\gh\DotNET\.NET\2.MVC\LPipe\LPipe.Contracts\obj\Debug\LPipe.Contracts.pdb
+D:\My\IT\STEP\temp\LPipe\LPipe.Contracts\bin\Debug\LPipe.Contracts.dll
+D:\My\IT\STEP\temp\LPipe\LPipe.Contracts\bin\Debug\LPipe.Contracts.pdb
+D:\My\IT\STEP\temp\LPipe\LPipe.Contracts\bin\Debug\LPipe.Domain.dll
+D:\My\IT\STEP\temp\LPipe\LPipe.Contracts\bin\Debug\LPipe.Data.dll
+D:\My\IT\STEP\temp\LPipe\LPipe.Contracts\bin\Debug\LPipe.Domain.pdb
+D:\My\IT\STEP\temp\LPipe\LPipe.Contracts\bin\Debug\LPipe.Data.pdb
+D:\My\IT\STEP\temp\LPipe\LPipe.Contracts\obj\Debug\LPipe.Contracts.csprojResolveAssemblyReference.cache
+D:\My\IT\STEP\temp\LPipe\LPipe.Contracts\obj\Debug\LPipe.Contracts.dll
+D:\My\IT\STEP\temp\LPipe\LPipe.Contracts\obj\Debug\LPipe.Contracts.pdb

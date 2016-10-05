@@ -1,35 +1,32 @@
-﻿using LPipe.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using LPipe.Domain.MaterialsAggregate;
-using LPipe.Data.Queries.Common;
-
-
-using LPipe.Data.Contracts;
-using LPipe.Data.Queries.Material;
-
-namespace LPipe.Services
+﻿namespace LPipe.Services
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using LPipe.Contracts;
+    using LPipe.Domain.MaterialsAggregate;
+    using LPipe.Data.Queries.Common;
+    using LPipe.Data.Contracts;
+    using LPipe.Data.Queries.Material;
+    using LPipe.Data.Exceptions;
+    using LPipe.Contracts.Exceptions;
+
     public class MaterialService : IMaterialService
     {
+        private readonly IMaterialRepository _materialRepository;     
         private readonly IQuery<List<Material>, GetAllCriteria> _getAllMaterialsQuery;
-        private readonly IQuery<Material, FindByIdCriteria> _getMaterialByIdQuery;        
+        private readonly IQuery<Material, FindByIdCriteria> _getMaterialByIdQuery;
 
-        //private readonly IMaterialRepository _materialRepository;
-        //private readonly IQuery<Material, UniqueMaterialCriteria> _uniqueMaterialQuery;
 
         public MaterialService(
-            //IMaterialRepository materialRepository,
-            //IQuery<List<Material>, GetAllCriteria> getAllMaterialsQuery           
-            //IQuery<Material, FindByIdCriteria> getMaterialByIdQuery
+            IMaterialRepository materialRepository,
+            IQuery<List<Material>, GetAllCriteria> getAllMaterialsQuery ,          
+            IQuery<Material, FindByIdCriteria> getMaterialByIdQuery
             )
         {
-            IQuery<List<Material>, GetAllCriteria> getAllMaterialsQuery =
-                new MaterialQueries(unitOfWork);
-
+            _materialRepository = materialRepository;
             _getAllMaterialsQuery = getAllMaterialsQuery;
             _getMaterialByIdQuery = getMaterialByIdQuery;
         }
@@ -38,19 +35,26 @@ namespace LPipe.Services
 
         public IList<Material> Get()
         {
-            return _getAllMaterialsQuery.Execute(new GetAllCriteria());     ////////
+            return _getAllMaterialsQuery.Execute(new GetAllCriteria());     
         }
 
 
 
-        public void Create(Material teamToCreate)
+        public void Create(Material materialToCreate)
         {
-            throw new NotImplementedException();
+                _materialRepository.Add(materialToCreate);
         }
 
         public void Edit(Material team)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _materialRepository.Update(team);
+            }
+            catch (ConcurrencyException ex)
+            {
+                throw new MissingEntityException(string.Format("Material NotFound {0}", ex.Message));
+            }
         }
 
 
@@ -60,9 +64,18 @@ namespace LPipe.Services
         }
 
 
-        public void Delete(int teamId)
+        public void Delete(int materialId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _materialRepository.Remove(materialId);
+            }
+            catch (InvalidKeyValueException ex)
+            {
+                throw new MissingEntityException( String.Format("MaterialNotFound {0} {1}", materialId, ex.Message));
+            }
+            
+            _materialRepository.UnitOfWork.Commit();
         }
 
     }

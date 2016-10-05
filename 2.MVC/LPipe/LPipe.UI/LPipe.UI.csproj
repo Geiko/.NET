@@ -56,13 +56,16 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Ninject">
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Ninject.3.2.0.0\lib\net45-full\Ninject.dll</HintPath>
     </Reference>
-    <Reference Include="Ninject.Web.Common">
+    <Reference Include="Ninject.Web.Common, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Ninject.Web.Common.3.2.0.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
     </Reference>
-    <Reference Include="Ninject.Web.Mvc">
+    <Reference Include="Ninject.Web.Mvc, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Ninject.MVC5.3.2.1.0\lib\net45-full\Ninject.Web.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.DynamicData" />
@@ -81,7 +84,8 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="WebActivatorEx">
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\WebActivatorEx.2.0\lib\net40\WebActivatorEx.dll</HintPath>
     </Reference>
   </ItemGroup>
@@ -119,6 +123,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Areas\Mvc\Views\Material\Index.cshtml" />
     <Content Include="Areas\Mvc\Views\Material\Details.cshtml" />
+    <Content Include="Areas\Mvc\Views\Material\Delete.cshtml" />
+    <Content Include="Areas\Mvc\Views\Material\Create.cshtml" />
+    <Content Include="Areas\Mvc\Views\Material\Edit.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -144,7 +151,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
+    <Compile Include="Infrastructure\NinjectUIModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -171,13 +178,13 @@
       <Project>{d4a2ee6d-8557-4ee3-8a2d-6390d9b6d419}</Project>
       <Name>LPipe.Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LPipe.Crosscutting.Contracts\LPipe.Crosscutting.Contracts.csproj">
+      <Project>{32ce392d-23fc-4ada-9dfe-a446e0ec3e2b}</Project>
+      <Name>LPipe.Crosscutting.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LPipe.Data.MsSql\LPipe.Data.MsSql.csproj">
       <Project>{319ba344-9b38-4a34-8626-d5d478d12f39}</Project>
       <Name>LPipe.Data.MsSql</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\LPipe.Data\LPipe.Data.csproj">
-      <Project>{61178fd6-2ed2-44c8-b7cd-63579a3a3f7c}</Project>
-      <Name>LPipe.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\LPipe.Domain\LPipe.Domain.csproj">
       <Project>{3469d4fa-354c-4ebe-9974-681925ee3280}</Project>

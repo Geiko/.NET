@@ -3,7 +3,6 @@
     using System;
     using System.Data.Entity;
     using System.Linq;
-
     using LPipe.Data.Contracts;
     using LPipe.Data.Exceptions;
     using LPipe.Data.MsSql.Entities;

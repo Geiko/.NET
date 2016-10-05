@@ -41,12 +41,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constans.cs" />
     <Compile Include="MaterialsAggregate\IMaterialRepository.cs" />
     <Compile Include="MaterialsAggregate\Material.cs" />
     <Compile Include="MaterialsAggregate\MaterialValidation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LPipe.Crosscutting.Contracts\LPipe.Crosscutting.Contracts.csproj">
+      <Project>{32ce392d-23fc-4ada-9dfe-a446e0ec3e2b}</Project>
+      <Name>LPipe.Crosscutting.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LPipe.Data\LPipe.Data.csproj">
       <Project>{61178fd6-2ed2-44c8-b7cd-63579a3a3f7c}</Project>
       <Name>LPipe.Data</Name>
