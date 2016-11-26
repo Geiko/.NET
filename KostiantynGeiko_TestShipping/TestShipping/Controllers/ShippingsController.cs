@@ -41,15 +41,14 @@ namespace TestShipping.Controllers
             carrier = getSelectedFilter(carrier, "carrierFilter");
             month = getSelectedFilter(month, "monthFilter");
 
-            IQueryable<Shipping> shippings =
+            List<Shipping> shippings =
                 getShippings(month, departureCity, purposeCity, customer, carrier);
-
-            var shippingsList = shippings.ToList();
-            TempData["ShippingsList"] = shippingsList;
+                        
+            TempData["ShippingsList"] = shippings;
             int pageNumber = (page ?? 1);
             ShippingViewModel shipViewModel = new ShippingViewModel
             {
-                Shippings = shippingsList.ToPagedList(pageNumber, PAGE_SIZE),
+                Shippings = shippings.ToPagedList(pageNumber, PAGE_SIZE),
                 DepartureCities = new SelectList(departureList),
                 PurposeCities = new SelectList(purposeList),
                 Customers = new SelectList(customersList),
@@ -65,13 +64,13 @@ namespace TestShipping.Controllers
             return View(shipViewModel);
         }
 
-        private IQueryable<Shipping> getShippings
+        private List<Shipping> getShippings
             (string month, string departureCity, string purposeCity, string customer, string carrier)
         {
-            IQueryable<Shipping> shippings = null;
+            List<Shipping> shippings = null;
             if (string.IsNullOrEmpty(month))
             {
-                shippings = db.Shippings.Where(s => s.Month == DEFAULT_MONTH);
+                shippings = db.Shippings.Where(s => s.Month == DEFAULT_MONTH).ToList();
             }
             else
             {
@@ -81,7 +80,7 @@ namespace TestShipping.Controllers
                     .Where(s => s.Departure == departureCity || departureCity.Equals("All"))
                     .Where(s => s.Purpose == purposeCity || purposeCity.Equals("All"))
                     .Where(s => s.Customer == customer || customer.Equals("All"))
-                    .Where(s => s.Carrier == carrier || carrier.Equals("All"));
+                    .Where(s => s.Carrier == carrier || carrier.Equals("All")).ToList();
             }
 
             return shippings;
