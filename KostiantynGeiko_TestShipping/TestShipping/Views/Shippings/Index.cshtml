@@ -1,5 +1,6 @@
 ﻿@model TestShipping.Models.ShippingViewModel
 @using PagedList.Mvc;
+<link href="~/Content/Site.css" rel="stylesheet" />
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
@@ -7,22 +8,22 @@
 }
 
 <div class="form-inline">
-    <span style="font-size: 30px; margin:0 15px 0 0;">Shippings</span>
+    <span class="title indented">Shippings</span>
 
-    @Html.ActionLink("Create New", "Create") 
+    @Html.ActionLink("Create New", "Create", null, null, new { @class = "indented" })
 
-    <button id="return" class="btn btn-default" style="margin:0 15px;">Back</button> 
+    <button id="return" class="btn btn-default indented">Back</button> 
 
-    <input type="submit" value="Filter" class="btn btn-success" form="filterForm" /> 
+    <input type="submit" value="Filter" class="btn btn-success indented" form="filterForm" /> 
 
-    <span style="margin:0 15px;">@Html.ActionLink("Export XLS-file", "ExportToExcel")</span>
+    <span>@Html.ActionLink("Export XLS-file", "ExportToExcel")</span>
 </div>
 
 @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "filterForm" }))
 {
-    <div class="form-inline" style="margin: 15px 0;">
+    <div class="form-inline vertical-indented">
 
-        <div class="form-group" style="margin:0 15px 0 0">
+        <div class="form-group indented">
             <label>Month:</label><br />
             @Html.DropDownList(
                "month",
@@ -31,7 +32,7 @@
                htmlAttributes: new { @class = "form-control" })
         </div>
 
-        <div class="form-group" style="margin:0 15px 0 0">
+        <div class="form-group indented">
             <label>Depatchure City:</label><br />
             @Html.DropDownList(
                "departureCity",
@@ -40,7 +41,7 @@
                htmlAttributes: new { @class = "form-control" })
         </div>
 
-        <div class="form-group" style="margin:0 15px 0 0">
+        <div class="form-group indented">
             <label>Purpose City:</label><br />
             @Html.DropDownList(
                "purposeCity",
@@ -49,7 +50,7 @@
                htmlAttributes: new { @class = "form-control" })
         </div>
 
-        <div class="form-group" style="margin:0 15px 0 0">
+        <div class="form-group indented">
             <label>Customer:</label><br />
             @Html.DropDownList(
                 "customer",
@@ -59,7 +60,7 @@
             )
         </div>
 
-        <div class="form-group" style="margin:0 15px 0 0">
+        <div class="form-group indented">
             <label>Carrier:</label><br />
             @Html.DropDownList(
                "carrier",

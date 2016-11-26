@@ -149,60 +149,6 @@ namespace TestShipping.Controllers
             return carrierCitiesList;
         }
 
-        private IQueryable<Shipping> setMonthFilter(IQueryable<Shipping> shippings, string month)
-        {
-            if (!string.IsNullOrEmpty(month))
-            {
-                int monthNumber = int.Parse(month);
-                if (monthNumber > 0 && monthNumber <= MONTH_QUANTITY)
-                {
-                    shippings = shippings.Where(s => s.Month == monthNumber);
-                }
-            }
-
-            return shippings;
-        }
-
-        private IQueryable<Shipping> setCarrierFilter(IQueryable<Shipping> shippings, string carrier)
-        {
-            if (!string.IsNullOrEmpty(carrier) && !carrier.Equals("All"))
-            {
-                shippings = shippings.Where(s => s.Carrier == carrier);
-            }
-
-            return shippings;
-        }
-
-        private IQueryable<Shipping> setCustomerFilter(IQueryable<Shipping> shippings, string customer)
-        {
-            if (!string.IsNullOrEmpty(customer) && !customer.Equals("All"))
-            {
-                shippings = shippings.Where(s => s.Customer == customer);
-            }
-
-            return shippings;
-        }
-
-        private IQueryable<Shipping> setPurposeFilter(IQueryable<Shipping> shippings, string purposeCity)
-        {
-            if (!string.IsNullOrEmpty(purposeCity) && !purposeCity.Equals("All"))
-            {
-                shippings = shippings.Where(s => s.Purpose == purposeCity);
-            }
-
-            return shippings;
-        }
-
-        private IQueryable<Shipping> setDepartureFilter(IQueryable<Shipping> shippings, string departureCity)
-        {
-            if (!string.IsNullOrEmpty(departureCity) && !departureCity.Equals("All"))
-            {
-                shippings = shippings.Where(s => s.Departure == departureCity);
-            }
-
-            return shippings;
-        }
-
         public void ExportToExcel()
         {
             var gv = new GridView();
