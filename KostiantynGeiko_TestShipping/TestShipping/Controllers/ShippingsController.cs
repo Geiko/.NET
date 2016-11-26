@@ -71,10 +71,10 @@ namespace TestShipping.Controllers
             string customer, 
             string carrier)
         {
-            List<Shipping> shippings;
+            IQueryable<Shipping> shippings;
             if (string.IsNullOrEmpty(month))
             {
-                shippings = db.Shippings.Where(s => s.Month == DEFAULT_MONTH).ToList();
+                shippings = db.Shippings.Where(s => s.Month == DEFAULT_MONTH);
             }
             else
             {
@@ -84,10 +84,10 @@ namespace TestShipping.Controllers
                     .Where(s => s.Departure == departureCity || departureCity.Equals("All"))
                     .Where(s => s.Purpose == purposeCity || purposeCity.Equals("All"))
                     .Where(s => s.Customer == customer || customer.Equals("All"))
-                    .Where(s => s.Carrier == carrier || carrier.Equals("All")).ToList();
+                    .Where(s => s.Carrier == carrier || carrier.Equals("All"));
             }
 
-            return shippings;
+            return shippings.ToList();
         }
 
         private string getSelectedFilter(string category, string categoryFilter)
