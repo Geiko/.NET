@@ -71,22 +71,21 @@ namespace TestShipping.Controllers
             string customer, 
             string carrier)
         {
-            IQueryable<Shipping> shippings;
-            if (string.IsNullOrEmpty(month))
-            {
-                shippings = db.Shippings.Where(s => s.Month == DEFAULT_MONTH);
-            }
-            else
-            {
-                int monthNumber = int.Parse(month);
-                shippings = db.Shippings
-                    .Where(s => s.Month == monthNumber)
-                    .Where(s => s.Departure == departureCity || departureCity.Equals("All"))
-                    .Where(s => s.Purpose == purposeCity || purposeCity.Equals("All"))
-                    .Where(s => s.Customer == customer || customer.Equals("All"))
-                    .Where(s => s.Carrier == carrier || carrier.Equals("All"));
-            }
-
+            int monthNumber = int.Parse(month ?? DEFAULT_MONTH.ToString());
+            IQueryable<Shipping> shippings = db.Shippings
+                .Where(s => s.Month == monthNumber)
+                .Where(s => s.Departure == departureCity 
+                                        || departureCity.Equals("All") 
+                                        || departureCity == null)
+                .Where(s => s.Purpose   == purposeCity 
+                                        || purposeCity.Equals("All") 
+                                        || departureCity == null)
+                .Where(s => s.Customer  == customer 
+                                        || customer.Equals("All") 
+                                        || departureCity == null)
+                .Where(s => s.Carrier   == carrier 
+                                        || carrier.Equals("All") 
+                                        || departureCity == null);
             return shippings.ToList();
         }
 
