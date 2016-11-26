@@ -34,3 +34,7 @@ textarea {
 .vertical-indented{
     margin: 15px 0;
 }
+
+.cell-space{
+    padding: 0 15px !important;
+}

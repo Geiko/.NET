@@ -153,6 +153,10 @@
     <Compile Include="Migrations\201611260635068_Seed1.Designer.cs">
       <DependentUpon>201611260635068_Seed1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611261745538_AddAttributs.cs" />
+    <Compile Include="Migrations\201611261745538_AddAttributs.Designer.cs">
+      <DependentUpon>201611261745538_AddAttributs.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Shipping.cs" />
     <Compile Include="Models\ShippingDbContext.cs" />
@@ -216,6 +220,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201611260635068_Seed1.resx">
       <DependentUpon>201611260635068_Seed1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611261745538_AddAttributs.resx">
+      <DependentUpon>201611261745538_AddAttributs.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -8,19 +10,53 @@ namespace TestShipping.Models
     public class Shipping
     {
         public int Id { get; set; }
-
+        
+        [Required(ErrorMessage = "Required")]
+        [Range(1, 12)]
+        [DisplayName("Month")]
         public int Month { get; set; }
+
+        [Required(ErrorMessage = "Required")]
+        [Range(2000, 2100)]
+        [DisplayName("Year")]
         public int Year { get; set; }
 
+
+
+        [Required(ErrorMessage = "Required")]
+        [StringLength(30)]
+        [DisplayName("Departure city")]
         public string Departure { get; set; }
+
+        [Required(ErrorMessage = "Required")]
+        [StringLength(30)]
+        [DisplayName("Purpose city")]
         public string Purpose { get; set; }
 
-        public string Customer { get; set; }
-        public string Carrier { get; set; }
 
+
+        [Required(ErrorMessage = "Required")]
+        [StringLength(50)]
+        [DisplayName("Customer")]
+        public string Customer { get; set; }
+
+        [Required(ErrorMessage = "Required")]
+        [StringLength(50)]
+        [DisplayName("Carrier")]
+        public string Carrier { get; set; }
+        
+
+
+        [Range(0, 3000)]
+        [DisplayName("Scheduled Traffic")]
         public double ScheduledTraffic { get; set; }
+
+        [Range(0, 3000)]
+        [DisplayName("Actual Traffic")]
         public double ActualTraffic { get; set; }
 
+
+        
         public double? Day1Tons { get; set; }
         public double? Day2Tons { get; set; }
         public double? Day3Tons { get; set; }
