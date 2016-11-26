@@ -30,5 +30,3 @@ D:\My\IT\STEP\temp\LPipe\LPipe.Data\bin\Debug\EntityFramework.xml
 D:\My\IT\STEP\temp\LPipe\LPipe.Data\bin\Debug\EntityFramework.SqlServer.xml
 D:\My\IT\STEP\temp\LPipe\LPipe.Data\obj\Debug\LPipe.Data.dll
 D:\My\IT\STEP\temp\LPipe\LPipe.Data\obj\Debug\LPipe.Data.pdb
-D:\My\IT\STEP\temp\LPipe\LPipe.Data\obj\Debug\LPipe.Data.csprojResolveAssemblyReference.cache
-D:\gh\DotNET\.NET\2.MVC\LPipe\LPipe.Data\obj\Debug\LPipe.Data.csprojResolveAssemblyReference.cache

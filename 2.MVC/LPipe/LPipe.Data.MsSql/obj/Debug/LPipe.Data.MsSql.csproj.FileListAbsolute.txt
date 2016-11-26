@@ -74,7 +74,6 @@ D:\My\IT\STEP\temp\LPipe\LPipe.Data.MsSql\bin\Debug\LPipe.Domain.pdb
 D:\My\IT\STEP\temp\LPipe\LPipe.Data.MsSql\bin\Debug\EntityFramework.xml
 D:\My\IT\STEP\temp\LPipe\LPipe.Data.MsSql\bin\Debug\EntityFramework.SqlServer.xml
 D:\My\IT\STEP\temp\LPipe\LPipe.Data.MsSql\obj\Debug\LPipe.Data.MsSql.csprojResolveAssemblyReference.cache
-D:\My\IT\STEP\temp\LPipe\LPipe.Data.MsSql\obj\Debug\LPipe.Data.MsSql.Migrations.Initial.resources
 D:\My\IT\STEP\temp\LPipe\LPipe.Data.MsSql\obj\Debug\LPipe.Data.MsSql.Properties.Resources.resources
 D:\My\IT\STEP\temp\LPipe\LPipe.Data.MsSql\obj\Debug\LPipe.Data.MsSql.csproj.GenerateResource.Cache
 D:\My\IT\STEP\temp\LPipe\LPipe.Data.MsSql\obj\Debug\LPipe.Data.MsSql.dll
@@ -85,9 +84,4 @@ D:\My\IT\STEP\temp\LPipe\LPipe.Data.MsSql\bin\Debug\Ninject.xml
 D:\My\IT\STEP\temp\LPipe\LPipe.Data.MsSql\bin\Debug\Ninject.Extensions.Conventions.xml
 D:\My\IT\STEP\temp\LPipe\LPipe.Data.MsSql\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
 D:\My\IT\STEP\temp\LPipe\LPipe.Data.MsSql\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
-D:\gh\DotNET\.NET\2.MVC\LPipe\LPipe.Data.MsSql\bin\Debug\Ninject.dll
-D:\gh\DotNET\.NET\2.MVC\LPipe\LPipe.Data.MsSql\bin\Debug\Ninject.Extensions.Conventions.dll
-D:\gh\DotNET\.NET\2.MVC\LPipe\LPipe.Data.MsSql\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
-D:\gh\DotNET\.NET\2.MVC\LPipe\LPipe.Data.MsSql\bin\Debug\Ninject.xml
-D:\gh\DotNET\.NET\2.MVC\LPipe\LPipe.Data.MsSql\bin\Debug\Ninject.Extensions.Conventions.xml
-D:\gh\DotNET\.NET\2.MVC\LPipe\LPipe.Data.MsSql\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+D:\My\IT\STEP\temp\LPipe\LPipe.Data.MsSql\obj\Debug\LPipe.Data.MsSql.Migrations.Initial.resources

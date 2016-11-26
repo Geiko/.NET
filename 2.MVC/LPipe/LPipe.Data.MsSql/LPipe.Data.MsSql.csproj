@@ -64,9 +64,9 @@
     <Compile Include="Infrastructure\NinjectDataAccessModule.cs" />
     <Compile Include="LPipeUnitOfWork.cs" />
     <Compile Include="Mappers\DomainToDal.cs" />
-    <Compile Include="Migrations\201610031816160_Initial.cs" />
-    <Compile Include="Migrations\201610031816160_Initial.Designer.cs">
-      <DependentUpon>201610031816160_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201610050821262_Initial.cs" />
+    <Compile Include="Migrations\201610050821262_Initial.Designer.cs">
+      <DependentUpon>201610050821262_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -114,8 +114,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201610031816160_Initial.resx">
-      <DependentUpon>201610031816160_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201610050821262_Initial.resx">
+      <DependentUpon>201610050821262_Initial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

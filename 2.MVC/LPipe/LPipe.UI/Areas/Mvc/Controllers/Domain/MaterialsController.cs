@@ -17,16 +17,12 @@
     public class MaterialController : Controller
     {
         private readonly IMaterialService _materialService;
-
-
-
+        
         public MaterialController(IMaterialService materialService)
         {
             this._materialService = materialService;
         }
-
-
-
+        
         // GET: Mvc/Material
         public ActionResult Index()
         {
@@ -35,8 +31,6 @@
                                          .Select(m => MaterialViewModel.Map(m));
             return View(materials);
         }      
-
-
 
         // GET: Mvc/Material/Details/5
         public ActionResult Details(int? id)
@@ -53,17 +47,12 @@
             return View(MaterialViewModel.Map(material));
         }
 
-
-
-
-
         // GET: Mvc/Material/Create
         public ActionResult Create()
         {
             var materialViewModel = new MaterialViewModel();
             return this.View(materialViewModel);
         }
-
         
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -85,10 +74,6 @@
                 return View(MaterialViewModel.Map(material));
             }
         }
-
-
-
-
 
         // GET: Materials/Edit/5
         public ActionResult Edit(int? id)
@@ -126,11 +111,6 @@
                 return View(MaterialViewModel.Map(material));
             }
         }
-                  
-
-
-
-
 
         // GET: Mvc/Material/Delete/5
         public ActionResult Delete(int? id)
@@ -146,7 +126,6 @@
             }
             return View(MaterialViewModel.Map(material));
         }
-
 
         // POST: Materials/Delete/5
         [HttpPost, ActionName("Delete")]

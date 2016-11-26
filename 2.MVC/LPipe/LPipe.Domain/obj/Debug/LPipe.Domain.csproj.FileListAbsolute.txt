@@ -32,5 +32,3 @@ D:\My\IT\STEP\temp\LPipe\LPipe.Domain\obj\Debug\LPipe.Domain.dll
 D:\My\IT\STEP\temp\LPipe\LPipe.Domain\obj\Debug\LPipe.Domain.pdb
 D:\My\IT\STEP\temp\LPipe\LPipe.Domain\bin\Debug\LPipe.Crosscutting.Contracts.dll
 D:\My\IT\STEP\temp\LPipe\LPipe.Domain\bin\Debug\LPipe.Crosscutting.Contracts.pdb
-D:\gh\DotNET\.NET\2.MVC\LPipe\LPipe.Domain\bin\Debug\LPipe.Crosscutting.Contracts.dll
-D:\gh\DotNET\.NET\2.MVC\LPipe\LPipe.Domain\bin\Debug\LPipe.Crosscutting.Contracts.pdb

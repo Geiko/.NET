@@ -7,4 +7,3 @@ D:\My\IT\STEP\temp\LPipe\LPipe.Crosscutting.Contracts\bin\Debug\LPipe.Crosscutti
 D:\My\IT\STEP\temp\LPipe\LPipe.Crosscutting.Contracts\obj\Debug\LPipe.Crosscutting.Contracts.dll
 D:\My\IT\STEP\temp\LPipe\LPipe.Crosscutting.Contracts\obj\Debug\LPipe.Crosscutting.Contracts.pdb
 D:\My\IT\STEP\temp\LPipe\LPipe.Crosscutting.Contracts\obj\Debug\LPipe.Crosscutting.Contracts.csprojResolveAssemblyReference.cache
-D:\gh\DotNET\.NET\2.MVC\LPipe\LPipe.Crosscutting.Contracts\obj\Debug\LPipe.Crosscutting.Contracts.csprojResolveAssemblyReference.cache

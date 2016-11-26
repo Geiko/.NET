@@ -166,6 +166,7 @@ D:\My\IT\STEP\temp\LPipe\LPipe.UI\bin\LPipe.Crosscutting.pdb
 D:\My\IT\STEP\temp\LPipe\LPipe.UI\bin\Microsoft.Practices.EnterpriseLibrary.Common.xml
 D:\My\IT\STEP\temp\LPipe\LPipe.UI\bin\Ninject.Extensions.Conventions.dll
 D:\My\IT\STEP\temp\LPipe\LPipe.UI\bin\Ninject.Extensions.Conventions.xml
+D:\gh\DotNET\.NET\2.MVC\LPipe\LPipe.UI\bin\Microsoft.Web.Infrastructure.dll
 D:\gh\DotNET\.NET\2.MVC\LPipe\LPipe.UI\bin\Ninject.Extensions.Conventions.dll
 D:\gh\DotNET\.NET\2.MVC\LPipe\LPipe.UI\bin\LPipe.Crosscutting.dll
 D:\gh\DotNET\.NET\2.MVC\LPipe\LPipe.UI\bin\Microsoft.Practices.EnterpriseLibrary.Common.dll
