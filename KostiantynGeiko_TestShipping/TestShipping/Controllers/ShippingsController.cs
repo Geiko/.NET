@@ -42,7 +42,7 @@ namespace TestShipping.Controllers
             month = getSelectedFilter(month, "monthFilter");
 
             List<Shipping> shippings = 
-                getShippings(month, departureCity, purposeCity, customer, carrier);
+                getShippings(month, departureCity, purposeCity, customer, carrier); 
                         
             TempData["ShippingsList"] = shippings;
             int pageNumber = (page ?? 1);
