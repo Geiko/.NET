@@ -29,11 +29,11 @@ namespace TestShipping.Controllers
             string month,
             int? page)
         {
-            var monthList = getMonthList();
-            var departureList = getDepartureList();
-            var purposeList = getPurposeList();
-            var customersList = getCustomersList();
-            var carriersList = getCarriersList();
+            List<int> monthList = getMonthList();
+            List<string> departureList = getDepartureList();
+            List<string> purposeList = getPurposeList();
+            List<string> customersList = getCustomersList();
+            List<string> carriersList = getCarriersList();
 
             departureCity = getSelectedFilter(departureCity, "departureCityFilter");
             purposeCity = getSelectedFilter(purposeCity, "purposeCityFilter");
@@ -41,7 +41,7 @@ namespace TestShipping.Controllers
             carrier = getSelectedFilter(carrier, "carrierFilter");
             month = getSelectedFilter(month, "monthFilter");
 
-            List<Shipping> shippings =
+            List<Shipping> shippings = 
                 getShippings(month, departureCity, purposeCity, customer, carrier);
                         
             TempData["ShippingsList"] = shippings;
@@ -64,10 +64,14 @@ namespace TestShipping.Controllers
             return View(shipViewModel);
         }
 
-        private List<Shipping> getShippings
-            (string month, string departureCity, string purposeCity, string customer, string carrier)
+        private List<Shipping> getShippings(
+            string month, 
+            string departureCity, 
+            string purposeCity, 
+            string customer, 
+            string carrier)
         {
-            List<Shipping> shippings = null;
+            List<Shipping> shippings;
             if (string.IsNullOrEmpty(month))
             {
                 shippings = db.Shippings.Where(s => s.Month == DEFAULT_MONTH).ToList();
@@ -88,7 +92,7 @@ namespace TestShipping.Controllers
 
         private string getSelectedFilter(string category, string categoryFilter)
         {
-            if (category != null)
+            if (!string.IsNullOrEmpty(category))
             {
                 TempData[categoryFilter] = category;
                 TempData.Keep();
