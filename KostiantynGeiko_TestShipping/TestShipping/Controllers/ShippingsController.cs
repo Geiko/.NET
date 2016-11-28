@@ -27,7 +27,8 @@ namespace TestShipping.Controllers
             string customer,
             string carrier,
             string month,
-            int? page)
+            int? page,
+            bool? isExport)
         {
             List<int> monthList = getMonthList();
             List<string> departureList = getDepartureList();
@@ -43,8 +44,15 @@ namespace TestShipping.Controllers
 
             List<Shipping> shippings = 
                 getShippings(month, departureCity, purposeCity, customer, carrier);
-                        
-            TempData["ShippingsList"] = shippings;
+
+            if (isExport != null)
+            {
+                if ((bool)isExport)
+                {
+                    exportDataToExel(shippings);
+                }
+            }
+
             int pageNumber = (page ?? 1);
             ShippingViewModel shipViewModel = new ShippingViewModel
             {
@@ -151,10 +159,10 @@ namespace TestShipping.Controllers
             return carrierCitiesList;
         }
 
-        public void ExportToExcel()
+        private void exportDataToExel(List<Shipping> shippings)
         {
             var gv = new GridView();
-            gv.DataSource = TempData.Peek("ShippingsList") as List<Shipping>;
+            gv.DataSource = shippings;
             gv.DataBind();
             Response.ClearContent();
             Response.Buffer = true;

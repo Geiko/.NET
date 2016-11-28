@@ -16,11 +16,13 @@
 
     <input type="submit" value="Filter" class="btn btn-success indented" form="filterForm" /> 
 
-    <span>@Html.ActionLink("Export XLS-file", "ExportToExcel")</span>
+    <button id="export" class="btn btn-default indented">Download XLS-file</button> 
 </div>
 
 @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "filterForm" }))
-{
+{ 
+    @Html.Hidden("isExport", "false")
+
     <div class="form-inline vertical-indented">
 
         <div class="form-group indented">

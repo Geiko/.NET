@@ -28,7 +28,8 @@ namespace TestShipping
                       "~/Content/site.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/backButton").Include(
-                      "~/Scripts/Shippings/BackButton.js"));
+                      "~/Scripts/Shippings/BackButton.js",
+                      "~/Scripts/Shippings/ExportDataToExcel.js"));
         }
     }
 }
