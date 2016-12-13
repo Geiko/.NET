@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -17,15 +15,14 @@ namespace TestShipping.Controllers
     {
         private ShippingDBContext db = new ShippingDBContext();
         private const int PAGE_SIZE = 10;
-        private const int MONTH_QUANTITY = 12;
         private const int DEFAULT_MONTH = 1;
 
         // GET: Shippings
         public ActionResult Index(
             string [] depurtureCities,
-            string purposeCity,
-            string customer,
-            string carrier,
+            string [] purposeCities,
+            string [] customers,
+            string [] carriers,
             string month,
             int? page,
             bool? isExport)
@@ -36,14 +33,14 @@ namespace TestShipping.Controllers
             List<string> customersList = getCustomersList();
             List<string> carriersList = getCarriersList();
 
-            List<string> depurtureCitiesList = getSelectedFilter(depurtureCities, "departureCityFilter");
-            purposeCity = getSelectedFilter(purposeCity, "purposeCityFilter");
-            customer = getSelectedFilter(customer, "customerFilter");
-            carrier = getSelectedFilter(carrier, "carrierFilter");
+            List<string> selectedDepurtureList = getSelectedFilter(depurtureCities, "departureCityFilter");
+            List<string> selectedPurposeList = getSelectedFilter(purposeCities, "purposeCityFilter");
+            List<string> selectedCustomerList = getSelectedFilter(customers, "customerFilter");
+            List<string> selectedCarrierList = getSelectedFilter(carriers, "carrierFilter");
             month = getSelectedFilter(month, "monthFilter");
 
             List<Shipping> shippings = 
-                getShippings(month, depurtureCitiesList, purposeCity, customer, carrier);
+                getShippings(month, selectedDepurtureList, selectedPurposeList, selectedCustomerList, selectedCarrierList);
 
             if (isExport != null)
             {
@@ -70,25 +67,18 @@ namespace TestShipping.Controllers
 
         private List<Shipping> getShippings(
             string month,
-            List<string> departureCitiesList, 
-            string purposeCity, 
-            string customer, 
-            string carrier)
+            List<string> selectedDepurtureList,
+            List<string> selectedPurposeList,
+            List<string> selectedCustomerList,
+            List<string> selectedCarrierList)
         {
             int monthNumber = int.Parse(month ?? DEFAULT_MONTH.ToString());
             IQueryable<Shipping> shippings = db.Shippings
                 .Where(s => s.Month == monthNumber)
-                .Where(s => departureCitiesList.Contains(s.Departure) || departureCitiesList.Contains("All"))
-
-                .Where(s => s.Purpose   == purposeCity 
-                                        || purposeCity.Equals("All") 
-                                        || purposeCity == null)
-                .Where(s => s.Customer  == customer 
-                                        || customer.Equals("All") 
-                                        || customer == null)
-                .Where(s => s.Carrier   == carrier 
-                                        || carrier.Equals("All") 
-                                        || carrier == null);
+                .Where(s => selectedDepurtureList.Contains(s.Departure) || selectedDepurtureList.Contains("All"))
+                .Where(s => selectedPurposeList.Contains(s.Purpose) || selectedPurposeList.Contains("All"))
+                .Where(s => selectedCustomerList.Contains(s.Customer) || selectedCustomerList.Contains("All"))
+                .Where(s => selectedCarrierList.Contains(s.Carrier) || selectedCarrierList.Contains("All"));
             return shippings.ToList();
         }
 
