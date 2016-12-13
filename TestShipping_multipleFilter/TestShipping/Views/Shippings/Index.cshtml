@@ -1,0 +1,246 @@
+﻿@model TestShipping.Models.ShippingViewModel
+@using PagedList.Mvc;
+<link href="~/Content/Site.css" rel="stylesheet" />
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Shippings";
+}
+
+<div class="form-inline">
+    <span class="title indented">Shippings</span>
+
+    @Html.ActionLink("Create New", "Create", null, null, new { @class = "indented" })
+
+    <button id="return" class="btn btn-default indented">Back</button>
+
+    <input type="submit" value="Filter" class="btn btn-success indented" form="filterForm" />
+
+    <button id="export" class="btn btn-default indented">Download XLS-file</button>
+</div>
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "filterForm" }))
+{
+    @Html.Hidden("isExport", "false")
+
+    <div class="form-inline vertical-indented">
+
+        <div class="form-group indented">
+            <label>Month:</label><br />
+            @Html.DropDownList(
+                "month",
+                Model.Month as SelectList,
+                Model.SelectedMonthFilter,
+                htmlAttributes: new { @class = "form-control" })
+        </div>
+        
+        <div class="form-group indented">
+            <label>Depatchure City:</label><br />
+            @Html.DropDownList(
+                "depurtureCities",
+                Model.DepartureCities as SelectList,
+                htmlAttributes: new { @class = "form-control", multiple = "multiple" })
+            </div>
+        
+    <div class="form-group indented">
+        <label>Purpose City:</label><br />
+        @Html.DropDownList(
+               "purposeCity",
+               Model.PurposeCities as SelectList,
+               htmlAttributes: new { @class = "form-control" })
+    </div>
+
+    <div class="form-group indented">
+        <label>Customer:</label><br />
+        @Html.DropDownList(
+                "customer",
+                Model.Customers as SelectList,
+                htmlAttributes: new { @class = "form-control" }
+            )
+    </div>
+
+    <div class="form-group indented">
+        <label>Carrier:</label><br />
+        @Html.DropDownList(
+               "carrier",
+               Model.Carriers as SelectList,
+               htmlAttributes: new { @class = "form-control" })
+    </div>
+</div>
+    }
+
+<table class="table table-bordered table-striped table-hover table-condensed text-center">
+    <tr>
+        <th class="text-center cell-space">
+            @Html.DisplayNameFor(model => model.Shipping.Id)
+        </th>
+        <th class="text-center cell-space">
+            Possible_line_options
+        </th>
+        <th class="text-center cell-space">
+            @Html.DisplayNameFor(model => model.Shipping.Month)
+        </th>
+        <th class="text-center cell-space">
+            @Html.DisplayNameFor(model => model.Shipping.Year)
+        </th>
+        <th class="text-center cell-space">
+            @Html.DisplayNameFor(model => model.Shipping.Departure)
+        </th>
+        <th class="text-center cell-space">
+            @Html.DisplayNameFor(model => model.Shipping.Purpose)
+        </th>
+        <th class="text-center cell-space">
+            @Html.DisplayNameFor(model => model.Shipping.Customer)
+        </th>
+        <th class="text-center cell-space">
+            @Html.DisplayNameFor(model => model.Shipping.Carrier)
+        </th>
+        <th class="text-center cell-space">
+            @Html.DisplayNameFor(model => model.Shipping.ScheduledTraffic)
+        </th>
+        <th class="text-center cell-space">
+            @Html.DisplayNameFor(model => model.Shipping.ActualTraffic)
+        </th>
+        @for (int i = 1; i <= Model.MAX_DAYS_IN_MONTH; i++)
+            {
+        <th class="text-center">@i</th>
+        }
+    </tr>
+
+    @foreach (var item in Model.Shippings)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id
+                }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Month)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Year)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Departure)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Purpose)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Carrier)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ScheduledTraffic)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ActualTraffic)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Day1Tons)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Day2Tons)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Day3Tons)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Day4Tons)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Day5Tons)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Day6Tons)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Day7Tons)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Day8Tons)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Day9Tons)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Day10Tons)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Day11Tons)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Day12Tons)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Day13Tons)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Day14Tons)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Day15Tons)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Day16Tons)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Day17Tons)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Day18Tons)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Day19Tons)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Day20Tons)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Day21Tons)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Day22Tons)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Day23Tons)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Day24Tons)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Day25Tons)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Day26Tons)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Day27Tons)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Day28Tons)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Day29Tons)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Day30Tons)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Day31Tons)
+            </td>
+        </tr>
+    }
+
+</table>
+<br />
+Page @(Model.Shippings.PageCount<Model.Shippings.PageNumber? 0 : Model.Shippings.PageNumber) from @Model.Shippings.PageCount
+
+@Html.PagedListPager(Model.Shippings, page => Url.Action("Index", new { page }))
