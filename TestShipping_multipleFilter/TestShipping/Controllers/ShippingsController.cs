@@ -101,8 +101,7 @@ namespace TestShipping.Controllers
             List<string> categories = null;
             if (category == null)
             {
-                categories = new List<string>();
-                categories.Add("All");
+                categories = new List<string> {"All"};
             }
             else
             {
