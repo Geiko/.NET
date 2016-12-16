@@ -1,0 +1,8 @@
+D:\My\IT\Job\REAL\0.INTERVIEW_TRAINING\c#\AlexChech\DuplicatedSets\DuplicatedSets\bin\Debug\DuplicatedSets.exe.config
+D:\My\IT\Job\REAL\0.INTERVIEW_TRAINING\c#\AlexChech\DuplicatedSets\DuplicatedSets\bin\Debug\DuplicatedSets.exe
+D:\My\IT\Job\REAL\0.INTERVIEW_TRAINING\c#\AlexChech\DuplicatedSets\DuplicatedSets\bin\Debug\DuplicatedSets.pdb
+D:\My\IT\Job\REAL\0.INTERVIEW_TRAINING\c#\AlexChech\DuplicatedSets\DuplicatedSets\bin\Debug\MyLibrary.dll
+D:\My\IT\Job\REAL\0.INTERVIEW_TRAINING\c#\AlexChech\DuplicatedSets\DuplicatedSets\bin\Debug\MyLibrary.pdb
+D:\My\IT\Job\REAL\0.INTERVIEW_TRAINING\c#\AlexChech\DuplicatedSets\DuplicatedSets\obj\Debug\DuplicatedSets.csprojResolveAssemblyReference.cache
+D:\My\IT\Job\REAL\0.INTERVIEW_TRAINING\c#\AlexChech\DuplicatedSets\DuplicatedSets\obj\Debug\DuplicatedSets.exe
+D:\My\IT\Job\REAL\0.INTERVIEW_TRAINING\c#\AlexChech\DuplicatedSets\DuplicatedSets\obj\Debug\DuplicatedSets.pdb

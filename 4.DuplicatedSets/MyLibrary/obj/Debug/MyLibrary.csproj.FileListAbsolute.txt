@@ -1,0 +1,5 @@
+D:\My\IT\Job\REAL\0.INTERVIEW_TRAINING\c#\AlexChech\DuplicatedSets\MyLibrary\bin\Debug\MyLibrary.dll
+D:\My\IT\Job\REAL\0.INTERVIEW_TRAINING\c#\AlexChech\DuplicatedSets\MyLibrary\bin\Debug\MyLibrary.pdb
+D:\My\IT\Job\REAL\0.INTERVIEW_TRAINING\c#\AlexChech\DuplicatedSets\MyLibrary\obj\Debug\MyLibrary.csprojResolveAssemblyReference.cache
+D:\My\IT\Job\REAL\0.INTERVIEW_TRAINING\c#\AlexChech\DuplicatedSets\MyLibrary\obj\Debug\MyLibrary.dll
+D:\My\IT\Job\REAL\0.INTERVIEW_TRAINING\c#\AlexChech\DuplicatedSets\MyLibrary\obj\Debug\MyLibrary.pdb
