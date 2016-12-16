@@ -16,6 +16,7 @@
             {
                 hashcode = 31 * hashcode + item.GetHashCode();
             }
+
             return hashcode;
         }
 
@@ -66,6 +67,7 @@
                     sb.Append($"{IntSet[i]};");
                 }
             }
+
             return sb.ToString();
         }
     }
