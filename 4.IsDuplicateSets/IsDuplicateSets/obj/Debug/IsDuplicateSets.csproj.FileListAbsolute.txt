@@ -1,0 +1,4 @@
+D:\My\IT\Job\REAL\0.INTERVIEW_TRAINING\c#\AlexChech\IsDuplicateSets\IsDuplicateSets\bin\Debug\IsDuplicateSets.dll
+D:\My\IT\Job\REAL\0.INTERVIEW_TRAINING\c#\AlexChech\IsDuplicateSets\IsDuplicateSets\bin\Debug\IsDuplicateSets.pdb
+D:\My\IT\Job\REAL\0.INTERVIEW_TRAINING\c#\AlexChech\IsDuplicateSets\IsDuplicateSets\obj\Debug\IsDuplicateSets.dll
+D:\My\IT\Job\REAL\0.INTERVIEW_TRAINING\c#\AlexChech\IsDuplicateSets\IsDuplicateSets\obj\Debug\IsDuplicateSets.pdb
