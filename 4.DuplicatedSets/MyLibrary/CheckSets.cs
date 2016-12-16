@@ -6,7 +6,7 @@
 
     public class CheckSets
     {
-        private static int _lineCounter = 0;
+        private static int lineCounter = 0;
         private static Dictionary<IntegerSet, int> Log = new Dictionary<IntegerSet, int>();
         private static int Matches = 0;
         private static int Mismatches = 0;
@@ -15,26 +15,26 @@
 
         public static string Duplicates(string str)
         {
-            _lineCounter++;
+            lineCounter++;
             string result;
 
             try
             {
-                result = $"{_lineCounter}) {check(str)}";
+                result = $"{lineCounter}) {check(str)}";
             }
             catch (ArgumentNullException)
             {
-                result = $"{_lineCounter}) Input is null ({str})";
+                result = $"{lineCounter}) Input is null ({str})";
                 InvalidInputs.Add(result);
             }
             catch (FormatException)
             {
-                result = $"{_lineCounter}) Input format is invalid ({str})";
+                result = $"{lineCounter}) Input format is invalid ({str})";
                 InvalidInputs.Add(result);
             }
             catch (OverflowException)
             {
-                result = $"{_lineCounter}) Input is overflowed ({str})";
+                result = $"{lineCounter}) Input is overflowed ({str})";
                 InvalidInputs.Add(result);
             }
 
@@ -75,7 +75,7 @@
 
 
 
-        public static void ShowDuplicatsNumber()
+        public static void ShowDuplicatesNumber()
         {
             Console.WriteLine();
             Console.WriteLine($"Number of matches: {Matches}");

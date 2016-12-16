@@ -30,7 +30,7 @@
             }
 
             //		b)  a way to return an information on number of duplicates and non-duplicates seen so far,
-            CheckSets.ShowDuplicatsNumber();
+            CheckSets.ShowDuplicatesNumber();
 
             //		c)  a way to list members of the most frequent duplicate group seen so far,
             CheckSets.ShowDuplicatedGroupsSortedDescending();
