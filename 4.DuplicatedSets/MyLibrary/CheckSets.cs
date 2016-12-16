@@ -20,21 +20,21 @@
 
             try
             {
-                result = $"{lineCounter}) {check(str)}";
+                result = $"{lineCounter, 5}) {check(str)}";
             }
             catch (ArgumentNullException)
             {
-                result = $"{lineCounter}) Input is null ({str})";
+                result = $"{lineCounter, 3}) Input is null ({str})";
                 InvalidInputs.Add(result);
             }
             catch (FormatException)
             {
-                result = $"{lineCounter}) Input format is invalid ({str})";
+                result = $"{lineCounter, 3}) Input format is invalid ({str})";
                 InvalidInputs.Add(result);
             }
             catch (OverflowException)
             {
-                result = $"{lineCounter}) Input is overflowed ({str})";
+                result = $"{lineCounter, 3}) Input is overflowed ({str})";
                 InvalidInputs.Add(result);
             }
 
@@ -91,7 +91,7 @@
             var ordered = Log.OrderByDescending(x => x.Value);
             foreach (var set in ordered)
             {
-                Console.WriteLine($"     {set.Value} - {set.Key}");
+                Console.WriteLine($"{set.Value, 7} - {set.Key}");
             }
         }
 
@@ -105,7 +105,7 @@
             foreach (string item in InvalidInputs)
             {
                 i++;
-                Console.WriteLine($"{i} - {item}");
+                Console.WriteLine($"{i, 3} - {item}");
             }
         }
     }
