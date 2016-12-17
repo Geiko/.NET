@@ -6,9 +6,9 @@
 
     public class IntegerGroupHost : IGroupHost<int>
     {
-        public static int GroupCounter { get; set; } = 0;
         public Dictionary<IGroup<int>, int> Groups { get; } = new Dictionary<IGroup<int>, int>();
         public List<string> InvalidInputs { get; } = new List<string>();
+        public static int GroupCounter { get; set; } = 0;
 
 
         public string IsDuplicate(string str)
