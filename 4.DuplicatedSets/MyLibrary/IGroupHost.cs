@@ -4,7 +4,7 @@
 
     public interface IGroupHost<T>
     {
-        Dictionary<IntegerGroup, int> GroupLog { get; }
+        Dictionary<IGroup<T>, int> Groups { get; }
         List<string> InvalidInputs { get; }
 
         string IsDuplicate(string str);

@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
 
-    interface IGroup<T>
+    public interface IGroup<T>
     {
         IList<T> Group { get; set; }
         int GetHashCode();

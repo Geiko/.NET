@@ -7,7 +7,7 @@
     public class IntegerGroupHost : IGroupHost<int>
     {
         public static int GroupCounter { get; set; } = 0;
-        public Dictionary<IntegerGroup, int> GroupLog { get; } = new Dictionary<IntegerGroup, int>();
+        public Dictionary<IGroup<int>, int> Groups { get; } = new Dictionary<IGroup<int>, int>();
         public List<string> InvalidInputs { get; } = new List<string>();
 
 
@@ -44,13 +44,13 @@
         private bool check(string str)
         {
             IntegerGroup s = new IntegerGroup { Group = parse(str) };
-            if (GroupLog.ContainsKey(s))
+            if (Groups.ContainsKey(s))
             {
-                GroupLog[s]++;
+                Groups[s]++;
                 return true;
             }
 
-            GroupLog.Add(s, 0);
+            Groups.Add(s, 0);
             return false;
         }
 
@@ -68,8 +68,8 @@
         public void ShowDuplicatesNumber()
         {
             Console.WriteLine();
-            Console.WriteLine($"Number of matches: {GroupLog.Sum(s => s.Value)}");
-            Console.WriteLine($"Number of mismatches: {GroupLog.Count}");
+            Console.WriteLine($"Number of matches: {Groups.Sum(s => s.Value)}");
+            Console.WriteLine($"Number of mismatches: {Groups.Count}");
         }
 
 
@@ -78,13 +78,13 @@
         {
             Console.WriteLine();
             Console.WriteLine("Matches - Group");
-            var ordered = GroupLog.OrderByDescending(x => x.Value);
+            var ordered = Groups.OrderByDescending(x => x.Value);
             foreach (var set in ordered)
             {
                 Console.WriteLine($"{set.Value,7} - {set.Key}");
             }
 
-            var frequent = GroupLog.FirstOrDefault(s => s.Value == GroupLog.Max(f => f.Value));
+            var frequent = Groups.FirstOrDefault(s => s.Value == Groups.Max(f => f.Value));
             Console.WriteLine($"The most frequent groop({frequent.Value} duplicates): {frequent.Key}");
         }
 
