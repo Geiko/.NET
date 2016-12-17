@@ -93,6 +93,9 @@
             {
                 Console.WriteLine($"{set.Value, 7} - {set.Key}");
             }
+            
+            var frequent = Log.FirstOrDefault(s => s.Value == Log.Max(f => f.Value));
+            Console.WriteLine($"The most frequent groop({frequent.Value} duplicates): {frequent.Key}");
         }
 
 
