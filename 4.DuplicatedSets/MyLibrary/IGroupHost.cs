@@ -6,7 +6,6 @@
     {
         Dictionary<IGroup<T>, int> Groups { get; }
         List<string> InvalidInputs { get; }
-
         string IsDuplicate(string str);
         void ShowDuplicatesNumber();
         void ShowFrequentGroup();
