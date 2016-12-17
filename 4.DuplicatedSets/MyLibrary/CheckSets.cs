@@ -62,13 +62,7 @@
 
         private static List<int> parse(string str)
         {
-            string[] strArray = str.Split(',');
-            List<int> set = new List<int>();
-            for (int i = 0; i < strArray.Length; i++)
-            {
-                set.Add(int.Parse(strArray[i].Trim()));
-            }
-
+            var set = str.Split(',').Select(int.Parse).ToList();
             set.Sort();
             return set;
         }
