@@ -12,6 +12,7 @@
 
             // 		a)  a way to accept a string representing a new set of values delimited by comma sign “,” (e.g. “1,2,3”) 
             //          and return true / false if the given set is a duplicate of a set seen before,
+            IntegerGroupHost setMaster = new IntegerGroupHost();
             string path = @"../../TextFiles/input.txt";
             try
             {
@@ -20,7 +21,7 @@
                     while (sr.Peek() >= 0)
                     {
                         string str = sr.ReadLine();
-                        Console.WriteLine($"{CheckSets.Duplicates(str)}");
+                        Console.WriteLine($"{setMaster.IsDuplicate(str)}");
                     }
                 }
             }
@@ -30,13 +31,13 @@
             }
 
             //		b)  a way to return an information on number of duplicates and non-duplicates seen so far,
-            CheckSets.ShowDuplicatesNumber();
+            setMaster.ShowDuplicatesNumber();
 
             //		c)  a way to list members of the most frequent duplicate group seen so far,
-            CheckSets.ShowDuplicatedGroupsSortedDescending();
+            setMaster.ShowFrequentGroup();
 
             //		d)  a way to return human readable report on list of invalid inputs seen so far. 
-            CheckSets.ShowInvalidInputs();
+            setMaster.ShowInvalidInputs();
 
             Console.ReadKey();
         }

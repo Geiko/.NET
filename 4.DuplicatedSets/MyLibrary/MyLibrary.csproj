@@ -40,8 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CheckSets.cs" />
-    <Compile Include="IntegerSet.cs" />
+    <Compile Include="IGroupHost.cs" />
+    <Compile Include="IntegerGroupHost.cs" />
+    <Compile Include="IGroup.cs" />
+    <Compile Include="IntegerGroup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
