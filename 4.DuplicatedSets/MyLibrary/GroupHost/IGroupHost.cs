@@ -9,7 +9,11 @@
         int InputCounter { get; set; }
         string IsDuplicate(string str);
 
-        bool check(string str);
+        bool Check(string str);
+        Group<T> GetGroup(string str);
+
+
+
         int GetDuplicates();
         int GetNonDuplicates();
         KeyValuePair<Group<T>, int> GetFrequentGroup();

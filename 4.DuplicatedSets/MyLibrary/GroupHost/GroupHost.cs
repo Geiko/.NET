@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MyLibrary
+﻿namespace MyLibrary
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
     public abstract class GroupHost<T> : IGroupHost<T>
     {
         public Dictionary<Group<T>, int> Groups { get; set; } = new Dictionary<Group<T>, int>();
@@ -20,7 +18,7 @@ namespace MyLibrary
 
             try
             {
-                result = $"{InputCounter,5}) {check(str)}";
+                result = $"{InputCounter,5}) {Check(str)}";
             }
             catch (ArgumentNullException)
             {
@@ -43,7 +41,22 @@ namespace MyLibrary
 
 
 
-        public abstract bool check(string str);
+        public bool Check(string str)
+        {
+            Group<T> group = GetGroup(str);
+            if (Groups.ContainsKey(group))
+            {
+                Groups[group]++;
+                return true;
+            }
+
+            Groups.Add(group, 0);
+            return false;
+        }
+
+
+
+        public abstract Group<T> GetGroup(string str);
 
 
 

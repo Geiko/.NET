@@ -5,25 +5,18 @@
 
     public class IntegerGroupHost : GroupHost<int>
     {
-        public override bool check(string str)
+        public override Group<int> GetGroup(string str)
         {
-            Group<int> s = new IntegerGroup { CustomGroup = parse(str) };
-            if (Groups.ContainsKey(s))
-            {
-                Groups[s]++;
-                return true;
-            }
-
-            Groups.Add(s, 0);
-            return false;
+            Group<int> group = new IntegerGroup { CustomGroup = parse(str) };
+            return group;
         }
 
 
         private List<int> parse(string str)
         {
-            var set = str.Split(',').Select(int.Parse).ToList();
-            set.Sort();
-            return set;
+            var group = str.Split(',').Select(int.Parse).ToList();
+            group.Sort();
+            return group;
         }
     }
 }
