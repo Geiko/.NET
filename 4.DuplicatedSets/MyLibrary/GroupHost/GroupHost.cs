@@ -6,7 +6,7 @@
 
     public abstract class GroupHost<T> : IGroupHost<T>
     {
-        public Dictionary<Group<T>, int> Groups { get; set; } = new Dictionary<Group<T>, int>();
+        public Dictionary<IGroup<T>, int> Groups { get; set; } = new Dictionary<IGroup<T>, int>();
         public List<string> InvalidInputs { get; } = new List<string>();
         public int InputCounter { get; set; } = 0;
 
@@ -43,7 +43,7 @@
 
         public bool Check(string str)
         {
-            Group<T> group = GetGroup(str);
+            IGroup<T> group = GetGroup(str);
             if (Groups.ContainsKey(group))
             {
                 Groups[group]++;
@@ -56,7 +56,7 @@
 
 
 
-        public abstract Group<T> GetGroup(string str);
+        public abstract IGroup<T> GetGroup(string str);
 
 
 
@@ -74,7 +74,7 @@
 
 
 
-        public KeyValuePair<Group<T>, int> GetFrequentGroup()
+        public KeyValuePair<IGroup<T>, int> GetFrequentGroup()
         {
             var frequent = Groups.FirstOrDefault(s => s.Value == Groups.Max(f => f.Value));
             return frequent;

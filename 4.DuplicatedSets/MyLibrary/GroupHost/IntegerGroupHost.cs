@@ -5,9 +5,9 @@
 
     public class IntegerGroupHost : GroupHost<int>
     {
-        public override Group<int> GetGroup(string str)
+        public override IGroup<int> GetGroup(string str)
         {
-            Group<int> group = new IntegerGroup { CustomGroup = parse(str) };
+            IGroup<int> group = new IntegerGroup { CustomGroup = parse(str) };
             return group;
         }
 

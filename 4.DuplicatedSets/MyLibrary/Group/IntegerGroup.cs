@@ -1,9 +1,12 @@
 ﻿namespace MyLibrary
 {
+    using System.Collections.Generic;
     using System.Text;
 
-    public class IntegerGroup : Group<int>
+    public class IntegerGroup : IGroup<int>
     {
+        public IList<int> CustomGroup { get; set; }
+
         /// <summary>
         /// This method GetHashCode() must be override in order 
         /// to use this class IntegerGroup as a Key in a Dictionary.
@@ -28,11 +31,6 @@
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
-
             IGroup<int> o = obj as IntegerGroup;
             if (o == null)
             {
@@ -54,5 +52,19 @@
 
             return true;
         }
+
+
+
+        public override string ToString()
+        {
+            var sb = new StringBuilder();
+            for (int i = 0; i < CustomGroup.Count; i++)
+            {
+                sb.Append(i != CustomGroup.Count - 1 ? $"{CustomGroup[i]}, " : $"{CustomGroup[i]};");
+            }
+
+            return sb.ToString();
+        }
     }
 }
+
