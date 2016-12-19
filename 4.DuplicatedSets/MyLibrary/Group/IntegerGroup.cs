@@ -8,7 +8,7 @@
         public IList<int> CustomGroup { get; set; }
 
         /// <summary>
-        /// This method GetHashCode() must be override in order 
+        /// This method GetHashCode() must be overrided in order 
         /// to use this class IntegerGroup as a Key in a Dictionary.
         /// </summary>
         /// <returns></returns>
@@ -24,7 +24,7 @@
         }
 
         /// <summary>
-        /// This method Equals(object obj) must be override in order 
+        /// This method Equals(object obj) must be overrided in order 
         /// to use this class IntegerGroup as a Key in a Dictionary.
         /// </summary>
         /// <param name="obj">It is an object to compare with an object of this class.</param>

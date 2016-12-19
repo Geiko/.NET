@@ -8,7 +8,7 @@
     {
         public Dictionary<IGroup<T>, int> Groups { get; set; } = new Dictionary<IGroup<T>, int>();
         public List<string> InvalidInputs { get; } = new List<string>();
-        public int InputCounter { get; set; } = 0;
+        public int InputCounter { get; set; }
 
 
         public string IsDuplicate(string str)
