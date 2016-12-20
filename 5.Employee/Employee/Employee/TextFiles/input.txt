@@ -1,0 +1,11 @@
+﻿0, Vasya, 0, 3000
+1, Fedya, 1, 20
+
+2, Masha, 0, 5000
+3, Misha, 1, 30
+3, Misha, 1, 30,
+4, Kolya, 1, 150
+5, John, 1, 150
+6, Bob, 1, 150
+7, Sara, 1, 150
+7, Sara, 1, o
