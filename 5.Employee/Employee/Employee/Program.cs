@@ -1,22 +1,24 @@
 ﻿namespace Employee
 {
+    using Entities;
+
     class Program
     {
         static void Main(string[] args)
         {
-            var hrd = new HrDepartment();
+            IHrDepartment hrdepartment = new HrDepartment();
 
-            hrd.ReadFromFile(HrDepartment.INPUT);
-            hrd.WriteInvalidInputsToFile(HrDepartment.OUTPUT, hrd.InvalidInput, false);
+            hrdepartment.ReadFromFile(HrDepartment.INPUT);
+            hrdepartment.WriteInvalidInputsToFile(HrDepartment.OUTPUT, hrdepartment.InvalidInput, false);
 
-            hrd.WriteEmployeesToFile(HrDepartment.OUTPUT, hrd.Employees, true);
+            hrdepartment.WriteEmployeesToFile(HrDepartment.OUTPUT, hrdepartment.Employees, true);
 
-            hrd.SortByAverageSalary();
-            hrd.WriteEmployeesToFile(HrDepartment.OUTPUT, hrd.Employees, true);
+            hrdepartment.SortByAverageSalary();
+            hrdepartment.WriteEmployeesToFile(HrDepartment.OUTPUT, hrdepartment.Employees, true);
 
-            hrd.WriteEmployeesToFile(HrDepartment.OUTPUT, hrd.GetFirst5Employees(), true);
+            hrdepartment.WriteEmployeesToFile(HrDepartment.OUTPUT, hrdepartment.GetFirst5Employees(), true);
 
-            hrd.WriteIdToFile(HrDepartment.OUTPUT, hrd.GetLast3Id(), true);
+            hrdepartment.WriteIdToFile(HrDepartment.OUTPUT, hrdepartment.GetLast3Id(), true);
         }
     }
 }

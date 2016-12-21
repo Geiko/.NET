@@ -43,12 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\Employee.cs" />
-    <Compile Include="Entities\HourEmployee.cs" />
-    <Compile Include="Entities\IHrDepartment.cs" />
-    <Compile Include="Entities\SalaryType.cs" />
-    <Compile Include="Entities\HrDepartment.cs" />
-    <Compile Include="Entities\MonthEmployee.cs" />
+    <Compile Include="Employee\Employee.cs" />
+    <Compile Include="Employee\HourEmployee.cs" />
+    <Compile Include="HrDepartment\IHrDepartment.cs" />
+    <Compile Include="Employee\SalaryType.cs" />
+    <Compile Include="HrDepartment\HrDepartment.cs" />
+    <Compile Include="Employee\MonthEmployee.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

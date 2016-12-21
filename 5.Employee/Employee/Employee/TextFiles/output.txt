@@ -1,4 +1,4 @@
-Invalid inputs: 
+   Invalid inputs: 
 2) Input format is invalid (). One of the identified items was in an invalid format.
 4) Input format is invalid (3, Misha, 1, 30,). One of the identified items was in an invalid format.
 8) Input format is invalid (7, Sara, 1, o). Input string was not in a correct format.
