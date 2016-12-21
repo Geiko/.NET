@@ -1,0 +1,11 @@
+D:\My\IT\Job\REAL\0.INTERVIEW_TRAINING\c#\Employee\Employee\Employee\bin\Debug\Employee.exe.config
+D:\My\IT\Job\REAL\0.INTERVIEW_TRAINING\c#\Employee\Employee\Employee\bin\Debug\Employee.exe
+D:\My\IT\Job\REAL\0.INTERVIEW_TRAINING\c#\Employee\Employee\Employee\bin\Debug\Employee.pdb
+D:\My\IT\Job\REAL\0.INTERVIEW_TRAINING\c#\Employee\Employee\Employee\obj\Debug\Employee.exe
+D:\My\IT\Job\REAL\0.INTERVIEW_TRAINING\c#\Employee\Employee\Employee\obj\Debug\Employee.pdb
+D:\My\IT\Job\REAL\0.INTERVIEW_TRAINING\c#\5.Employee\Employee\Employee\bin\Debug\Employee.exe.config
+D:\My\IT\Job\REAL\0.INTERVIEW_TRAINING\c#\5.Employee\Employee\Employee\obj\Debug\Employee.exe
+D:\My\IT\Job\REAL\0.INTERVIEW_TRAINING\c#\5.Employee\Employee\Employee\obj\Debug\Employee.pdb
+D:\My\IT\Job\REAL\0.INTERVIEW_TRAINING\c#\5.Employee\Employee\Employee\obj\Debug\Employee.csprojResolveAssemblyReference.cache
+D:\My\IT\Job\REAL\0.INTERVIEW_TRAINING\c#\5.Employee\Employee\Employee\bin\Debug\Employee.exe
+D:\My\IT\Job\REAL\0.INTERVIEW_TRAINING\c#\5.Employee\Employee\Employee\bin\Debug\Employee.pdb
