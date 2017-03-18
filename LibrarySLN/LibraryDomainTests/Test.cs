@@ -12,50 +12,116 @@ namespace LibraryDomainTests
     [TestFixture]
     public class Test
     {
+
+        LibraryRegistrator registrator = new LibraryRegistrator();
+
         [Test]
         public void RegisterNewBook()
         {
+            //Arrange
             BookRecord book = new BookRecord();
 
-            bool success = Library.LibraryRegistrator.AddBook(book);
+            //Act
+            bool success = registrator.AddBook(book);
+            IEnumerable<RegistrationCards> cards = registrator.GetCards(book);
 
-            IEnumerable<RegistrationCards> cards =  Library.LibraryRegistrator.GetCards(book);
-
+            //Assert
             Assert.IsTrue(success);
             Assert.AreEqual(1, cards.Count() );
         }
+
 
 
         [Test]
         public void RegisterNewBookTwice()
         {
             //Arrange
-
             BookRecord book = new BookRecord();
-
-            bool success = Library.LibraryRegistrator.AddBook(book, 3);
+            bool success = registrator.AddBook(book, 3);
 
             //Act
             Action testDelegate = () =>
             {
-                var success2 = Library.LibraryRegistrator.AddBook(book);
+                var success2 = registrator.AddBook(book);
             };
 
             //Assert
             Assert.That(testDelegate, Throws.TypeOf<Exception>());
         }
 
+
+
         [Test]
         public void AddOneMoreBookToLibraryById()
         {
+            //Arrange
             string author = "";
             string title = "";
 
-            BookRecord bookRecord = Library.LibraryRegistrator.GetBookRecord(author, title);
+            //Act
+            BookRecord book = registrator.GetBookRecord(author, title);
+            Guid? bookId = registrator.AddBook(book.Id);
 
-            Guid? bookId = Library.LibraryRegistrator.AddBook(bookRecord.Id);
-
+            //Assert
             Assert.IsNotNull(bookId);
+        }
+
+        //--------------------------------------
+
+        [Test]
+        public void RemoveBookById()
+        {
+            //Arrange
+            string author = "";
+            string title = "";
+
+            //Act
+            BookRecord book = registrator.GetBookRecord(author, title);
+            bool success = registrator.DeleteBook(book.Id);
+
+            //Assert
+            Assert.IsTrue(success);
+        }
+
+
+
+        [Test]
+        public void ChangeBookQuantityById()
+        {
+            //Arrange
+            string author = "";
+            string title = "";
+            int increment = -1;
+
+            //Act
+            BookRecord book = registrator.GetBookRecord(author, title);
+            IEnumerable<RegistrationCards> cards = registrator.GetCards(book);
+            bool success = registrator.ChangeBookQuantity(book.Id, increment);
+            IEnumerable<RegistrationCards> updatedCards = registrator.GetCards(book);
+
+            //Assert
+            Assert.IsTrue(success);
+            Assert.AreEqual(cards.Count() + increment, updatedCards.Count());
+        }
+
+
+
+        [Test]
+        public void GetoutBook()
+        {
+            //Arrange
+            //Act
+            //Assert
+        }
+
+
+
+        [Test]
+        public void ReturnBook()
+        {
+            //Arrange
+            //Act
+            //Assert
         }
     }
 }

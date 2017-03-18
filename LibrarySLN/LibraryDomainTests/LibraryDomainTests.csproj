@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{287ACBCA-B8C3-4654-B244-87233A01FEAC}</ProjectGuid>
+    <ProjectGuid>{74D84451-17F2-420E-8F38-F9D983CE5648}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>LibraryDomainTests</RootNamespace>
@@ -44,16 +44,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Test.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Library\Library.csproj">
-      <Project>{dd97f4d0-f559-4e74-94fc-fdbf1917a679}</Project>
-      <Name>Library</Name>
+    <ProjectReference Include="..\LibraryBL\LibraryBL.csproj">
+      <Project>{bddb0b95-e480-4e12-bf90-8897bbef8aca}</Project>
+      <Name>LibraryBL</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

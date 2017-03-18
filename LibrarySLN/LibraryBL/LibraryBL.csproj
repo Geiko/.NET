@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DD97F4D0-F559-4E74-94FC-FDBF1917A679}</ProjectGuid>
+    <ProjectGuid>{BDDB0B95-E480-4E12-BF90-8897BBEF8ACA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Library</RootNamespace>
-    <AssemblyName>Library</AssemblyName>
+    <RootNamespace>LibraryBL</RootNamespace>
+    <AssemblyName>LibraryBL</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,11 +40,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\BookRecord.cs" />
-    <Compile Include="LibraryRegistrator.cs" />
+    <Compile Include="BookModels\Author.cs" />
+    <Compile Include="BookModels\BookCard.cs" />
+    <Compile Include="BookModels\Record.cs" />
+    <Compile Include="LibraryModels\MyLibrary.cs" />
+    <Compile Include="ManagerModels\ILibrarian.cs" />
+    <Compile Include="ManagerModels\Librarian.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Models\RegistrationCards.cs" />
+    <Compile Include="UserModels\User.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
