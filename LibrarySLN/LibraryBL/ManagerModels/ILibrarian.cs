@@ -2,34 +2,31 @@
 using LibraryBL.UserModels;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LibraryBL.ManagerModels
 {
     interface ILibrarian
     {
-        bool AddBook(BookCard book);
-        ICollection<int> AddBooks(int increment, BookCard book);
-        bool RemoveBook(BookCard book);
+        bool AddBook(BookCard bookCard);                                            // implemented tested
+        bool AddBooks(int increment, string title, params Author[] authors);        // implemented tested
+        bool RemoveBookCard(Guid id);                                               // implemented tested     
 
-        IEnumerable<BookCard> GetCards(BookCard book);
+        bool AddUser(string email);                                                 // implemented tested
+        bool UpdateUser(string email, object newEmail);                             // implemented tested
+        bool RemoveUser(string email);                                              // implemented tested
 
-
-        int AddUser(User user);
-        bool UpdateUser(User user);
-        bool RemoveUser(User user);
-
-        bool GetoutBook(BookCard book, User user);
-        bool ReturnBook(BookCard book, User user);
+        bool GetoutBook(Guid bookId, int userId);                                   // implemented tested
+        bool ReturnBook(Guid bookId);                                               // implemented tested
         bool SendMessageToUser(List<BookCard> books);
 
-        void ShowAllBooks();
-        void ShowAvailableBooks();
-        void ShowTakenBooks();
+        IEnumerable<BookCard> GetCard(string title, params Author[] author);        // implemented 
+        IEnumerable<BookCard> GetAllBookCards();                                    // implemented         
+        IEnumerable<BookCard> GetAvailableBookCards();                              // implemented tested
+        IEnumerable<BookCard> GetTakenBookCards();                                  // implemented tested
 
-        void ShowBookHistory(BookCard book);
-        void ShowUserHistory(User user);
+        IEnumerable<User> GetAllUsers();                                            // implemented
+        
+        IEnumerable<Record> GetBookRecords(Guid bookId);                            // implemented
+        IEnumerable<Record> GetUserRecords(User user);
     }
 }

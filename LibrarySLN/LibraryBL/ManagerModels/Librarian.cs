@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using LibraryBL.BookModels;
 using LibraryBL.UserModels;
 
@@ -10,92 +7,97 @@ namespace LibraryBL.ManagerModels
 {
     public class Librarian //: ILibrarian
     {
+        IStorageProvider provider;
 
-        public bool AddBook(BookCard book)
+        private Librarian()
         {
-            
 
-            throw new NotImplementedException();
         }
 
-        public ICollection<int> AddBooks(int increment, BookCard book)
+        public Librarian(IStorageProvider provider)
         {
-            throw new NotImplementedException();
+            if (provider == null)
+            {
+                throw new Exception("Cannot create Librarian with null provider");
+            }
+
+            this.provider = provider;
         }
 
-        public int AddUser(User user)
+
+
+        public bool AddBook(BookCard bookCard)
         {
-            throw new NotImplementedException();
+            return provider.AddBookCard(bookCard);
+        }        
+
+
+        public IEnumerable<BookCard> GetCards(string title, params Author[] authors)
+        {
+           return this.provider.GetBookCards(title, authors);
+        }
+        
+
+        public bool AddBooks(int increment, string title, params Author[] authors)
+        {
+            return this.provider.AddBookCards(increment, title, authors);
         }
 
-        public IEnumerable<BookCard> GetCardbyTitle(string title)
+
+        public bool RemoveBookCard(Guid id)
         {
-            throw new NotImplementedException();
+            return this.provider.RemoveBookCard(id);
+        }
+        
+
+        public IEnumerable<BookCard> GetAllBookCards()
+        {
+            return this.provider.GetAllBookCards();
         }
 
-        public IEnumerable<BookCard> GetCardByAuthor(string author)
+        public bool AddUser(string email)
         {
-            throw new NotImplementedException();
+            return this.provider.AddUser(email);
         }
 
-        public IEnumerable<BookCard> GetCard(string title, params Author[] author)
+        public IEnumerable<User> GetAllUsers()
         {
-            throw new NotImplementedException();
+            return this.provider.GetAllUsers();
         }
 
-        public bool GetoutBook(BookCard book, User user)
+        public bool RemoveUser(string email)
         {
-            throw new NotImplementedException();
+            return this.provider.RemoveUser(email);
         }
 
-        public bool RemoveBook(BookCard book)
+        public bool UpdateUser(string email, object newEmail)
         {
-            throw new NotImplementedException();
+            return this.provider.UpdateUser(email, newEmail);
         }
 
-        public bool RemoveUser(User user)
+        public bool GetoutBook(Guid bookId, int userId)
         {
-            throw new NotImplementedException();
+            return this.provider.GetoutBook(bookId, userId);
         }
 
-        public bool ReturnBook(BookCard book, User user)
+        public IEnumerable<Record> GetBookRecords(Guid bookId)
         {
-            throw new NotImplementedException();
+            return this.provider.GetRecords(bookId);
         }
 
-        public bool SendMessageToUser(List<BookCard> books)
+        public bool ReturnBook(Guid bookId)
         {
-            throw new NotImplementedException();
+            return this.provider.ReturnBook(bookId);
         }
 
-        public void ShowAllBooks()
+        public IEnumerable<BookCard> GetAvailableBookCards()
         {
-            throw new NotImplementedException();
+            return this.provider.GetAvailableBookCards();
         }
 
-        public void ShowAvailableBooks()
+        public IEnumerable<BookCard> GetTakenBookCards()
         {
-            throw new NotImplementedException();
-        }
-
-        public void ShowBookHistory(BookCard book)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ShowTakenBooks()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ShowUserHistory(User user)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool UpdateUser(User user)
-        {
-            throw new NotImplementedException();
+            return this.provider.GetTakenBookCards();
         }
     }
 }

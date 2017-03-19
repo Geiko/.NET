@@ -1,18 +1,16 @@
-﻿using LibraryBL.BookModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 
 namespace LibraryBL.UserModels
 {
     public class User
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         public string Email { get; set; }
 
-        //public ICollection<Card> BookCards { get; set; }
+        public User()
+        {
+            this.Id = Guid.NewGuid();
+        }
     }
 }

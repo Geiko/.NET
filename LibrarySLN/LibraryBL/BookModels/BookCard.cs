@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LibraryBL.BookModels
 {
@@ -13,6 +10,7 @@ namespace LibraryBL.BookModels
         public BookCard()
         {
             this.Id = Guid.NewGuid();
+            Records = new List<Record>();
         }
 
         public BookCard(string title, params Author[] author ): this()
@@ -27,6 +25,6 @@ namespace LibraryBL.BookModels
 
         public IList<Author> Authors { get { return authors; } }
 
-        public IList<Record> Records { get;}
+        public IList<Record> Records { get; set; }
     }
 }

@@ -1,0 +1,5 @@
+D:\gh\DotNET\.NET\LibrarySLN\LBDatabase\bin\Debug\LBDatabase.dacpac
+D:\gh\DotNET\.NET\LibrarySLN\LBDatabase\bin\Debug\LBDatabase.dll
+D:\gh\DotNET\.NET\LibrarySLN\LBDatabase\bin\Debug\LBDatabase.pdb
+D:\gh\DotNET\.NET\LibrarySLN\LBDatabase\obj\Debug\LBDatabase.dll
+D:\gh\DotNET\.NET\LibrarySLN\LBDatabase\obj\Debug\LBDatabase.pdb

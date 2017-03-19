@@ -45,6 +45,7 @@
     <Compile Include="BookModels\Record.cs" />
     <Compile Include="LibraryModels\MyLibrary.cs" />
     <Compile Include="ManagerModels\ILibrarian.cs" />
+    <Compile Include="ManagerModels\IStorageProvider.cs" />
     <Compile Include="ManagerModels\Librarian.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserModels\User.cs" />
