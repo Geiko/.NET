@@ -21,5 +21,6 @@ namespace LibraryBL.ManagerModels
         bool ReturnBook(Guid bookId);
         IEnumerable<BookCard> GetAvailableBookCards();
         IEnumerable<BookCard> GetTakenBookCards();
+        IEnumerable<Record> GetUserRecords(int userId);
     }
 }

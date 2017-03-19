@@ -6,6 +6,7 @@ namespace LibraryBL.BookModels
     {
         public int Id { get; set; }
 
+        public Guid BookCardId { get; set; }
         public int UserId { get; set; }
 
         public DateTime GetoutTime { get; set; }

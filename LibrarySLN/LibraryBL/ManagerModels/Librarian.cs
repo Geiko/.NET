@@ -99,5 +99,10 @@ namespace LibraryBL.ManagerModels
         {
             return this.provider.GetTakenBookCards();
         }
+
+        public IEnumerable<Record> GetUserRecords(int userId)
+        {
+            return this.provider.GetUserRecords(userId);
+        }
     }
 }

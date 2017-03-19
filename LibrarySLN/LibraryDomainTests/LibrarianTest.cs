@@ -304,6 +304,52 @@ namespace LibraryDomainTests
 
 
 
+        [Test]
+        public void GetUserRecords()
+        {
+            //Arrange
+            int userId = 333;
+            IEnumerable<Record> testedUserRecords = getTestedRecordes(userId);
+
+            var mockProvider = new Moq.Mock<IStorageProvider>();
+            mockProvider.Setup(i => i.GetUserRecords(userId)).Returns(testedUserRecords);
+
+            Librarian librarian = new Librarian(mockProvider.Object);
+
+            //Act
+            IEnumerable<Record> userRecords = librarian.GetUserRecords(userId);
+            var areUserIdsCorrect = userRecords.All(r => r.UserId == userId);
+
+            //Assert
+            Assert.IsTrue(areUserIdsCorrect);
+            Assert.AreEqual(testedUserRecords.Count(), userRecords.Count());
+        }
+
+
+
+        [Test]
+        public void GetBookRecords()
+        {
+            //Arrange
+            Guid bookCardId = Guid.NewGuid();
+            IEnumerable<Record> testedBookRecords = getTestedRecordes(bookCardId);
+
+            var mockProvider = new Moq.Mock<IStorageProvider>();
+            mockProvider.Setup(i => i.GetRecords(bookCardId)).Returns(testedBookRecords);
+
+            Librarian librarian = new Librarian(mockProvider.Object);
+
+            //Act
+            IEnumerable<Record> bookCardRecords = librarian.GetBookRecords(bookCardId);
+            var isBookCardIdCorrect = bookCardRecords.All(r => r.BookCardId == bookCardId);
+
+            //Assert
+            Assert.IsTrue(isBookCardIdCorrect);
+            Assert.AreEqual(testedBookRecords.Count(), bookCardRecords.Count());
+        }
+        
+        //  Private methods ---------------------------------------------------------------
+
         private IEnumerable<Record> getRecords(Record record)
         {
             return new List<Record>()
@@ -522,6 +568,122 @@ namespace LibraryDomainTests
                             ReturnTime = null
                         }
                     }
+                }
+            };
+        }
+
+
+
+        private IEnumerable<Record> getTestedRecordes(int userId)
+        {
+            return new List<Record>
+            {
+                new Record
+                {
+                    UserId = userId,
+                    BookCardId = Guid.NewGuid(),
+                    GetoutTime = new DateTime(2013, 05, 25),
+                    ReturnTime = null
+                },
+                new Record
+                {
+                    UserId = userId,
+                    BookCardId = Guid.NewGuid(),
+                    GetoutTime = new DateTime(2013, 05, 25),
+                    ReturnTime = null
+                },
+                new Record
+                {
+                    UserId = userId,
+                    BookCardId = Guid.NewGuid(),
+                    GetoutTime = new DateTime(2014, 05, 25),
+                    ReturnTime = null
+                },
+                new Record
+                {
+                    UserId = userId,
+                    BookCardId = Guid.NewGuid(),
+                    GetoutTime = new DateTime(2014, 05, 25),
+                    ReturnTime = null
+                },
+                new Record
+                {
+                    UserId = userId,
+                    BookCardId = Guid.NewGuid(),
+                    GetoutTime = new DateTime(2015, 05, 25),
+                    ReturnTime = null
+                },
+                new Record
+                {
+                    UserId = userId,
+                    BookCardId = Guid.NewGuid(),
+                    GetoutTime = new DateTime(2016, 05, 25),
+                    ReturnTime = null
+                },
+                new Record
+                {
+                    UserId = userId,
+                    BookCardId = Guid.NewGuid(),
+                    GetoutTime = new DateTime(2017, 05, 25),
+                    ReturnTime = null
+                }
+            };
+        }
+
+
+
+        private IEnumerable<Record> getTestedRecordes(Guid bookCardId)
+        {
+            return new List<Record>
+            {
+                new Record
+                {
+                    UserId = 235,
+                    BookCardId = bookCardId,
+                    GetoutTime = new DateTime(2013, 05, 25),
+                    ReturnTime = null
+                },
+                new Record
+                {
+                    UserId = 6522,
+                    BookCardId = bookCardId,
+                    GetoutTime = new DateTime(2013, 05, 25),
+                    ReturnTime = new DateTime(2013, 06, 1)
+                },
+                new Record
+                {
+                    UserId = 864,
+                    BookCardId = bookCardId,
+                    GetoutTime = new DateTime(2014, 05, 25),
+                    ReturnTime = null
+                },
+                new Record
+                {
+                    UserId = 845,
+                    BookCardId = bookCardId,
+                    GetoutTime = new DateTime(2014, 05, 25),
+                    ReturnTime = new DateTime(2017, 08, 22)
+                },
+                new Record
+                {
+                    UserId = 85,
+                    BookCardId = bookCardId,
+                    GetoutTime = new DateTime(2015, 05, 25),
+                    ReturnTime = new DateTime(2015, 07, 2)
+                },
+                new Record
+                {
+                    UserId = 151,
+                    BookCardId = bookCardId,
+                    GetoutTime = new DateTime(2016, 05, 25),
+                    ReturnTime = null
+                },
+                new Record
+                {
+                    UserId = 897,
+                    BookCardId = bookCardId,
+                    GetoutTime = new DateTime(2017, 05, 25),
+                    ReturnTime = null
                 }
             };
         }
