@@ -1,12 +1,13 @@
 ﻿using LibraryBL.BookModels;
-using LibraryBL.ManagerModels;
+using LibraryBL.ManagerModels.Default;
+using LibraryBL.Providers;
 using LibraryBL.UserModels;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace LibraryDomainTests
+namespace LibraryBL
 {
     [TestFixture]
     class LibrarianTest
@@ -25,13 +26,14 @@ namespace LibraryDomainTests
             mockProvider.Setup(i => i.GetBookCards(title, new Author[] { author }))
                 .Returns(new BookCard[] { bookCard });    
                     
-            Librarian librarian = new Librarian(mockProvider.Object);            
-            librarian.AddBook(bookCard);
+            Librarian librarian = new Librarian(mockProvider.Object);
 
-            //Act
+            //Act          
+            bool result = librarian.AddBook(bookCard);
             var cards = librarian.GetCards(title, author);
 
             //Assert
+            Assert.IsTrue(result);
             Assert.AreEqual(bookCard.Id, cards.First().Id);
         }
 
@@ -53,9 +55,11 @@ namespace LibraryDomainTests
             };
 
             var mockProvider = new Moq.Mock<IStorageProvider>();
-            mockProvider.Setup(i => i.AddBookCards(increment, title, author))
+            mockProvider
+                .Setup(i => i.AddBookCards(increment, title, author))
                 .Returns(true);
-            mockProvider.Setup(i => i.GetBookCards(title, new Author[] { author }))
+            mockProvider
+                .Setup(i => i.GetBookCards(title, new Author[] { author }))
                 .Returns(bookCards);
 
             Librarian librarian = new Librarian(mockProvider.Object);
@@ -75,27 +79,32 @@ namespace LibraryDomainTests
         public void RemoveBookCardById()
         {
             //Arrange
-            Guid id = Guid.NewGuid();
-            IEnumerable<BookCard> cards = new List<BookCard>
-            {
-                new BookCard {Id = Guid.NewGuid(), Title = "some title 1" },
-                new BookCard {Id = Guid.NewGuid(), Title = "some title 2" },
-                new BookCard {Id = Guid.NewGuid(), Title = "some title 3" }
-            };            
+            Guid bookCardId = Guid.NewGuid();
+            //List<BookCard> cards = new List<BookCard>
+            //{
+            //    new BookCard {Id = Guid.NewGuid(), Title = "some title 1" },
+            //    new BookCard {Id = bookCardId, Title = "some title 2" },
+            //    new BookCard {Id = Guid.NewGuid(), Title = "some title 3" }
+            //};
+
+            //BookCard bookCardToDelete = cards.Single(c => c.Id == bookCardId);
 
             var mockProvider = new Moq.Mock<IStorageProvider>();
-            mockProvider.Setup(i => i.RemoveBookCard(id)).Returns(true);
-            mockProvider.Setup(i => i.GetAllBookCards()).Returns(cards);
+            mockProvider
+                .Setup(i => i.RemoveBookCard(bookCardId))
+                //.Callback(() => cards.Remove(bookCardToDelete))
+                .Returns(true);
+            //mockProvider.Setup(i => i.GetAllBookCards()).Returns(cards);
 
             Librarian librarian = new Librarian(mockProvider.Object);
-            bool result = librarian.RemoveBookCard(id);
 
             //Act
-            var allCards = librarian.GetAllBookCards();
+            //var allCards = librarian.GetAllBookCards();
+            bool result = librarian.RemoveBookCard(bookCardId);
 
             //Assert
             Assert.IsTrue(result);
-            Assert.IsFalse(cards.Any(c => c.Id == id));
+            //Assert.IsFalse(allCards.Any(c => c.Id == bookCardId));
         }
 
 
@@ -106,26 +115,33 @@ namespace LibraryDomainTests
             //Arrange
             string email = "some email";
             Guid id = Guid.NewGuid();
-            IEnumerable<User> users = new List <User>
+            List<User> users = new List <User>
             {
                 new User { Email= "some email 1" },
                 new User { Email= "some email 2" },
-                new User { Email= "some email" }
             };
 
+            var expectedUser = new User(email);
+
             var mockProvider = new Moq.Mock<IStorageProvider>();
-            mockProvider.Setup(i => i.AddUser(email)).Returns(true);
-            mockProvider.Setup(i => i.GetAllUsers()).Returns(users);
+            mockProvider
+                .Setup(i => i.AddUser(email))
+                .Callback(() => users.Add(expectedUser))
+                .Returns(true);
+            mockProvider
+                .Setup(i => i.GetAllUsers())
+                .Returns(users);
 
             Librarian librarian = new Librarian(mockProvider.Object);
-            bool result = librarian.AddUser(email);
 
             //Act
+            bool result = librarian.AddUser(email);
             var allUsers = librarian.GetAllUsers();
-            allUsers.Single(u => u.Email.Equals(email));
+            var user = allUsers.Single(u => u.Email == email);
 
             //Assert
             Assert.IsTrue(result);
+            Assert.AreEqual(expectedUser, user);
         }
 
 
@@ -134,32 +150,32 @@ namespace LibraryDomainTests
         {
             //Arrange
             string email = "some email";
-            IEnumerable<User> users = new List<User>
+            List<User> users = new List<User>
             {
                 new User { Email= "some email 1" },
                 new User { Email= "some email 2" },
-                new User { Email= "some email 3" }
+                new User { Email= email }
             };
 
+            var userToDelete = users.Single(u => u.Email == email);
+
             var mockProvider = new Moq.Mock<IStorageProvider>();
-            mockProvider.Setup(i => i.RemoveUser(email)).Returns(true);
+            mockProvider
+                .Setup(i => i.RemoveUser(email))
+                .Callback(() => users.Remove(userToDelete))
+                .Returns(true);
             mockProvider.Setup(i => i.GetAllUsers()).Returns(users);
 
             Librarian librarian = new Librarian(mockProvider.Object);
-            bool result = librarian.RemoveUser(email);
 
             //Act
+            bool result = librarian.RemoveUser(email);
             var allUsers = librarian.GetAllUsers();
-            int userQuantity = allUsers.Where(u => u.Email.Equals(email)).Count();
-            //Action testDelegate = () =>
-            //{
-            //   var x = allUsers.First(u => u.Email.Equals(email));
-            //};
+            int userQuantity = allUsers.Where(u => u.Email == email).Count();
 
             //Assert
             Assert.IsTrue(result);
             Assert.AreEqual(0, userQuantity);
-            //Assert.That(testDelegate, Throws.TypeOf<Exception>());
         }
 
 
@@ -168,25 +184,28 @@ namespace LibraryDomainTests
         public void UpdateUser()
         {
             //Arrange
-            string email = "some email";
-            string newEmail = "some new email";
-            IEnumerable<User> users = new List<User>
+            string oldEmail = "email to update";
+            string newEmail = "new email";
+            List<User> users = new List<User>
             {
-                new User { Email= "some email 1" },
-                new User { Email= "some email 2" },
-                new User { Email= "some new email" }
+                new User { Email = "some email 1" },
+                new User { Email = "some email 2" },
+                new User { Email = oldEmail }
             };
-
+            
             var mockProvider = new Moq.Mock<IStorageProvider>();
-            mockProvider.Setup(i => i.UpdateUser(email, newEmail)).Returns(true);
+            mockProvider
+                .Setup(i => i.UpdateUser(oldEmail, newEmail))
+                .Callback(() => users.Single(u => u.Email == oldEmail).Email = newEmail)
+                .Returns(true);
             mockProvider.Setup(i => i.GetAllUsers()).Returns(users);
 
             Librarian librarian = new Librarian(mockProvider.Object);
-            bool result = librarian.UpdateUser(email, newEmail);
 
             //Act
+            bool result = librarian.UpdateUser(oldEmail, newEmail);
             var allUsers = librarian.GetAllUsers();
-            int emailQuantity = allUsers.Where(u => u.Email.Equals(email)).Count();
+            int emailQuantity = allUsers.Where(u => u.Email.Equals(oldEmail)).Count();
             int newEmailQuantity = allUsers.Where(u => u.Email.Equals(newEmail)).Count();
 
             //Assert
@@ -212,18 +231,27 @@ namespace LibraryDomainTests
                 ReturnTime = returnTime
             };
 
-            IEnumerable<Record> records = getRecords(record);
+            List<BookCard> testedBookCards = new List<BookCard>
+            {
+                new BookCard { Id = bookId, Records = new List<Record> { } },
+                new BookCard { Id = Guid.NewGuid(), Records = new List<Record> { } },
+                new BookCard { Id = Guid.NewGuid(), Records = new List<Record> { } }
+            };
 
             var mockProvider = new Moq.Mock<IStorageProvider>();
-            mockProvider.Setup(i => i.GetoutBook(bookId, userId)).Returns(true);
-            mockProvider.Setup(i => i.GetRecords(bookId)).Returns(records);
+            mockProvider
+                .Setup(i => i.GetoutBook(bookId, userId))
+                .Callback(() => (testedBookCards.Single(b => b.Id == bookId)).Records.Add(record))
+                .Returns(true);
+            mockProvider
+                .Setup(i => i.GetRecords(bookId))
+                .Returns(testedBookCards.Single(b => b.Id == bookId).Records);
 
             Librarian librarian = new Librarian(mockProvider.Object);
-            bool result = librarian.GetoutBook(bookId, userId);
 
             //Act
+            bool result = librarian.GetoutBook(bookId, userId);
             IEnumerable<Record> bookRecords = librarian.GetBookRecords(bookId);
-
             int recordQuantity = bookRecords.Where(r => r.Equals(record)).Count();
 
             //Assert
@@ -239,19 +267,37 @@ namespace LibraryDomainTests
             //Arrange
             Guid bookId = Guid.NewGuid();
             DateTime? returnTime = DateTime.Now;
+            Record record = new Record
+            {
+                GetoutTime = new DateTime(2000, 5, 22),
+                ReturnTime = null
+            };
 
-            IEnumerable<Record> records = getRecords(returnTime);
-
+            List<BookCard> testedBookCards = new List<BookCard>
+            {
+                new BookCard { Id = bookId, Records = new List<Record> { record } },
+                new BookCard { Id = Guid.NewGuid(), Records = new List<Record> { } },
+                new BookCard { Id = Guid.NewGuid(), Records = new List<Record> { } }
+            };
+            
             var mockProvider = new Moq.Mock<IStorageProvider>();
-            mockProvider.Setup(i => i.ReturnBook(bookId)).Returns(true);
-            mockProvider.Setup(i => i.GetRecords(bookId)).Returns(records);
+            mockProvider
+                .Setup(i => i.ReturnBook(bookId))
+                .Callback(() => (testedBookCards
+                                    .Single(b => b.Id == bookId)
+                                    .Records.Single(r => r.ReturnTime == null))
+                                    .ReturnTime = returnTime)
+                .Returns(true);
+            mockProvider
+                .Setup(i => i.GetRecords(bookId))
+                .Returns(testedBookCards.Single(b => b.Id == bookId).Records);
 
             Librarian librarian = new Librarian(mockProvider.Object);
-            bool result = librarian.ReturnBook(bookId);
 
             //Act
+            bool result = librarian.ReturnBook(bookId);
             IEnumerable<Record> bookRecords = librarian.GetBookRecords(bookId);
-            IEnumerable<DateTime?> returnTimes = records.Select(r => r.ReturnTime);
+            IEnumerable<DateTime?> returnTimes = bookRecords.Select(r => r.ReturnTime);
             returnTimes.Single(rt => DateTime.Compare((DateTime)rt, (DateTime)returnTime) == 0);
 
             //Assert
@@ -266,7 +312,7 @@ namespace LibraryDomainTests
         {
             //Arrange
             IEnumerable<BookCard> bookCards = getAvailableBookCards();
-
+                        
             var mockProvider = new Moq.Mock<IStorageProvider>();
             mockProvider.Setup(i => i.GetAvailableBookCards()).Returns(bookCards);
 
@@ -274,11 +320,12 @@ namespace LibraryDomainTests
 
             //Act
             IEnumerable<BookCard> availableBooks = librarian.GetAvailableBookCards();
-            var isAvailable = availableBooks.Where(b => b.Records != null)
+            var areAvailable = availableBooks.Where(b => b.Records != null)
                                             .SelectMany(b => b.Records)
                                             .All(rec => rec.ReturnTime != null);
             //Assert
-            Assert.IsTrue(isAvailable);
+            Assert.NotNull(availableBooks);
+            Assert.IsTrue(areAvailable);
         }
 
 
@@ -299,6 +346,7 @@ namespace LibraryDomainTests
             var isTaken = takenBooks.All(b => b.Records.Any(rec => rec.ReturnTime == null));
 
             //Assert
+            Assert.NotNull(takenBooks);
             Assert.IsTrue(isTaken);
         }
 
@@ -321,8 +369,8 @@ namespace LibraryDomainTests
             var areUserIdsCorrect = userRecords.All(r => r.UserId == userId);
 
             //Assert
+            Assert.NotNull(userRecords);
             Assert.IsTrue(areUserIdsCorrect);
-            Assert.AreEqual(testedUserRecords.Count(), userRecords.Count());
         }
 
 
@@ -344,65 +392,11 @@ namespace LibraryDomainTests
             var isBookCardIdCorrect = bookCardRecords.All(r => r.BookCardId == bookCardId);
 
             //Assert
+            Assert.NotNull(bookCardRecords);
             Assert.IsTrue(isBookCardIdCorrect);
-            Assert.AreEqual(testedBookRecords.Count(), bookCardRecords.Count());
         }
         
         //  Private methods ---------------------------------------------------------------
-
-        private IEnumerable<Record> getRecords(Record record)
-        {
-            return new List<Record>()
-            {
-                new Record
-                {
-                    UserId = 3,
-                    GetoutTime = new DateTime(2015, 1, 15),
-                    ReturnTime = new DateTime(2015, 1, 16)
-                },
-                new Record
-                {
-                    UserId = 33,
-                    GetoutTime = new DateTime(2016, 1, 15),
-                    ReturnTime = null
-                },
-                new Record
-                {
-                    UserId = record.UserId,
-                    GetoutTime = record.GetoutTime,
-                    ReturnTime = record.ReturnTime
-                }
-            };
-        }
-
-
-
-        private IEnumerable<Record> getRecords(DateTime? returnTime)
-        {
-            return new List<Record>()
-            {
-                new Record
-                {
-                    UserId = 3,
-                    GetoutTime = new DateTime(2015, 1, 15),
-                    ReturnTime = new DateTime(2015, 1, 17)
-                },
-                new Record
-                {
-                    UserId = 33,
-                    GetoutTime = new DateTime(2016, 1, 15),
-                    ReturnTime = new DateTime(2016, 2, 15)
-                },
-                new Record
-                {
-                    UserId = 33,
-                    GetoutTime = new DateTime(2017, 1, 16),
-                    ReturnTime = returnTime
-                }
-            };
-        }
-
-
 
         private IEnumerable<BookCard> getAvailableBookCards()
         {
@@ -432,7 +426,7 @@ namespace LibraryDomainTests
                         {
                             UserId = 33,
                             GetoutTime = new DateTime(2017, 1, 16),
-                            ReturnTime = new DateTime(2017, 2, 15)
+                            ReturnTime = new DateTime(2017, 2, 18)
                         }
 
                     }
@@ -460,30 +454,6 @@ namespace LibraryDomainTests
                             ReturnTime = new DateTime(2017, 2, 15)
                         }
 
-                    }
-                },
-                new BookCard
-                {
-                    Records = new List<Record>
-                    {
-                        new Record
-                        {
-                            UserId = 3,
-                            GetoutTime = new DateTime(2015, 1, 15),
-                            ReturnTime = new DateTime(2015, 1, 17)
-                        },
-                        new Record
-                        {
-                            UserId = 33,
-                            GetoutTime = new DateTime(2016, 1, 15),
-                            ReturnTime = new DateTime(2016, 2, 15)
-                        },
-                        new Record
-                        {
-                            UserId = 33,
-                            GetoutTime = new DateTime(2017, 1, 16),
-                            ReturnTime = new DateTime(2017, 2, 15)
-                        }
                     }
                 }
             };

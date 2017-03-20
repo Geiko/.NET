@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace LibraryBL.ManagerModels
 {
-    interface ILibrarian
+    public interface ILibrarian
     {
         bool AddBook(BookCard bookCard);                                         
         bool AddBooks(int increment, string title, params Author[] authors);     
@@ -17,7 +17,7 @@ namespace LibraryBL.ManagerModels
 
         bool GetoutBook(Guid bookId, int userId);                              
         bool ReturnBook(Guid bookId);                                         
-        bool SendMessageToUser(List<BookCard> books);
+        //bool SendMessageToUser(List<BookCard> books);
 
         IEnumerable<BookCard> GetCards(string title, params Author[] author);     
         IEnumerable<BookCard> GetAllBookCards();                                     

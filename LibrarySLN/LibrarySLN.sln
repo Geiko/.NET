@@ -9,7 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryDomainTests", "Libra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryBL", "LibraryBL\LibraryBL.csproj", "{BDDB0B95-E480-4E12-BF90-8897BBEF8ACA}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "LBDatabase", "LBDatabase\LBDatabase.sqlproj", "{AAD84D2B-06C5-4807-93DA-D74B2EFE12D5}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{ABA24853-BF5C-4DB2-A445-DCADA973815F}"
+	ProjectSection(SolutionItems) = preProject
+		WebEssentials2015-Settings.json = WebEssentials2015-Settings.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,12 +32,6 @@ Global
 		{BDDB0B95-E480-4E12-BF90-8897BBEF8ACA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BDDB0B95-E480-4E12-BF90-8897BBEF8ACA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BDDB0B95-E480-4E12-BF90-8897BBEF8ACA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AAD84D2B-06C5-4807-93DA-D74B2EFE12D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AAD84D2B-06C5-4807-93DA-D74B2EFE12D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AAD84D2B-06C5-4807-93DA-D74B2EFE12D5}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{AAD84D2B-06C5-4807-93DA-D74B2EFE12D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AAD84D2B-06C5-4807-93DA-D74B2EFE12D5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AAD84D2B-06C5-4807-93DA-D74B2EFE12D5}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

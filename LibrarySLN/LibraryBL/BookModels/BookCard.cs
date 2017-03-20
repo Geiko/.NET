@@ -15,7 +15,10 @@ namespace LibraryBL.BookModels
 
         public BookCard(string title, params Author[] author ): this()
         {
-            authors.AddRange(author);
+            if(author != null)
+            {
+                authors.AddRange(author);
+            }
             this.Title = title;
         }
 
