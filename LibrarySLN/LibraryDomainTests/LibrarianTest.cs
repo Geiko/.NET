@@ -114,7 +114,6 @@ namespace LibraryBL
         {
             //Arrange
             string email = "some email";
-            Guid id = Guid.NewGuid();
             List<User> users = new List <User>
             {
                 new User { Email= "some email 1" },
@@ -312,7 +311,7 @@ namespace LibraryBL
         {
             //Arrange
             IEnumerable<BookCard> bookCards = getAvailableBookCards();
-                        
+            
             var mockProvider = new Moq.Mock<IStorageProvider>();
             mockProvider.Setup(i => i.GetAvailableBookCards()).Returns(bookCards);
 
@@ -451,7 +450,7 @@ namespace LibraryBL
                         {
                             UserId = 33,
                             GetoutTime = new DateTime(2017, 1, 16),
-                            ReturnTime = new DateTime(2017, 2, 15)
+                            ReturnTime = new DateTime(2017, 2, 16)
                         }
 
                     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using LibraryBL.BookModels;
 using LibraryBL.UserModels;
 using LibraryBL.Providers;
+using System.Linq;
 
 namespace LibraryBL.ManagerModels.Default
 {
@@ -56,10 +57,20 @@ namespace LibraryBL.ManagerModels.Default
             return this.provider.GetAllBookCards();
         }
 
+
+
         public bool AddUser(string email)
         {
+            var users = this.provider.GetAllUsers();
+            if(users.Any(u => u.Email.Equals(email)))
+            {
+                return false;
+            }
+
             return this.provider.AddUser(email);
         }
+
+
 
         public IEnumerable<User> GetAllUsers()
         {
