@@ -16,8 +16,7 @@ namespace LibraryBL.ManagerModels
         bool RemoveUser(string email);                                           
 
         bool GetoutBook(Guid bookId, int userId);                              
-        bool ReturnBook(Guid bookId);                                         
-        //bool SendMessageToUser(List<BookCard> books);
+        bool ReturnBook(Guid bookId);                   
 
         IEnumerable<BookCard> GetCards(string title, params Author[] author);     
         IEnumerable<BookCard> GetAllBookCards();                                     

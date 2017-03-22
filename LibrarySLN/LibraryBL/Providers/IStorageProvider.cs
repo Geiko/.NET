@@ -16,11 +16,18 @@ namespace LibraryBL.Providers
         IEnumerable<User> GetAllUsers();
         bool RemoveUser(string email);
         bool UpdateUser(string email, object newEmail);
-        bool GetoutBook(Guid bookId, int userId);
+        bool GetoutBook(Guid bookId, string userId);
         IEnumerable<Record> GetRecords(Guid bookId);
         bool ReturnBook(Guid bookId);
         IEnumerable<BookCard> GetAvailableBookCards();
         IEnumerable<BookCard> GetTakenBookCards();
-        IEnumerable<Record> GetUserRecords(int userId);
+        IEnumerable<Record> GetUserRecords(string userEmail);
+        IEnumerable<Author> GetAllAuthors();
+        bool AddAuthor(string name, Guid id);
+        Author GetAuthorById(Guid id);
+        bool RemoveAuthor(Guid id);
+        bool UpdateAuthor(Guid idToEdit, Author author);
+        BookCard GetBookCardById(Guid id);
+        bool UpdateBookCard(Guid idToEdit, BookCard bookCard);
     }
 }

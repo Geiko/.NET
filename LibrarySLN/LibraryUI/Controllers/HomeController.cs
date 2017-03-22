@@ -2,6 +2,7 @@
 using LibraryBL.ManagerModels.Default;
 using LibraryBL.Providers;
 using LibraryBL.Providers.Default;
+using LibraryBL.UserModels;
 using LibraryUI.Models;
 using System;
 using System.Collections.Generic;
@@ -16,16 +17,21 @@ namespace LibraryUI.Controllers
     {
         public Librarian _librarian;
 
+
         public HomeController() : 
             this(new SqlStorageProvider(ConfigurationManager.ConnectionStrings["TestDB"].ToString()))
         {
 
         }
 
+
         public HomeController(IStorageProvider sqlProvider)
         {
             _librarian = new Librarian(sqlProvider);
         }
+
+
+
 
         // GET: Home
         public ActionResult Index()
@@ -36,78 +42,61 @@ namespace LibraryUI.Controllers
             return View(bookCardsViewModel);
         }
 
-        // GET: Home/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
+
+
+
+        //// GET: Home/Create
+        //public ActionResult Create()
+        //{
+        //    return View();
+        //}
+
+        //// POST: Home/Create
+        //[HttpPost]
+        //public ActionResult Create(BookCardViewModel bookCardViewModel)
+        //{
+        //    try
+        //    {
+        //        BookCard bookCard = new BookCard { Title = bookCardViewModel.Title };
+        //        _librarian.AddBook(bookCard);
+
+        //        return RedirectToAction("Index");
+        //    }
+        //    catch
+        //    {
+        //        return View(bookCardViewModel);
+        //    }
+        //}
+
+
+
+
 
         // GET: Home/Create
-        public ActionResult Create()
+        public ActionResult Register()
         {
             return View();
         }
 
         // POST: Home/Create
         [HttpPost]
-        //public ActionResult Create(FormCollection collection)
-        public ActionResult Create(BookCardViewModel bookCardViewModel)
+        public ActionResult Register(UserViewModel userViewModel)
         {
             try
             {
-                BookCard bookCard = new BookCard { Title = bookCardViewModel.Title };
-                _librarian.AddBook(bookCard);
+                userViewModel.registerResult = _librarian.AddUser(userViewModel.Email);
+                if(!(bool)userViewModel.registerResult)
+                {
+                    return View(userViewModel);
+                }
 
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View(bookCardViewModel);
+                return View(userViewModel);
             }
         }
 
-        // GET: Home/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Home/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Home/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Home/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }

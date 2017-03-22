@@ -19,6 +19,7 @@ namespace LibraryBL.BookModels
             {
                 authors.AddRange(author);
             }
+
             this.Title = title;
         }
 

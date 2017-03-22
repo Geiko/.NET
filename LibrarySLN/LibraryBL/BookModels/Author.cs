@@ -1,13 +1,21 @@
-﻿namespace LibraryBL.BookModels
+﻿using System;
+
+namespace LibraryBL.BookModels
 {
     public class Author
     {
-        public Author(string authorName)
+        public Author()
+        {
+            this.Id = Guid.NewGuid();
+        }
+
+        public Author(string authorName) : this()
         {
             this.Name = authorName;
         }
+
         // TODO: fix id
-        //public int Id { get; set; } 
+        public Guid Id { get; set; } 
 
         public string Name { get; set; }
     }

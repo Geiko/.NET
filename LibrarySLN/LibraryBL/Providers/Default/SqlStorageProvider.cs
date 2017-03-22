@@ -4,7 +4,6 @@ using LibraryBL.BookModels;
 using LibraryBL.UserModels;
 using System.Data.SqlClient;
 using System.Data;
-using System.Configuration;
 using System.Linq;
 
 namespace LibraryBL.Providers.Default
@@ -13,13 +12,10 @@ namespace LibraryBL.Providers.Default
     {
         private string connectionString;
 
-
-
         public SqlStorageProvider(string connectionString)
         {
             this.connectionString = connectionString;
         }
-
 
         public bool AddUser(string newEmail)
         {
@@ -44,7 +40,6 @@ namespace LibraryBL.Providers.Default
                 }
             }
         }
-
 
         public bool AddBookCard(BookCard bookCard)
         {
@@ -71,12 +66,10 @@ namespace LibraryBL.Providers.Default
             }
         }
 
-
         public bool AddBookCards(int increment, string title, params Author[] authors)
         {
             throw new NotImplementedException();
         }
-
 
         public IEnumerable<BookCard> GetAllBookCards()
         {
@@ -85,28 +78,26 @@ namespace LibraryBL.Providers.Default
                 try
                 {
                     connection.Open();
-                    SqlDataAdapter adapter = 
+                    SqlDataAdapter adapter =
                             new SqlDataAdapter("Select * from BookCards", connection);
                     DataSet ds = new DataSet("BookCards");
                     adapter.Fill(ds, "BookCards");
 
-                    var empList = ds.Tables["BookCards"].AsEnumerable().Select(
-                            dataRow => new BookCard {
-                                    Id = dataRow.Field<Guid>("Id"),
-                                    Title = dataRow.Field<string>("Title") });
+                    var bookCards = ds.Tables["BookCards"].AsEnumerable().Select(
+                            dataRow => new BookCard
+                            {
+                                Id = dataRow.Field<Guid>("Id"),
+                                Title = dataRow.Field<string>("Title")
+                            });
 
-                    return empList;
+                    return bookCards;
                 }
                 catch (Exception)
                 {
                     throw;
                 }
             }
-        }
-
-
-
-
+        }      
 
         public IEnumerable<User> GetAllUsers()
         {
@@ -119,11 +110,11 @@ namespace LibraryBL.Providers.Default
                     DataSet ds = new DataSet("Users");
                     adapter.Fill(ds, "Users");
 
-                    var empList =
+                    var users =
                         ds.Tables["Users"].AsEnumerable().Select(
-                            dataRow => new User { Email = dataRow.Field<string>("Email") });
+                            dataRow => new User { Email = dataRow.Field<string>("Email").Trim() });
 
-                    return empList;
+                    return users;
                 }
                 catch (Exception)
                 {
@@ -131,8 +122,6 @@ namespace LibraryBL.Providers.Default
                 }
             }
         }
-
-
 
         public IEnumerable<BookCard> GetAvailableBookCards()
         {
@@ -144,7 +133,7 @@ namespace LibraryBL.Providers.Default
             throw new NotImplementedException();
         }
 
-        public bool GetoutBook(Guid bookId, int userId)
+        public bool GetoutBook(Guid bookId, string userEmail)
         {
             throw new NotImplementedException();
         }
@@ -159,29 +148,279 @@ namespace LibraryBL.Providers.Default
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Record> GetUserRecords(int userId)
+        public IEnumerable<Record> GetUserRecords(string userEmail)
         {
             throw new NotImplementedException();
         }
 
         public bool RemoveBookCard(Guid id)
         {
-            throw new NotImplementedException();
-        }
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    SqlDataAdapter adapter = new SqlDataAdapter("Select * from BookCards", connection);
+                    DataSet ds = new DataSet("BookCards");
+                    adapter.Fill(ds, "BookCards");
 
-        public bool RemoveUser(string email)
+                    ds.Tables["BookCards"].AsEnumerable()
+                                        .Where(r => r.Field<Guid>("Id") == id)
+                                        .ToList().ForEach(row => row.Delete());
+
+                    SqlCommandBuilder objCommandBuilder = new SqlCommandBuilder(adapter);
+                    adapter.Update(ds, "BookCards");
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
+        }
+        
+        public bool RemoveUser(string emailToDelete)
         {
-            throw new NotImplementedException();
-        }
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    SqlDataAdapter adapter = new SqlDataAdapter("Select * from Users", connection);
+                    DataSet ds = new DataSet("Users");
+                    adapter.Fill(ds, "Users");
 
+                    ds.Tables["Users"].AsEnumerable()
+                                        .Where(r => r.Field<string>("Email").Trim() == emailToDelete)
+                                        .ToList().ForEach(row => row.Delete());
+
+                    SqlCommandBuilder objCommandBuilder = new SqlCommandBuilder(adapter);
+                    adapter.Update(ds, "Users");
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
+        }
+        
         public bool ReturnBook(Guid bookId)
         {
             throw new NotImplementedException();
         }
-
-        public bool UpdateUser(string email, object newEmail)
+        
+        public bool UpdateUser(string oldEmail, object newEmail)
         {
-            throw new NotImplementedException();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    SqlDataAdapter adapter = new SqlDataAdapter("Select * from Users", connection);
+                    DataSet ds = new DataSet("Users");
+                    adapter.Fill(ds, "Users");
+
+                    DataRow dr = ds.Tables["Users"].AsEnumerable()
+                                        .Where(r => r.Field<string>("Email").Trim() == oldEmail).Single();
+                    dr["Email"] = newEmail;
+
+                    SqlCommandBuilder objCommandBuilder = new SqlCommandBuilder(adapter);
+                    adapter.Update(ds, "Users");
+                    return true;
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+        }
+        
+        public IEnumerable<Author> GetAllAuthors()
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    SqlDataAdapter adapter = new SqlDataAdapter("Select * from Authors", connection);
+                    DataSet ds = new DataSet("Authors");
+                    adapter.Fill(ds, "Authors");
+
+                    var authors = ds.Tables["Authors"].AsEnumerable().Select(
+                                            dataRow => new Author
+                                            {
+                                                Id = dataRow.Field<Guid>("Id"),
+                                                Name = dataRow.Field<string>("Name").Trim()
+                                            });
+                    return authors;
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+        }
+        
+        public bool AddAuthor(string name, Guid id)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    SqlDataAdapter adapter = new SqlDataAdapter("Select * from Authors", connection);
+                    DataSet ds = new DataSet("Authors");
+                    adapter.Fill(ds, "Authors");
+                    DataRow newCustomersRow = ds.Tables["Authors"].NewRow();
+                    newCustomersRow["Id"] = id;
+                    newCustomersRow["Name"] = name;
+                    ds.Tables["Authors"].Rows.Add(newCustomersRow);
+                    SqlCommandBuilder objCommandBuilder = new SqlCommandBuilder(adapter);
+                    adapter.Update(ds, "Authors");
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
+        }
+        
+        public Author GetAuthorById(Guid id)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    SqlDataAdapter adapter = new SqlDataAdapter("Select * from Authors", connection);
+                    DataSet ds = new DataSet("Authors");
+                    adapter.Fill(ds, "Authors");
+
+                    var authorRow = ds.Tables["Authors"].AsEnumerable()
+                                                .Where(r => r.Field<Guid>("Id") == id)
+                                                .Single();
+                    var author = new Author
+                    {
+                        Id = (Guid)authorRow["Id"],
+                        Name = authorRow["Name"].ToString().Trim()
+                    };
+
+                    return author;
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+        }
+        
+        public bool RemoveAuthor(Guid idToDelete)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    SqlDataAdapter adapter = new SqlDataAdapter("Select * from Authors", connection);
+                    DataSet ds = new DataSet("Authors");
+                    adapter.Fill(ds, "Authors");
+
+                    ds.Tables["Authors"].AsEnumerable()
+                                        .Where(r => r.Field<Guid>("Id") == idToDelete)
+                                        .ToList().ForEach(row => row.Delete());
+
+                    SqlCommandBuilder objCommandBuilder = new SqlCommandBuilder(adapter);
+                    adapter.Update(ds, "Authors");
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
+        }
+        
+        public bool UpdateAuthor(Guid idToEdit, Author author)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    SqlDataAdapter adapter = new SqlDataAdapter("Select * from Authors", connection);
+                    DataSet ds = new DataSet("Authors");
+                    adapter.Fill(ds, "Authors");
+
+                    DataRow dr = ds.Tables["Authors"].AsEnumerable()
+                                        .Where(r => r.Field<Guid>("Id") == idToEdit).Single();
+                    dr["Name"] = author.Name;
+
+                    SqlCommandBuilder objCommandBuilder = new SqlCommandBuilder(adapter);
+                    adapter.Update(ds, "Authors");
+                    return true;
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+        }
+        
+        public BookCard GetBookCardById(Guid id)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    SqlDataAdapter adapter = new SqlDataAdapter("Select * from BookCards", connection);
+                    DataSet ds = new DataSet("BookCards");
+                    adapter.Fill(ds, "BookCards");
+
+                    var bookCardRow = ds.Tables["BookCards"].AsEnumerable()
+                                                .Where(r => r.Field<Guid>("Id") == id)
+                                                .Single();
+                    var bookCard = new BookCard
+                    {
+                        Id = (Guid)bookCardRow["Id"],
+                        Title = bookCardRow["Title"].ToString().Trim()
+                    };
+
+                    return bookCard;
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+        }
+        
+        public bool UpdateBookCard(Guid idToEdit, BookCard bookCard)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    SqlDataAdapter adapter = new SqlDataAdapter("Select * from BookCards", connection);
+                    DataSet ds = new DataSet("BookCards");
+                    adapter.Fill(ds, "BookCards");
+
+                    DataRow dr = ds.Tables["BookCards"].AsEnumerable()
+                                        .Where(r => r.Field<Guid>("Id") == idToEdit).Single();
+                    dr["Title"] = bookCard.Title;
+
+                    SqlCommandBuilder objCommandBuilder = new SqlCommandBuilder(adapter);
+                    adapter.Update(ds, "BookCards");
+                    return true;
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
         }
     }
 }

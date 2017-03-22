@@ -17,11 +17,21 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Library", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Library", "Index", "Home", new { area = "" }, new { @class = "navbar-brand menuItem" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        @Html.ActionLink("Register", "Register", null,
+                       new { area = "" }, htmlAttributes: new { id = "registerLink" })
+                    </li>
+                    <li>
+                        @Html.ActionLink("Admin", "Index", "Dashboard",
+                   new { area = "Admin" }, htmlAttributes: new { id = "adminLink" })
+                </li>
+            </ul>
+
+
             </div>
         </div>
     </div>
@@ -30,7 +40,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            @*<p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>*@
         </footer>
     </div>
 

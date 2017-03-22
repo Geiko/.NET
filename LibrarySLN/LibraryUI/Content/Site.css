@@ -18,6 +18,26 @@ textarea {
 }
 
 .myMenu{
+    background-color: #00AABB!important;
+    border-color: #00AABB!important;   
+}
+.myMenuAdmin{
     background-color:#AB4747!important;
     border-color:#AB4747!important;
+}
+
+.menuItem, #registerLink, #adminLink{
+    color: white!important;
+}
+.menuItem:hover, #registerLink:hover, #adminLink:hover{
+    color: yellow!important;
+}
+
+.resultUserRegister{
+    color: deeppink;
+    margin: 15px;
+}
+
+.adminDashboard{
+    border-right: 1px solid grey;
 }

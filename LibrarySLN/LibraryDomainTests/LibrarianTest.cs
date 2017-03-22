@@ -220,12 +220,12 @@ namespace LibraryBL
         {
             //Arrange
             Guid bookId = Guid.NewGuid();
-            int userId = 38;
+            string userEmail = "someEmail";
             DateTime getoutTime = DateTime.Now;
             DateTime? returnTime = null;
             Record record = new Record
             {
-                UserId = userId,
+                UserEmail = userEmail,
                 GetoutTime = getoutTime,
                 ReturnTime = returnTime
             };
@@ -239,7 +239,7 @@ namespace LibraryBL
 
             var mockProvider = new Moq.Mock<IStorageProvider>();
             mockProvider
-                .Setup(i => i.GetoutBook(bookId, userId))
+                .Setup(i => i.GetoutBook(bookId, userEmail))
                 .Callback(() => (testedBookCards.Single(b => b.Id == bookId)).Records.Add(record))
                 .Returns(true);
             mockProvider
@@ -249,7 +249,7 @@ namespace LibraryBL
             Librarian librarian = new Librarian(mockProvider.Object);
 
             //Act
-            bool result = librarian.GetoutBook(bookId, userId);
+            bool result = librarian.GetoutBook(bookId, userEmail);
             IEnumerable<Record> bookRecords = librarian.GetBookRecords(bookId);
             int recordQuantity = bookRecords.Where(r => r.Equals(record)).Count();
 
@@ -355,17 +355,17 @@ namespace LibraryBL
         public void GetUserRecords()
         {
             //Arrange
-            int userId = 333;
-            IEnumerable<Record> testedUserRecords = getTestedRecordes(userId);
+            string userEmail = "someEmail";
+            IEnumerable<Record> testedUserRecords = getTestedRecordes(userEmail);
 
             var mockProvider = new Moq.Mock<IStorageProvider>();
-            mockProvider.Setup(i => i.GetUserRecords(userId)).Returns(testedUserRecords);
+            mockProvider.Setup(i => i.GetUserRecords(userEmail)).Returns(testedUserRecords);
 
             Librarian librarian = new Librarian(mockProvider.Object);
 
             //Act
-            IEnumerable<Record> userRecords = librarian.GetUserRecords(userId);
-            var areUserIdsCorrect = userRecords.All(r => r.UserId == userId);
+            IEnumerable<Record> userRecords = librarian.GetUserRecords(userEmail);
+            var areUserIdsCorrect = userRecords.All(r => r.UserEmail == userEmail);
 
             //Assert
             Assert.NotNull(userRecords);
@@ -411,19 +411,19 @@ namespace LibraryBL
                     {
                         new Record
                         {
-                            UserId = 3,
+                            UserEmail = "someEmal1",
                             GetoutTime = new DateTime(2015, 1, 15),
                             ReturnTime = new DateTime(2015, 1, 17)
                         },
                         new Record
                         {
-                            UserId = 33,
+                            UserEmail = "someEmal331",
                             GetoutTime = new DateTime(2016, 1, 15),
                             ReturnTime = new DateTime(2016, 2, 15)
                         },
                         new Record
                         {
-                            UserId = 33,
+                            UserEmail = "someEmal133",
                             GetoutTime = new DateTime(2017, 1, 16),
                             ReturnTime = new DateTime(2017, 2, 18)
                         }
@@ -436,19 +436,19 @@ namespace LibraryBL
                     {
                         new Record
                         {
-                            UserId = 3,
+                            UserEmail = "someEmal3",
                             GetoutTime = new DateTime(2015, 1, 15),
                             ReturnTime = new DateTime(2015, 1, 17)
                         },
                         new Record
                         {
-                            UserId = 33,
+                            UserEmail = "someEmal133",
                             GetoutTime = new DateTime(2016, 1, 15),
                             ReturnTime = new DateTime(2016, 2, 15)
                         },
                         new Record
                         {
-                            UserId = 33,
+                            UserEmail = "someEmal331",
                             GetoutTime = new DateTime(2017, 1, 16),
                             ReturnTime = new DateTime(2017, 2, 16)
                         }
@@ -470,19 +470,19 @@ namespace LibraryBL
                     {
                         new Record
                         {
-                            UserId = 3,
+                            UserEmail = "someEmal1",
                             GetoutTime = new DateTime(2015, 1, 15),
                             ReturnTime = new DateTime(2015, 1, 17)
                         },
                         new Record
                         {
-                            UserId = 33,
+                            UserEmail = "someEmal133",
                             GetoutTime = new DateTime(2016, 1, 15),
                             ReturnTime = new DateTime(2016, 2, 15)
                         },
                         new Record
                         {
-                            UserId = 33,
+                            UserEmail = "someEmal133",
                             GetoutTime = new DateTime(2017, 1, 16),
                             ReturnTime = null
                         }
@@ -495,19 +495,19 @@ namespace LibraryBL
                     {
                         new Record
                         {
-                            UserId = 3,
+                            UserEmail = "someEmal1",
                             GetoutTime = new DateTime(2015, 1, 15),
                             ReturnTime = new DateTime(2015, 1, 17)
                         },
                         new Record
                         {
-                            UserId = 33,
+                            UserEmail = "someEmal133",
                             GetoutTime = new DateTime(2016, 1, 15),
                             ReturnTime = new DateTime(2016, 2, 15)
                         },
                         new Record
                         {
-                            UserId = 33,
+                            UserEmail = "someEmal133",
                             GetoutTime = new DateTime(2017, 1, 16),
                             ReturnTime = null
                         }
@@ -520,19 +520,19 @@ namespace LibraryBL
                     {
                         new Record
                         {
-                            UserId = 3,
+                            UserEmail = "someEmal133",
                             GetoutTime = new DateTime(2015, 1, 15),
                             ReturnTime = new DateTime(2015, 1, 17)
                         },
                         new Record
                         {
-                            UserId = 33,
+                            UserEmail = "someEmal133",
                             GetoutTime = new DateTime(2016, 1, 15),
                             ReturnTime = new DateTime(2016, 2, 15)
                         },
                         new Record
                         {
-                            UserId = 33,
+                            UserEmail = "someEmal133",
                             GetoutTime = new DateTime(2017, 1, 16),
                             ReturnTime = null
                         }
@@ -543,55 +543,55 @@ namespace LibraryBL
 
 
 
-        private IEnumerable<Record> getTestedRecordes(int userId)
+        private IEnumerable<Record> getTestedRecordes(string userEmail)
         {
             return new List<Record>
             {
                 new Record
                 {
-                    UserId = userId,
+                    UserEmail = "someEmal1",
                     BookCardId = Guid.NewGuid(),
                     GetoutTime = new DateTime(2013, 05, 25),
                     ReturnTime = null
                 },
                 new Record
                 {
-                    UserId = userId,
+                    UserEmail = "someEmal133",
                     BookCardId = Guid.NewGuid(),
                     GetoutTime = new DateTime(2013, 05, 25),
                     ReturnTime = null
                 },
                 new Record
                 {
-                    UserId = userId,
+                    UserEmail = "someEmal133",
                     BookCardId = Guid.NewGuid(),
                     GetoutTime = new DateTime(2014, 05, 25),
                     ReturnTime = null
                 },
                 new Record
                 {
-                    UserId = userId,
+                    UserEmail = "someEmal134",
                     BookCardId = Guid.NewGuid(),
                     GetoutTime = new DateTime(2014, 05, 25),
                     ReturnTime = null
                 },
                 new Record
                 {
-                    UserId = userId,
+                    UserEmail = "someEmal1735",
                     BookCardId = Guid.NewGuid(),
                     GetoutTime = new DateTime(2015, 05, 25),
                     ReturnTime = null
                 },
                 new Record
                 {
-                    UserId = userId,
+                    UserEmail = "someEmal52q431",
                     BookCardId = Guid.NewGuid(),
                     GetoutTime = new DateTime(2016, 05, 25),
                     ReturnTime = null
                 },
                 new Record
                 {
-                    UserId = userId,
+                    UserEmail = "someEmal15326",
                     BookCardId = Guid.NewGuid(),
                     GetoutTime = new DateTime(2017, 05, 25),
                     ReturnTime = null
@@ -607,49 +607,49 @@ namespace LibraryBL
             {
                 new Record
                 {
-                    UserId = 235,
+                    UserEmail = "someEmal1734562",
                     BookCardId = bookCardId,
                     GetoutTime = new DateTime(2013, 05, 25),
                     ReturnTime = null
                 },
                 new Record
                 {
-                    UserId = 6522,
+                    UserEmail = "someEmal1324",
                     BookCardId = bookCardId,
                     GetoutTime = new DateTime(2013, 05, 25),
                     ReturnTime = new DateTime(2013, 06, 1)
                 },
                 new Record
                 {
-                    UserId = 864,
+                    UserEmail = "someEmal165",
                     BookCardId = bookCardId,
                     GetoutTime = new DateTime(2014, 05, 25),
                     ReturnTime = null
                 },
                 new Record
                 {
-                    UserId = 845,
+                    UserEmail = "someEmal16532",
                     BookCardId = bookCardId,
                     GetoutTime = new DateTime(2014, 05, 25),
                     ReturnTime = new DateTime(2017, 08, 22)
                 },
                 new Record
                 {
-                    UserId = 85,
+                    UserEmail = "someEmal123",
                     BookCardId = bookCardId,
                     GetoutTime = new DateTime(2015, 05, 25),
                     ReturnTime = new DateTime(2015, 07, 2)
                 },
                 new Record
                 {
-                    UserId = 151,
+                    UserEmail = "someEmal135",
                     BookCardId = bookCardId,
                     GetoutTime = new DateTime(2016, 05, 25),
                     ReturnTime = null
                 },
                 new Record
                 {
-                    UserId = 897,
+                    UserEmail = "someEmal1523",
                     BookCardId = bookCardId,
                     GetoutTime = new DateTime(2017, 05, 25),
                     ReturnTime = null
