@@ -43,10 +43,8 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-2 adminDashboard">
-                <h4 class="topPad"></h4>
-
                 <ul id="menuActiveAdmin">
-                    <li class="dashboard">@Html.ActionLink("Admin dashboard", "Index", "Dashboard")</li>
+                    @*<li class="dashboard">@Html.ActionLink("Admin dashboard", "Index", "Dashboard")</li>*@
                     <li class="dashboard">@Html.ActionLink("BookCards", "Index", "BookCards")</li>
                     <li class="dashboard">@Html.ActionLink("Authors", "Index", "Authors")</li>
                     @*<li class="dashboard">@Html.ActionLink("Records", "Index", "Records")</li>*@
@@ -54,7 +52,7 @@
                 </ul>
             </div>
 
-            <div class="col-md-9" style="padding-left: 50px;">
+            <div class="col-md-9 mainContent">
                 @RenderBody()
             </div>
         </div>

@@ -39,17 +39,26 @@ namespace LibraryUI.Areas.Admin.Controllers
             return View(authorViewModel);
         }
         
-        public ActionResult Details(Guid id)
+        public ActionResult Details(Guid authorId)
         {
-            Author author = _librarian.GetAuthorById(id);
+            //IEnumerable<BookCard> x = _librarian.GetBookCardsByAuthorId(authorId);
+
+
+            Author author = _librarian.GetAuthorById(authorId);
             AuthorViewModel authorViewModel = new AuthorViewModel
             {
                 Id = author.Id,
-                Name = author.Name
+                Name = author.Name,
+                AuthorBooks = new SelectList(
+                        _librarian.GetBookCardsByAuthorId(authorId).Select(a => a.Title).ToList())
             };
 
             return View(authorViewModel);
         }
+
+
+
+
         
         public ActionResult Create()
         {

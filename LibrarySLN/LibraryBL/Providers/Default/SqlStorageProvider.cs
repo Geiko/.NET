@@ -68,7 +68,6 @@ namespace LibraryBL.Providers.Default
             }
         }
 
-
         public bool AddAuthorToBook(Guid bookId, Guid authorId)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -88,7 +87,6 @@ namespace LibraryBL.Providers.Default
                     ds.Tables["BookAuthor"].Rows.Add(newCustomersRow);
                     SqlCommandBuilder objCommandBuilder = new SqlCommandBuilder(adapter);
                     adapter.Update(ds, "BookAuthor");
-                    ds.Clear();
                     return true;
                 }
                 catch (Exception)
@@ -231,9 +229,7 @@ namespace LibraryBL.Providers.Default
                 }
             }
         }
-
-
-
+        
         public bool ReturnBook(Guid bookId, DateTime returnTime)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -545,7 +541,7 @@ namespace LibraryBL.Providers.Default
             }
         }
 
-        public bool RemoveAuthor(Guid idToDelete)////////////////////
+        public bool RemoveAuthor(Guid idToDelete)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -683,8 +679,6 @@ namespace LibraryBL.Providers.Default
                 }
             }
         }
-
-
         
         public IEnumerable<Author> GetAuthorsByBookId(Guid bookId)
         {
@@ -722,5 +716,42 @@ namespace LibraryBL.Providers.Default
             }
         }
 
+
+        
+        public IEnumerable<BookCard> GetBookCardsByAuthorId(Guid authorId)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    SqlDataAdapter adapter1 = new SqlDataAdapter("Select * from BookAuthor", connection);
+                    DataSet ds1 = new DataSet("BookAuthor");
+                    adapter1.Fill(ds1, "BookAuthor");
+
+                    var bookIdSet = ds1.Tables["BookAuthor"].AsEnumerable()
+                                        .Where(r => r.Field<Guid>("AuthorId") == authorId)
+                                        .Select(r => r.Field<Guid>("BookCardId"));
+
+
+                    SqlDataAdapter adapter = new SqlDataAdapter("Select * from BookCards", connection);
+                    DataSet ds = new DataSet("BookCards");
+                    adapter.Fill(ds, "BookCards");
+
+                    var bookCards = ds.Tables["BookCards"].AsEnumerable()
+                                        .Where(a => bookIdSet.Contains(a.Field<Guid>("Id")))
+                                        .Select(dataRow => new BookCard
+                                        {
+                                            Id = dataRow.Field<Guid>("Id"),
+                                            Title = dataRow.Field<string>("Title")
+                                        }).OrderBy(a => a.Title);
+                    return bookCards;
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+        }
     }
 }

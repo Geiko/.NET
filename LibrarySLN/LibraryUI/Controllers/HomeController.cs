@@ -2,14 +2,12 @@
 using LibraryBL.ManagerModels.Default;
 using LibraryBL.Providers;
 using LibraryBL.Providers.Default;
-using LibraryBL.UserModels;
 using LibraryUI.Models;
 using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace LibraryUI.Controllers
@@ -32,9 +30,12 @@ namespace LibraryUI.Controllers
 
         public ActionResult Index(int? page, string filterType, string sortType)
         {
-                        filterType = filterType ?? "all";
-            IEnumerable<BookCard> bookCards = filterBookCards(filterType);
+            filterType = getSelectedFilter(filterType, "filterParameter");
+            sortType = getSelectedFilter(sortType, "sortParameter");
+            filterType = filterType ?? "all";
+            sortType = sortType ?? "byTytle";
 
+            IEnumerable<BookCard> bookCards = filterBookCards(filterType);
             IEnumerable<BookCardViewModel> bookCardsViewModel = bookCards.Select(b =>
                     new BookCardViewModel()
                     {
@@ -44,8 +45,6 @@ namespace LibraryUI.Controllers
                                 _librarian.GetAuthorsByBookId(b.Id).Select(a => a.Name).ToList()),
                         isAvailable = _librarian.isBookAvailable(b.Id)
                     });
-
-            sortType = sortType ?? "byTytle";
             bookCardsViewModel = sortBookCards(bookCardsViewModel, sortType);
 
             int pageNumber = (page ?? 1);
@@ -58,9 +57,26 @@ namespace LibraryUI.Controllers
 
             return View(bcvm);
         }
+        
+        private string getSelectedFilter(string category, string categoryParameter)
+        {
+            if (!string.IsNullOrEmpty(category))
+            {
+                TempData[categoryParameter] = category;
+                TempData.Keep();
+            }
+            else
+            {
+                if (TempData[categoryParameter] != null)
+                {
+                    category = TempData.Peek(categoryParameter).ToString();
+                    TempData.Keep();
+                }
+            }
 
-
-
+            return category;
+        }
+        
         private IEnumerable<BookCardViewModel> sortBookCards(
             IEnumerable<BookCardViewModel> bookCardsViewModel, string sortType)
         {
@@ -77,9 +93,7 @@ namespace LibraryUI.Controllers
 
             throw new ArgumentOutOfRangeException($"SortType isn't correct - {sortType}");
         }
-
-
-
+        
         private IEnumerable<BookCard> filterBookCards(string filterType)
         {
             if (filterType.Equals("all"))
@@ -97,16 +111,12 @@ namespace LibraryUI.Controllers
 
             throw new ArgumentOutOfRangeException($"FilterType isn't correct - {filterType}");
         }
-
-
-
+        
         public ActionResult Register()
         {
             return View();
         }
-
-
-
+        
         [HttpPost]
         public ActionResult Register(UserViewModel userViewModel)
         {

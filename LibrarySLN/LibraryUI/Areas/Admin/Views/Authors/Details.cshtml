@@ -23,7 +23,10 @@
         </dt>
 
         <dd>
-            TODO: Dropdown List
+            @Html.DropDownList(
+               "authorBooks",
+               Model.AuthorBooks as SelectList,
+               htmlAttributes: new { @class = "form-control" })
         </dd>
     </dl>
 </div>

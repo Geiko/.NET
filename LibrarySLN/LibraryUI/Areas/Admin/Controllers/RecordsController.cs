@@ -9,6 +9,8 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 
@@ -28,20 +30,17 @@ namespace LibraryUI.Areas.Admin.Controllers
         {
             _librarian = new Librarian(sqlProvider);
         }
-
-        // GET: Admin/Records
+        
         public ActionResult Index()
         {
             return View();
         }
-
-        // GET: Admin/Records/Details/5
+        
         public ActionResult Details(int id)
         {
             return View();
         }
-
-        // GET: Admin/Records/Create
+        
         public ActionResult Create(Guid id)
         {
             List<string> allUsers = _librarian.GetAllUsers().Select(u => u.Email).ToList();
@@ -56,8 +55,7 @@ namespace LibraryUI.Areas.Admin.Controllers
 
             return View(recordViewModel);
         }
-
-        // POST: Admin/Records/Create
+        
         [HttpPost]
         public ActionResult Create(Guid id, string tookBookUser)
         {
@@ -70,8 +68,14 @@ namespace LibraryUI.Areas.Admin.Controllers
                 {
                     ViewBag.RecordResult = 
                         "This can't be executed. The book has been got out to other reader already.";
-                    // TODO: js make button unable if book unable
+                    // TODO: use JS to make button unable if book unable
                 }
+
+                BookCard bookCard = _librarian.GetBookCardById(id);
+                var bookAuthors = _librarian.GetAuthorsByBookId(id).Select(a => a.Name);
+                string authors = string.Join(", ", bookAuthors.ToArray());
+                string content = $"{authors} \"{bookCard.Title}\"";
+                SendEmailToUser(tookBookUser, content);
 
                 return RedirectToAction("Index", "BookCards");
             }
@@ -81,13 +85,26 @@ namespace LibraryUI.Areas.Admin.Controllers
             }
         }
 
-        // GET: Admin/Records/Edit/5
+        private void SendEmailToUser(string tookBookUserEmail, string content)
+        {
+            MailAddress from = new MailAddress("k.i.geiko@gmail.com", "The Library");
+            MailAddress to = new MailAddress(tookBookUserEmail);
+            MailMessage m = new MailMessage(from, to);
+            m.Subject = "You took the following book in our library: ";
+            m.Body = content;
+            m.IsBodyHtml = true;
+            SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+            //Password is needed to execute.
+            smtp.Credentials = new NetworkCredential("k.i.geiko@gmail.com", "********");
+            smtp.EnableSsl = true;
+            smtp.Send(m);
+        }
+        
         public ActionResult Edit(Guid id)
         {
             return View();
         }
-
-        // POST: Admin/Records/Edit/5
+        
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -102,14 +119,12 @@ namespace LibraryUI.Areas.Admin.Controllers
                 return View();
             }
         }
-
-        // GET: Admin/Records/Delete/5
+        
         public ActionResult Delete(int id)
         {
             return View();
         }
-
-        // POST: Admin/Records/Delete/5
+        
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

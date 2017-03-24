@@ -47,9 +47,15 @@ textarea {
 }
 
 .adminDashboard{
-    border-right: 1px solid grey;
+    /*border-right: 1px solid grey;*/
+    padding-top: 30px;
 }
 
 .table{
     margin-top:15px;
+}
+
+.mainContent{
+    padding-left: 50px;
+    border-left: 1px solid grey;
 }

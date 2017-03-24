@@ -13,23 +13,11 @@
 @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "filterForm" }))
 {
     <div class="row">
-        <div class="col-md-2">
-            <input type="submit" value="Submit" class="btn btn-primary" form="filterForm" />
-        </div>
         <div class="col-md-3">
             @Html.RadioButtonFor(m => m.FilterType, "all") Filter All books<br />
             @Html.RadioButtonFor(m => m.FilterType, "available") Filter Available books<br />
             @Html.RadioButtonFor(m => m.FilterType, "taken") Filter books Taken by the user<br />
         </div>
-        @*<div class="col-md-3">
-            @Html.RadioButton("filterType", "all") Filter All books<br />
-            @Html.RadioButton("filterType", "available") Filter Available books<br />
-            @Html.RadioButton("filterType", "taken") Filter books Taken by the user<br />
-        </div>*@
-        @*<div class="col-md-3">
-            @Html.RadioButton("sortType", "byTytle") Sort by Title<br />
-            @Html.RadioButton("sortType", "byAuthor") Sort by First Author<br />
-        </div>*@
         <div class="col-md-3">
             @Html.RadioButtonFor(m => m.SortType, "byTytle") Sort by Title<br />
             @Html.RadioButtonFor(m => m.SortType, "byAuthor") Sort by First Author<br />
