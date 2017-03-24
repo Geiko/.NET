@@ -17,9 +17,11 @@ namespace LibraryUI.Models
 
         public bool? registerResult { get; set; }
 
-        public SelectList Records { get; set; }
+        public MultiSelectList Records { get; set; }
 
         public MultiSelectList Authors { get; set; }
+
+        public SelectList BookAuthors { get; set; }
 
         public PagedList.IPagedList<BookCardViewModel> BookCards { get; set; }
     }

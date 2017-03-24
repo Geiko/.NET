@@ -52,6 +52,11 @@ namespace LibraryBL.ManagerModels.Default
             return this.provider.AddBookCards(increment, title, authors);
         }
 
+        public IEnumerable<Author> GetAuthorsByBookId(Guid id)
+        {
+            return this.provider.GetAuthorsByBookId(id);
+        }
+
         public IEnumerable<Record> GetBookRecords(string email)
         {
             return this.provider.GetRecords(email);

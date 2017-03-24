@@ -177,6 +177,7 @@
     </Compile>
     <Compile Include="Models\AuthorViewModel.cs" />
     <Compile Include="Models\BookCardViewModel.cs" />
+    <Compile Include="Models\BookCardViewModelPaged.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

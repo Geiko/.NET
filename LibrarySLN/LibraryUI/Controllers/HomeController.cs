@@ -30,43 +30,82 @@ namespace LibraryUI.Controllers
             _librarian = new Librarian(sqlProvider);
         }
 
-        public ActionResult Index(int? page, string showType)
+        public ActionResult Index(int? page, string filterType, string sortType)
         {
-            showType = showType ?? "all";
-            IEnumerable<BookCard> bookCards = null;
-            if (showType.Equals("all"))
-            {
-                bookCards = _librarian.GetAllBookCards();
-            }
-            else if (showType.Equals("available"))
-            {
-                bookCards = _librarian.GetAvailableBookCards();
-            }
-            else if (showType.Equals("taken"))
-            {
-                bookCards = _librarian.GetTakenBookCards();
-            }
+                        filterType = filterType ?? "all";
+            IEnumerable<BookCard> bookCards = filterBookCards(filterType);
 
-            List<BookCardViewModel> bookCardsViewModel =
-                    bookCards.Select(b => new BookCardViewModel()
+            IEnumerable<BookCardViewModel> bookCardsViewModel = bookCards.Select(b =>
+                    new BookCardViewModel()
                     {
                         Id = b.Id,
                         Title = b.Title,
+                        BookAuthors = new SelectList(
+                                _librarian.GetAuthorsByBookId(b.Id).Select(a => a.Name).ToList()),
                         isAvailable = _librarian.isBookAvailable(b.Id)
-                    }).ToList();
+                    });
+
+            sortType = sortType ?? "byTytle";
+            bookCardsViewModel = sortBookCards(bookCardsViewModel, sortType);
+
             int pageNumber = (page ?? 1);
-            BookCardViewModel bcvm = new BookCardViewModel
+            BookCardViewModelPaged bcvm = new BookCardViewModelPaged
             {
-                BookCards = bookCardsViewModel.ToPagedList(pageNumber, PAGE_SIZE)
+                BookCards = bookCardsViewModel.ToPagedList(pageNumber, PAGE_SIZE),
+                FilterType = filterType,
+                SortType = sortType
             };
 
             return View(bcvm);
         }
 
+
+
+        private IEnumerable<BookCardViewModel> sortBookCards(
+            IEnumerable<BookCardViewModel> bookCardsViewModel, string sortType)
+        {
+            if (sortType.Equals("byTytle"))
+            {
+                return bookCardsViewModel.OrderBy(b => b.Title);
+            }
+            else if (sortType.Equals("byAuthor"))
+            {
+                return bookCardsViewModel.OrderBy(b =>
+                        _librarian.GetAuthorsByBookId(b.Id).FirstOrDefault().Name)
+                        .ThenBy(b => b.Title);
+            }
+
+            throw new ArgumentOutOfRangeException($"SortType isn't correct - {sortType}");
+        }
+
+
+
+        private IEnumerable<BookCard> filterBookCards(string filterType)
+        {
+            if (filterType.Equals("all"))
+            {
+                return _librarian.GetAllBookCards();
+            }
+            else if (filterType.Equals("available"))
+            {
+                return _librarian.GetAvailableBookCards();
+            }
+            else if (filterType.Equals("taken"))
+            {
+                return _librarian.GetTakenBookCards();
+            }
+
+            throw new ArgumentOutOfRangeException($"FilterType isn't correct - {filterType}");
+        }
+
+
+
         public ActionResult Register()
         {
             return View();
         }
+
+
 
         [HttpPost]
         public ActionResult Register(UserViewModel userViewModel)

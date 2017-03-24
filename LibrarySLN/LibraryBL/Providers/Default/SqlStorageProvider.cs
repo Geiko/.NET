@@ -83,6 +83,7 @@ namespace LibraryBL.Providers.Default
                     DataRow newCustomersRow = ds.Tables["BookAuthor"].NewRow();
                     newCustomersRow["BookCardId"] = bookId;
                     newCustomersRow["AuthorId"] = authorId;
+                    newCustomersRow["Id"] = Guid.NewGuid();
 
                     ds.Tables["BookAuthor"].Rows.Add(newCustomersRow);
                     SqlCommandBuilder objCommandBuilder = new SqlCommandBuilder(adapter);
@@ -379,6 +380,7 @@ namespace LibraryBL.Providers.Default
                     adapter.Update(ds, "BookCards");
 
 
+
                     SqlDataAdapter adapter2 = new SqlDataAdapter("Select * from Records", connection);
                     DataSet ds2 = new DataSet("Records");
                     adapter2.Fill(ds2, "Records");
@@ -389,6 +391,19 @@ namespace LibraryBL.Providers.Default
 
                     SqlCommandBuilder objCommandBuilder2 = new SqlCommandBuilder(adapter2);
                     adapter2.Update(ds2, "Records");
+
+                    
+
+                    SqlDataAdapter adapter3 = new SqlDataAdapter("Select * from BookAuthor", connection);
+                    DataSet ds3 = new DataSet("BookAuthor");
+                    adapter3.Fill(ds3, "BookAuthor");
+
+                    ds3.Tables["BookAuthor"].AsEnumerable()
+                                        .Where(r => r.Field<Guid>("BookCardId") == id)
+                                        .ToList().ForEach(row => row.Delete());
+
+                    SqlCommandBuilder objCommandBuilder3 = new SqlCommandBuilder(adapter3);
+                    adapter3.Update(ds3, "BookAuthor");
                     return true;
                 }
                 catch (Exception)
@@ -530,7 +545,7 @@ namespace LibraryBL.Providers.Default
             }
         }
 
-        public bool RemoveAuthor(Guid idToDelete)
+        public bool RemoveAuthor(Guid idToDelete)////////////////////
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -540,13 +555,22 @@ namespace LibraryBL.Providers.Default
                     SqlDataAdapter adapter = new SqlDataAdapter("Select * from Authors", connection);
                     DataSet ds = new DataSet("Authors");
                     adapter.Fill(ds, "Authors");
-
                     ds.Tables["Authors"].AsEnumerable()
                                         .Where(r => r.Field<Guid>("Id") == idToDelete)
                                         .ToList().ForEach(row => row.Delete());
-
                     SqlCommandBuilder objCommandBuilder = new SqlCommandBuilder(adapter);
                     adapter.Update(ds, "Authors");
+
+                    
+                    SqlDataAdapter adapter3 = new SqlDataAdapter("Select * from BookAuthor", connection);
+                    DataSet ds3 = new DataSet("BookAuthor");
+                    adapter3.Fill(ds3, "BookAuthor");
+                    ds3.Tables["BookAuthor"].AsEnumerable()
+                                        .Where(r => r.Field<Guid>("AuthorId") == idToDelete)
+                                        .ToList().ForEach(row => row.Delete());
+                    SqlCommandBuilder objCommandBuilder3 = new SqlCommandBuilder(adapter3);
+                    adapter3.Update(ds3, "BookAuthor");
+
                     return true;
                 }
                 catch (Exception)
@@ -650,10 +674,7 @@ namespace LibraryBL.Providers.Default
 
                     var isBookAvailable = ds.Tables["Records"].AsEnumerable()
                                         .Where(r => r.Field<Guid>("BookCardId") == bookId)
-                                        .All(r => r.Field<DateTime?>("ReturnTime") != null);
-
-                    //SqlCommandBuilder objCommandBuilder = new SqlCommandBuilder(adapter);
-                    //adapter.Update(ds, "Records");
+                                        .All(r => r.Field<DateTime?>("ReturnTime") != null);                    
                     return isBookAvailable;
                 }
                 catch (Exception)
@@ -662,5 +683,44 @@ namespace LibraryBL.Providers.Default
                 }
             }
         }
+
+
+        
+        public IEnumerable<Author> GetAuthorsByBookId(Guid bookId)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try     
+                {
+                    connection.Open();
+                    SqlDataAdapter adapter1 = new SqlDataAdapter("Select * from BookAuthor", connection);
+                    DataSet ds1 = new DataSet("BookAuthor");
+                    adapter1.Fill(ds1, "BookAuthor");
+
+                    var authorIdSet = ds1.Tables["BookAuthor"].AsEnumerable()
+                                        .Where(r => r.Field<Guid>("BookCardId") == bookId)
+                                        .Select(r => r.Field<Guid>("AuthorId"));
+
+                                        
+                    SqlDataAdapter adapter = new SqlDataAdapter("Select * from Authors", connection);
+                    DataSet ds = new DataSet("Authors");
+                    adapter.Fill(ds, "Authors");
+
+                    var authors = ds.Tables["Authors"].AsEnumerable()
+                                        .Where(a => authorIdSet.Contains(a.Field<Guid>("Id")))
+                                        .Select(dataRow => new Author
+                                        {
+                                            Id = dataRow.Field<Guid>("Id"),
+                                            Name = dataRow.Field<string>("Name")
+                                        }).OrderBy(a => a.Name);
+                    return authors;
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+        }
+
     }
 }

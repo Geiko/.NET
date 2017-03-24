@@ -32,5 +32,6 @@ namespace LibraryBL.Providers
         bool isBookAvailable(Guid id);
         bool ReturnBook(Guid bookId, DateTime returnTime);
         IEnumerable<Record> GetRecords(string email);
+        IEnumerable<Author> GetAuthorsByBookId(Guid id);
     }
 }

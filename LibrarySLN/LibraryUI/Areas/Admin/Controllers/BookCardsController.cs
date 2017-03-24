@@ -32,11 +32,14 @@ namespace LibraryUI.Areas.Admin.Controllers
         public ActionResult Index()
         {
             IEnumerable<BookCard> bookCards = _librarian.GetAllBookCards();
-            IEnumerable<BookCardViewModel> bookCardsViewModel = bookCards.Select(b => new BookCardViewModel
+            IEnumerable<BookCardViewModel> bookCardsViewModel = bookCards.Select(b => 
+            new BookCardViewModel
             {
                 Id = b.Id,
                 Title = b.Title,
-                isAvailable = _librarian.isBookAvailable(b.Id)
+                isAvailable = _librarian.isBookAvailable(b.Id),
+                BookAuthors = new SelectList(
+                        _librarian.GetAuthorsByBookId(b.Id).Select(a=> a.Name).ToList()) 
             });
 
             return View(bookCardsViewModel);
@@ -46,15 +49,15 @@ namespace LibraryUI.Areas.Admin.Controllers
         {
             BookCard bookCard = _librarian.GetBookCardById(id);
             IEnumerable<Record> records = _librarian.GetBookRecords(id);
-
             IEnumerable<string> strRecords = records.Select(r => 
                     string.Format($"{r.UserEmail} / {r.GetoutTime} / {r.ReturnTime}"));
-
             BookCardViewModel bookCardViewModel = new BookCardViewModel
             {
                 Id = bookCard.Id,
                 Title = bookCard.Title,
-                Records = new SelectList(strRecords)
+                Records = new SelectList(strRecords),
+                BookAuthors = new SelectList(
+                        _librarian.GetAuthorsByBookId(bookCard.Id).Select(a => a.Name).ToList())
             };
 
             return View(bookCardViewModel);
@@ -67,6 +70,10 @@ namespace LibraryUI.Areas.Admin.Controllers
             {
                 Authors = new MultiSelectList(allAuthors, "Id", "Name")
             };
+            if(allAuthors.Count() == 0)
+            {
+                bookCardViewModel.Authors = new MultiSelectList(allAuthors, null, "Name");
+            }
 
             return View(bookCardViewModel);
         }
@@ -132,7 +139,9 @@ namespace LibraryUI.Areas.Admin.Controllers
             BookCardViewModel bookCardViewModel = new BookCardViewModel
             {
                 Id = bookCard.Id,
-                Title = bookCard.Title
+                Title = bookCard.Title,
+                BookAuthors = new SelectList(
+                        _librarian.GetAuthorsByBookId(bookCard.Id).Select(a => a.Name).ToList())
             };
 
             return View(bookCardViewModel);
@@ -154,7 +163,8 @@ namespace LibraryUI.Areas.Admin.Controllers
             catch (Exception ex)
             {
                 ViewBag.Exception = ex.Message;
-                return View(bookCardViewModel);
+                //return View(bookCardViewModel);
+                throw;
             }
         }        
 
