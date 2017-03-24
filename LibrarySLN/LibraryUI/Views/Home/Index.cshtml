@@ -1,21 +1,39 @@
-﻿@model List<LibraryUI.Models.BookCardViewModel>
+﻿
+@model LibraryUI.Models.BookCardViewModel
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
 
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Books";
     int counter = 0;
 }
 
-<h2>Index</h2>
+<h2>Books</h2>
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "filterForm" }))
+{
+    <div class="row">
+        <div class="col-md-1">
+            <input type="submit" value="Filter" class="btn btn-primary" form="filterForm" />
+        </div>
+        <div class="col-md-3">
+            <fieldset id="group1">
+                <input type="radio" value="all" name="showType">Show all books<br />
+                <input type="radio" value="available" name="showType">Show available books<br />
+                <input type="radio" value="taken" name="showType">Show books taken by the user<br />
+            </fieldset>
+
+        </div>
+    </div>
+}
 
 <table class="table">
     <tr>
         <th>
             №
         </th>
-        @*<th>
-            Id
-        </th>*@
         <th>
             Title
         </th>
@@ -27,25 +45,27 @@
         </th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @{counter++;}
-            @counter
-        </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.Id)
-        </td>*@
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            TODO: DropDown List
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.isAvailable)
-        </td>
-    </tr>
-}
+    @foreach (var item in Model.BookCards)
+    {
+        <tr>
+            <td>
+                @{counter++;}
+                @counter
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                TODO: DropDown List
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isAvailable)
+            </td>
+        </tr>
+                    }
 
 </table>
+
+Page @(Model.BookCards.PageCount < Model.BookCards.PageNumber ? 0 : Model.BookCards.PageNumber) from @Model.BookCards.PageCount
+
+@Html.PagedListPager(Model.BookCards, page => Url.Action("Index", new { page }))

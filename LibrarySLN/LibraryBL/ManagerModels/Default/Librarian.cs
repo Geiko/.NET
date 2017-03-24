@@ -25,20 +25,26 @@ namespace LibraryBL.ManagerModels.Default
 
             this.provider = provider;
         }
-        
+
         public bool AddBook(BookCard bookCard)
         {
-            return provider.AddBookCard(bookCard);
-        }        
-        
+            provider.AddBookCard(bookCard);
+            foreach (var author in bookCard.Authors)
+            {
+                provider.AddAuthorToBook(bookCard.Id, author.Id);
+            }
+
+            return true;
+        }
+
         public IEnumerable<BookCard> GetCards(string title, params Author[] authors)
         {
-           return this.provider.GetBookCards(title, authors);
+            return this.provider.GetBookCards(title, authors);
         }
 
         public IEnumerable<Author> GetAllAuthors()
         {
-            return this.provider.GetAllAuthors();
+            return this.provider.GetAllAuthors().OrderBy(a => a.Name);
         }
 
         public bool AddBooks(int increment, string title, params Author[] authors)
@@ -46,9 +52,18 @@ namespace LibraryBL.ManagerModels.Default
             return this.provider.AddBookCards(increment, title, authors);
         }
 
+        public IEnumerable<Record> GetBookRecords(string email)
+        {
+            return this.provider.GetRecords(email);
+        }
+
+        public bool isBookAvailable(Guid id)
+        {
+            return this.provider.isBookAvailable(id);
+        }
 
         public bool RemoveBookCard(Guid id)
-        {
+        {         
             return this.provider.RemoveBookCard(id);
         }
 
@@ -66,24 +81,24 @@ namespace LibraryBL.ManagerModels.Default
         {
             return this.provider.GetAllBookCards();
         }
-        
+
         public bool AddUser(string email)
         {
             var users = this.provider.GetAllUsers();
-            if(users.Any(u => u.Email.Equals(email)))
+            if (users.Any(u => u.Email.Equals(email)))
             {
                 return false;
             }
 
             return this.provider.AddUser(email);
         }
-        
+
         public bool AddAuthor(string name)
         {
             Guid id = Guid.NewGuid();
             return this.provider.AddAuthor(name, id);
         }
-        
+
         public IEnumerable<User> GetAllUsers()
         {
             return this.provider.GetAllUsers();
@@ -105,9 +120,23 @@ namespace LibraryBL.ManagerModels.Default
             return this.provider.UpdateUser(oldEmail, newEmail);
         }
 
-        public bool GetoutBook(Guid bookId, string userId)
+        public bool GetoutBook(Guid bookId, string tookBookUserEmail)
         {
-            return this.provider.GetoutBook(bookId, userId);
+            if (this.provider.isBookAvailable(bookId) == false)
+            {
+                return false;
+            }
+
+            Record record = new Record
+            {
+                Id = Guid.NewGuid(),
+                BookCardId = bookId,
+                UserEmail = tookBookUserEmail,
+                GetoutTime = DateTime.Now,
+                ReturnTime = null
+            };
+
+            return this.provider.GetoutBook(record);
         }
 
         public IEnumerable<Record> GetBookRecords(Guid bookId)
@@ -117,7 +146,14 @@ namespace LibraryBL.ManagerModels.Default
 
         public bool ReturnBook(Guid bookId)
         {
-            return this.provider.ReturnBook(bookId);
+            if(this.provider.isBookAvailable(bookId) == true)
+            {
+                return false;
+            }
+
+            DateTime returnTime = DateTime.Now;
+
+            return this.provider.ReturnBook(bookId, returnTime);
         }
 
         public bool UpdateBookCard(Guid idToEdit, BookCard bookCard)

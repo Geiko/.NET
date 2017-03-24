@@ -26,11 +26,19 @@ textarea {
     border-color:#AB4747!important;
 }
 
-.menuItem, #registerLink, #adminLink{
-    color: white!important;
+.menuItem, #registerLink, 
+#adminLink, #readerLink{
+    color: white!important; 
+    margin: 0 0 0 30px;
 }
-.menuItem:hover, #registerLink:hover, #adminLink:hover{
+.menuItem:hover, #registerLink:hover, 
+#adminLink:hover, #readerLink:hover{
+    color: yellow!important;   
+}
+
+#activeLink{
     color: yellow!important;
+    margin: 0 0 0 30px;
 }
 
 .resultUserRegister{
@@ -40,4 +48,8 @@ textarea {
 
 .adminDashboard{
     border-right: 1px solid grey;
+}
+
+.table{
+    margin-top:15px;
 }

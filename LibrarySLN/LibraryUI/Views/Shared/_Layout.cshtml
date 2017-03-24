@@ -22,16 +22,18 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        @Html.ActionLink("Register", "Register", null,
+                        @Html.ActionLink("Reader", "Index", null,
+                       new { area = "" }, htmlAttributes: new { id = "activeLink" })
+                    </li>
+                    <li>
+                        @Html.ActionLink("Register Reader Email", "Register", null,
                        new { area = "" }, htmlAttributes: new { id = "registerLink" })
                     </li>
                     <li>
-                        @Html.ActionLink("Admin", "Index", "Dashboard",
+                        @Html.ActionLink("Librarian", "Index", "Dashboard",
                    new { area = "Admin" }, htmlAttributes: new { id = "adminLink" })
-                </li>
-            </ul>
-
-
+                    </li>
+                </ul>
             </div>
         </div>
     </div>

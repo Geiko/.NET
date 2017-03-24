@@ -10,6 +10,15 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
+            @Html.DisplayNameFor(model => model.isAvailable)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.isAvailable)
+        </dd>
+
+
+        <dt>
             @Html.DisplayNameFor(model => model.Title)
         </dt>
 
@@ -32,17 +41,12 @@
         </dt>
 
         <dd>
-            TOD: Dropdown List
+            @Html.DropDownList(
+                       "bookRecords",
+                       Model.Records as SelectList,
+                       null,
+                       htmlAttributes: new { @class = "form-control" })
         </dd>
-
-
-        <dt>
-            @Html.DisplayNameFor(model => model.isAvailable)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.isAvailable)
-        </dd>     
 
 
         <dt>
@@ -51,7 +55,7 @@
 
         <dd>
             @Html.DisplayFor(model => model.Id)
-        </dd>   
+        </dd>
     </dl>
 </div>
 <p>

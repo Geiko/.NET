@@ -23,7 +23,11 @@
         </dt>
 
         <dd>
-            TODO: Records
+            @Html.DropDownList(
+                       "userRecords",
+                       Model.Records as SelectList,
+                       null,
+                       htmlAttributes: new { @class = "form-control" })
         </dd>
     </dl>
 </div>

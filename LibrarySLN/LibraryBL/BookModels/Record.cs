@@ -10,6 +10,7 @@ namespace LibraryBL.BookModels
         }
 
         public Guid Id { get; set; }
+
         public Guid BookCardId { get; set; }
         public string UserEmail { get; set; }
 

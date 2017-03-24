@@ -1,4 +1,5 @@
-﻿using LibraryBL.ManagerModels.Default;
+﻿using LibraryBL.BookModels;
+using LibraryBL.ManagerModels.Default;
 using LibraryBL.Providers;
 using LibraryBL.Providers.Default;
 using LibraryUI.Models;
@@ -43,8 +44,18 @@ namespace LibraryUI.Areas.Admin.Controllers
 
         // GET: Admin/User/Details/5
         public ActionResult Details(string email)
-        {
-            UserViewModel userViewModel = new UserViewModel { Email = email };
+        {            
+            IEnumerable<Record> records = _librarian.GetBookRecords(email.Trim());
+
+            IEnumerable<string> strRecords = records.Select(r =>
+                    string.Format($"{r.BookCardId} / {r.GetoutTime} / {r.ReturnTime}"));
+
+            UserViewModel userViewModel = new UserViewModel
+            {
+                Email = email,
+                Records = new SelectList(strRecords)
+            };
+
             return View(userViewModel);
         }
 

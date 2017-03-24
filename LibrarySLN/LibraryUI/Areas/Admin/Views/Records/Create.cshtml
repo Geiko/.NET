@@ -1,0 +1,76 @@
+﻿@model LibraryUI.Areas.Admin.Models.RecordViewModel
+
+@{
+    ViewBag.Title = "Create Record";
+    var isBookAvalable =  @Model.isBookAvailable;
+}
+<input type="hidden" id="isBookAvailable" value="@Model.isBookAvailable" />
+
+<h2>Create Record</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+
+        <div class="row">
+            <div class="col-md-4">
+                Book @Html.DisplayNameFor(model => Model.isBookAvailable)
+            </div>
+            <div class="col-md-8">
+                @Html.DisplayFor(model => model.isBookAvailable)
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                Book @Html.DisplayNameFor(model => Model.BookCard.Id)
+            </div>
+            <div class="col-md-8">
+                @Html.DisplayFor(model => model.BookCard.Id)
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                Book @Html.DisplayNameFor(model => Model.BookCard.Title)
+            </div>
+            <div class="col-md-8">
+                @Html.DisplayFor(model => model.BookCard.Title)
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <label>Select a User that take the Book:</label><br />
+            </div>
+            <div class="col-md-8">
+                @Html.DropDownList(
+                       "tookBookUser",
+                       Model.AllUsers as SelectList,
+                       null,
+                       htmlAttributes: new { @class = "form-control" })
+            </div>
+        </div>
+
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col-md-offset-4 col-md-8">
+                <input type="submit" value="Getout this Book" class="btn btn-default" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-4 col-md-8">
+                @ViewBag.RecordResult
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index", "BookCards")
+</div>
