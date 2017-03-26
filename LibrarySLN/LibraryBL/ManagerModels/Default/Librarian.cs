@@ -28,13 +28,7 @@ namespace LibraryBL.ManagerModels.Default
 
         public bool AddBook(BookCard bookCard)
         {
-            provider.AddBookCard(bookCard);
-            foreach (var author in bookCard.Authors)
-            {
-                provider.AddAuthorToBook(bookCard.Id, author.Id);
-            }
-
-            return true;
+            return provider.AddBookCard(bookCard);
         }
 
         public IEnumerable<BookCard> GetCards(string title, params Author[] authors)
@@ -60,6 +54,11 @@ namespace LibraryBL.ManagerModels.Default
         public IEnumerable<Author> GetAuthorsByBookId(Guid id)
         {
             return this.provider.GetAuthorsByBookId(id);
+        }
+
+        public IEnumerable<string> GetAuthorNamesByBookId(Guid id)
+        {
+            return this.provider.GetAuthorsByBookId(id).Select(a => a.Name);
         }
 
         public IEnumerable<Record> GetBookRecords(string email)
@@ -94,20 +93,20 @@ namespace LibraryBL.ManagerModels.Default
 
         public bool AddUser(string email)
         {
-            var users = this.provider.GetAllUsers();
-            if (users.Any(u => u.Email.Equals(email)))
-            {
-                return false;
-            }
-
             return this.provider.AddUser(email);
         }
 
-        public bool AddAuthor(string name)
+        public bool AddAuthor(Author author)
         {
-            Guid id = Guid.NewGuid();
-            return this.provider.AddAuthor(name, id);
+            //Guid id = Guid.NewGuid();
+            return this.provider.AddAuthor(author);
         }
+
+        //public bool AddAuthor(string name)
+        //{
+        //    Guid id = Guid.NewGuid();
+        //    return this.provider.AddAuthor(name, id);
+        //}
 
         public IEnumerable<User> GetAllUsers()
         {
@@ -129,7 +128,7 @@ namespace LibraryBL.ManagerModels.Default
 
             return this.provider.UpdateUser(oldEmail, newEmail);
         }
-
+        
         public bool GetoutBook(Guid bookId, string tookBookUserEmail)
         {
             if (this.provider.isBookAvailable(bookId) == false)

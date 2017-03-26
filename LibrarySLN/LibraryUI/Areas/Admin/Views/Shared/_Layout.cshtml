@@ -26,13 +26,13 @@
                         @Html.ActionLink("Reader", "Index", "Home",
                        new { area = "" }, htmlAttributes: new { id = "readerLink" })
                     </li>
-                    <li>
+                    @*<li>
                         @Html.ActionLink("Register Reader Email", "Register", "Home",
                        new { area = "" }, htmlAttributes: new { id = "registerLink" })
-                    </li>
+                    </li>*@
                     <li>
                         @Html.ActionLink("Librarian", "Index", "Dashboard",
-                   new { area = "Admin" }, htmlAttributes: new { id = "activeLink" })
+                        new { area = "Admin" }, htmlAttributes: new { id = "activeLink" })
                     </li>
                 </ul>
             </div>
@@ -49,6 +49,7 @@
                     <li class="dashboard">@Html.ActionLink("Authors", "Index", "Authors")</li>
                     @*<li class="dashboard">@Html.ActionLink("Records", "Index", "Records")</li>*@
                     <li class="dashboard">@Html.ActionLink("Users", "Index", "Users")</li>
+                    <li class="dashboard">@Html.ActionLink("Orders", "Index", "Dashboard")</li>
                 </ul>
             </div>
 
@@ -67,6 +68,6 @@
 
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
-  
+
 </body>
 </html>

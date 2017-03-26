@@ -1,7 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
-    background-color:#F0F0F0!important;
+    background-color:#F9F9F9!important;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -26,13 +26,12 @@ textarea {
     border-color:#AB4747!important;
 }
 
-.menuItem, #registerLink, 
-#adminLink, #readerLink{
+.menuItem, #registerLink, #adminLink, #readerLink, #basketLink{
     color: white!important; 
     margin: 0 0 0 30px;
 }
-.menuItem:hover, #registerLink:hover, 
-#adminLink:hover, #readerLink:hover{
+.menuItem:hover, #registerLink:hover, #adminLink:hover, 
+#readerLink:hover, #basketLink:hover{
     color: yellow!important;   
 }
 
@@ -56,6 +55,6 @@ textarea {
 }
 
 .mainContent{
-    padding-left: 50px;
+        padding: 0 0 0 50px!important;
     border-left: 1px solid grey;
 }

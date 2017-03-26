@@ -30,17 +30,7 @@ namespace LibraryUI.Areas.Admin.Controllers
         {
             _librarian = new Librarian(sqlProvider);
         }
-        
-        public ActionResult Index()
-        {
-            return View();
-        }
-        
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-        
+               
         public ActionResult Create(Guid id)
         {
             List<string> allUsers = _librarian.GetAllUsers().Select(u => u.Email).ToList();
@@ -75,13 +65,15 @@ namespace LibraryUI.Areas.Admin.Controllers
                 var bookAuthors = _librarian.GetAuthorsByBookId(id).Select(a => a.Name);
                 string authors = string.Join(", ", bookAuthors.ToArray());
                 string content = $"{authors} \"{bookCard.Title}\"";
-                SendEmailToUser(tookBookUser, content);
+
+                //SendEmailToUser(tookBookUser, content);
 
                 return RedirectToAction("Index", "BookCards");
             }
             catch
             {
                 throw;
+                //TODO: add logging of exception
             }
         }
 
@@ -98,46 +90,6 @@ namespace LibraryUI.Areas.Admin.Controllers
             smtp.Credentials = new NetworkCredential("k.i.geiko@gmail.com", "********");
             smtp.EnableSsl = true;
             smtp.Send(m);
-        }
-        
-        public ActionResult Edit(Guid id)
-        {
-            return View();
-        }
-        
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-        
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-        
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
         }
     }
 }

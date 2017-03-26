@@ -70,10 +70,6 @@ namespace LibraryUI.Areas.Admin.Controllers
             {
                 Authors = new MultiSelectList(allAuthors, "Id", "Name")
             };
-            if(allAuthors.Count() == 0)
-            {
-                bookCardViewModel.Authors = new MultiSelectList(allAuthors, null, "Name");
-            }
 
             return View(bookCardViewModel);
         }
@@ -83,7 +79,12 @@ namespace LibraryUI.Areas.Admin.Controllers
         {
             try
             {
-                Author[] authors = Id.Select(a => new Author { Id = a }).ToArray();
+                if (Id == null)
+                {
+                    Id = new Guid[] { };
+                }
+
+                Author[] authors = authors = Id.Select(a => new Author { Id = a }).ToArray();
                 BookCard bookCard = new BookCard(bookCardViewModel.Title, authors);
                 _librarian.AddBook(bookCard);
                 return RedirectToAction("Index");
@@ -165,6 +166,7 @@ namespace LibraryUI.Areas.Admin.Controllers
                 ViewBag.Exception = ex.Message;
                 //return View(bookCardViewModel);
                 throw;
+                //TODO: add logging of exception
             }
         }        
 

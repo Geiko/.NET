@@ -41,9 +41,6 @@ namespace LibraryUI.Areas.Admin.Controllers
         
         public ActionResult Details(Guid authorId)
         {
-            //IEnumerable<BookCard> x = _librarian.GetBookCardsByAuthorId(authorId);
-
-
             Author author = _librarian.GetAuthorById(authorId);
             AuthorViewModel authorViewModel = new AuthorViewModel
             {
@@ -55,10 +52,6 @@ namespace LibraryUI.Areas.Admin.Controllers
 
             return View(authorViewModel);
         }
-
-
-
-
         
         public ActionResult Create()
         {
@@ -70,7 +63,9 @@ namespace LibraryUI.Areas.Admin.Controllers
         {
             try
             {
-                authorViewModel.registerResult = _librarian.AddAuthor(authorViewModel.Name.Trim());
+                authorViewModel.registerResult = _librarian.AddAuthor(new Author(authorViewModel.Name.Trim()) );
+
+                    //authorViewModel.Name.Trim());
                 if (!(bool)authorViewModel.registerResult)
                 {
                     return View(authorViewModel);

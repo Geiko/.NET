@@ -23,15 +23,20 @@ namespace LibraryBL.Providers.Default
             {
                 try
                 {
-                    connection.Open();
-                    SqlDataAdapter adapter = new SqlDataAdapter("Select * from Users", connection);
+                    SqlDataAdapter dataAdapter = new SqlDataAdapter();
+                    SqlCommand selectCommand = new SqlCommand("select * from Users", connection);
+                    dataAdapter.SelectCommand = selectCommand;
+                    DataTable schemaTable = new DataTable();
+                    dataAdapter.FillSchema(schemaTable, SchemaType.Source);
                     DataSet ds = new DataSet("Users");
-                    adapter.Fill(ds, "Users");
+                    dataAdapter.Fill(ds, "Users");
                     DataRow newCustomersRow = ds.Tables["Users"].NewRow();
+
                     newCustomersRow["Email"] = newEmail;
+
                     ds.Tables["Users"].Rows.Add(newCustomersRow);
-                    SqlCommandBuilder objCommandBuilder = new SqlCommandBuilder(adapter);
-                    adapter.Update(ds, "Users");
+                    SqlCommandBuilder objCommandBuilder = new SqlCommandBuilder(dataAdapter);
+                    dataAdapter.Update(ds, "Users");
                     return true;
                 }
                 catch (Exception)
@@ -47,51 +52,62 @@ namespace LibraryBL.Providers.Default
             {
                 try
                 {
-                    connection.Open();
-                    SqlDataAdapter adapter = new SqlDataAdapter("Select * from BookCards", connection);
+                    SqlDataAdapter dataAdapter = new SqlDataAdapter();
+                    dataAdapter.SelectCommand = new SqlCommand("select * from BookCards", connection);
+                    DataTable schemaTable = new DataTable();
+                    dataAdapter.FillSchema(schemaTable, SchemaType.Source);
                     DataSet ds = new DataSet("BookCards");
-                    adapter.Fill(ds, "BookCards");
-
+                    dataAdapter.Fill(ds, "BookCards");
                     DataRow newCustomersRow = ds.Tables["BookCards"].NewRow();
+                    
                     newCustomersRow["Id"] = bookCard.Id;
                     newCustomersRow["Title"] = bookCard.Title;
 
                     ds.Tables["BookCards"].Rows.Add(newCustomersRow);
-                    SqlCommandBuilder objCommandBuilder = new SqlCommandBuilder(adapter);
-                    adapter.Update(ds, "BookCards");
+                    SqlCommandBuilder objCommandBuilder = new SqlCommandBuilder(dataAdapter);
+                    dataAdapter.Update(ds, "BookCards");
+                    //  Book is Connecting to Authors
+                    foreach (Author author in bookCard.Authors)
+                    {
+                        AddAuthorToBook(bookCard.Id, author.Id);
+                    }
                     return true;
                 }
                 catch (Exception)
                 {
                     throw;
+                    //TODO: add logging of exception
                 }
             }
         }
 
-        public bool AddAuthorToBook(Guid bookId, Guid authorId)
+        private bool AddAuthorToBook(Guid bookId, Guid authorId)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 try
                 {
-                    connection.Open();
-                    SqlDataAdapter adapter = new SqlDataAdapter("Select * from BookAuthor", connection);
+                    SqlDataAdapter dataAdapter = new SqlDataAdapter();
+                    dataAdapter.SelectCommand = new SqlCommand("select * from BookAuthor", connection);
+                    DataTable schemaTable = new DataTable();
+                    dataAdapter.FillSchema(schemaTable, SchemaType.Source);
                     DataSet ds = new DataSet("BookAuthor");
-                    adapter.Fill(ds, "BookAuthor");
-
+                    dataAdapter.Fill(ds, "BookAuthor");
                     DataRow newCustomersRow = ds.Tables["BookAuthor"].NewRow();
+
                     newCustomersRow["BookCardId"] = bookId;
                     newCustomersRow["AuthorId"] = authorId;
                     newCustomersRow["Id"] = Guid.NewGuid();
 
                     ds.Tables["BookAuthor"].Rows.Add(newCustomersRow);
-                    SqlCommandBuilder objCommandBuilder = new SqlCommandBuilder(adapter);
-                    adapter.Update(ds, "BookAuthor");
+                    SqlCommandBuilder objCommandBuilder = new SqlCommandBuilder(dataAdapter);
+                    dataAdapter.Update(ds, "BookAuthor");
                     return true;
                 }
                 catch (Exception)
                 {
                     throw;
+                    //TODO: add logging of exception
                 }
             }
         }
@@ -101,13 +117,103 @@ namespace LibraryBL.Providers.Default
             throw new NotImplementedException();
         }
 
+        public bool AddAuthor(Author author)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    SqlDataAdapter dataAdapter = new SqlDataAdapter();
+                    dataAdapter.SelectCommand = new SqlCommand("select * from Authors", connection);
+                    DataTable schemaTable = new DataTable();
+                    dataAdapter.FillSchema(schemaTable, SchemaType.Source);
+                    DataSet ds = new DataSet("Authors");
+                    dataAdapter.Fill(ds, "Authors");
+                    DataRow newCustomersRow = ds.Tables["Authors"].NewRow();
+
+                    newCustomersRow["Id"] = author.Id;
+                    newCustomersRow["Name"] = author.Name;
+
+                    ds.Tables["Authors"].Rows.Add(newCustomersRow);
+                    SqlCommandBuilder objCommandBuilder = new SqlCommandBuilder(dataAdapter);
+                    dataAdapter.Update(ds, "Authors");
+                    return true;
+                }
+                catch (Exception)
+                {
+                    throw;
+                    //TODO: add logging of exception
+                }
+            }
+        }
+
+        public bool GetoutBook(Record record)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    SqlDataAdapter dataAdapter = new SqlDataAdapter();
+                    dataAdapter.SelectCommand = new SqlCommand("select * from Records", connection);
+                    DataTable schemaTable = new DataTable();
+                    dataAdapter.FillSchema(schemaTable, SchemaType.Source);
+                    DataSet ds = new DataSet("Records");
+                    dataAdapter.Fill(ds, "Records");
+                    DataRow newCustomersRow = ds.Tables["Records"].NewRow();
+
+                    newCustomersRow["Id"] = record.Id;
+                    newCustomersRow["BookCardId"] = record.BookCardId;
+                    newCustomersRow["UserEmail"] = record.UserEmail;
+                    newCustomersRow["GetoutTime"] = record.GetoutTime;
+
+                    ds.Tables["Records"].Rows.Add(newCustomersRow);
+                    SqlCommandBuilder objCommandBuilder = new SqlCommandBuilder(dataAdapter);
+                    dataAdapter.Update(ds, "Records");
+                    return true;
+                }
+                catch (Exception)
+                {
+                    throw;
+                    //TODO: add logging of exception
+                }
+            }
+        }
+
+        public bool ReturnBook(Guid bookId, DateTime returnTime)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    SqlDataAdapter adapter = new SqlDataAdapter("Select * from Records", connection);
+                    DataSet ds = new DataSet("Records");
+                    adapter.Fill(ds, "Records");
+
+                    var recordToEdit = ds.Tables["Records"].AsEnumerable()
+                                            .Where(r =>
+                                                        r.Field<Guid>("BookCardId") == bookId &&
+                                                        r.Field<DateTime?>("ReturnTime") == null)
+                                            .Single();
+                    recordToEdit["ReturnTime"] = returnTime;
+
+                    SqlCommandBuilder objCommandBuilder = new SqlCommandBuilder(adapter);
+                    adapter.Update(ds, "Records");
+                    return true;
+                }
+                catch (Exception)
+                {
+                    throw;
+                    //TODO: add logging of exception
+                }
+            }
+        }
+        
         public IEnumerable<BookCard> GetAllBookCards()
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 try
                 {
-                    connection.Open();
                     SqlDataAdapter adapter =
                             new SqlDataAdapter("Select * from BookCards", connection);
                     DataSet ds = new DataSet("BookCards");
@@ -125,6 +231,7 @@ namespace LibraryBL.Providers.Default
                 catch (Exception)
                 {
                     throw;
+                    //TODO: add logging of exception
                 }
             }
         }
@@ -135,7 +242,6 @@ namespace LibraryBL.Providers.Default
             {
                 try
                 {
-                    connection.Open();
                     SqlDataAdapter adapter = new SqlDataAdapter("Select * from Users", connection);
                     DataSet ds = new DataSet("Users");
                     adapter.Fill(ds, "Users");
@@ -149,6 +255,7 @@ namespace LibraryBL.Providers.Default
                 catch (Exception)
                 {
                     throw;
+                    //TODO: add logging of exception
                 }
             }
         }
@@ -159,7 +266,6 @@ namespace LibraryBL.Providers.Default
             {
                 try
                 {
-                    connection.Open();
                     SqlDataAdapter adapter = new SqlDataAdapter("Select * from Records", connection);
                     DataSet dsRecords = new DataSet("Records");
                     adapter.Fill(dsRecords, "Records");
@@ -190,6 +296,7 @@ namespace LibraryBL.Providers.Default
                 catch (Exception)
                 {
                     throw;
+                    //TODO: add logging of exception
                 }
             }
         }
@@ -198,74 +305,13 @@ namespace LibraryBL.Providers.Default
         {
             throw new NotImplementedException();
         }
-
-        public bool GetoutBook(Record record)
-        {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    connection.Open();
-                    SqlDataAdapter adapter = new SqlDataAdapter("Select * from Records", connection);
-                    DataSet ds = new DataSet("Records");
-                    adapter.Fill(ds, "Records");
-
-                    DataRow newCustomersRow = ds.Tables["Records"].NewRow();
-
-                    newCustomersRow["Id"] = record.Id;
-                    newCustomersRow["BookCardId"] = record.BookCardId;
-                    newCustomersRow["UserEmail"] = record.UserEmail;
-                    newCustomersRow["GetoutTime"] = record.GetoutTime;
-
-                    ds.Tables["Records"].Rows.Add(newCustomersRow);
-
-                    SqlCommandBuilder objCommandBuilder = new SqlCommandBuilder(adapter);
-                    adapter.Update(ds, "Records");
-                    return true;
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-            }
-        }
         
-        public bool ReturnBook(Guid bookId, DateTime returnTime)
-        {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    connection.Open();
-                    SqlDataAdapter adapter = new SqlDataAdapter("Select * from Records", connection);
-                    DataSet ds = new DataSet("Records");
-                    adapter.Fill(ds, "Records");
-
-                    var recordToEdit = ds.Tables["Records"].AsEnumerable()
-                                            .Where(r =>
-                                                        r.Field<Guid>("BookCardId") == bookId &&
-                                                        r.Field<DateTime?>("ReturnTime") == null)
-                                            .Single();
-                    recordToEdit["ReturnTime"] = returnTime;
-
-                    SqlCommandBuilder objCommandBuilder = new SqlCommandBuilder(adapter);
-                    adapter.Update(ds, "Records");
-                    return true;
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-            }
-        }
-
         public IEnumerable<Record> GetRecords(Guid bookId)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 try
                 {
-                    connection.Open();
                     SqlDataAdapter adapter = new SqlDataAdapter("Select * from Records", connection);
                     DataSet ds = new DataSet("Records");
                     adapter.Fill(ds, "Records");
@@ -283,6 +329,7 @@ namespace LibraryBL.Providers.Default
                 catch (Exception)
                 {
                     throw;
+                    //TODO: add logging of exception
                 }
             }
         }
@@ -293,7 +340,6 @@ namespace LibraryBL.Providers.Default
             {
                 try
                 {
-                    connection.Open();
                     SqlDataAdapter adapter = new SqlDataAdapter("Select * from Records", connection);
                     DataSet ds = new DataSet("Records");
                     adapter.Fill(ds, "Records");
@@ -311,6 +357,7 @@ namespace LibraryBL.Providers.Default
                 catch (Exception)
                 {
                     throw;
+                    //TODO: add logging of exception
                 }
             }
         }
@@ -321,7 +368,6 @@ namespace LibraryBL.Providers.Default
             {
                 try
                 {
-                    connection.Open();
                     SqlDataAdapter adapter = new SqlDataAdapter("Select * from Records", connection);
                     DataSet dsRecords = new DataSet("Records");
                     adapter.Fill(dsRecords, "Records");
@@ -348,6 +394,7 @@ namespace LibraryBL.Providers.Default
                 catch (Exception)
                 {
                     throw;
+                    //TODO: add logging of exception
                 }
             }
         }
@@ -363,7 +410,6 @@ namespace LibraryBL.Providers.Default
             {
                 try
                 {
-                    connection.Open();
                     SqlDataAdapter adapter = new SqlDataAdapter("Select * from BookCards", connection);
                     DataSet ds = new DataSet("BookCards");
                     adapter.Fill(ds, "BookCards");
@@ -405,6 +451,7 @@ namespace LibraryBL.Providers.Default
                 catch (Exception)
                 {
                     throw;
+                    //TODO: add logging of exception
                 }
             }
         }
@@ -415,7 +462,6 @@ namespace LibraryBL.Providers.Default
             {
                 try
                 {
-                    connection.Open();
                     SqlDataAdapter adapter = new SqlDataAdapter("Select * from Users", connection);
                     DataSet ds = new DataSet("Users");
                     adapter.Fill(ds, "Users");
@@ -431,6 +477,7 @@ namespace LibraryBL.Providers.Default
                 catch (Exception)
                 {
                     throw;
+                    //TODO: add logging of exception
                 }
             }
         }
@@ -441,7 +488,6 @@ namespace LibraryBL.Providers.Default
             {
                 try
                 {
-                    connection.Open();
                     SqlDataAdapter adapter = new SqlDataAdapter("Select * from Users", connection);
                     DataSet ds = new DataSet("Users");
                     adapter.Fill(ds, "Users");
@@ -457,6 +503,7 @@ namespace LibraryBL.Providers.Default
                 catch (Exception)
                 {
                     throw;
+                    //TODO: add logging of exception
                 }
             }
         }
@@ -467,7 +514,6 @@ namespace LibraryBL.Providers.Default
             {
                 try
                 {
-                    connection.Open();
                     SqlDataAdapter adapter = new SqlDataAdapter("Select * from Authors", connection);
                     DataSet ds = new DataSet("Authors");
                     adapter.Fill(ds, "Authors");
@@ -483,34 +529,11 @@ namespace LibraryBL.Providers.Default
                 catch (Exception)
                 {
                     throw;
+                    //TODO: add logging of exception
                 }
             }
         }
 
-        public bool AddAuthor(string name, Guid id)
-        {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    connection.Open();
-                    SqlDataAdapter adapter = new SqlDataAdapter("Select * from Authors", connection);
-                    DataSet ds = new DataSet("Authors");
-                    adapter.Fill(ds, "Authors");
-                    DataRow newCustomersRow = ds.Tables["Authors"].NewRow();
-                    newCustomersRow["Id"] = id;
-                    newCustomersRow["Name"] = name;
-                    ds.Tables["Authors"].Rows.Add(newCustomersRow);
-                    SqlCommandBuilder objCommandBuilder = new SqlCommandBuilder(adapter);
-                    adapter.Update(ds, "Authors");
-                    return true;
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-            }
-        }
 
         public Author GetAuthorById(Guid id)
         {
@@ -518,7 +541,6 @@ namespace LibraryBL.Providers.Default
             {
                 try
                 {
-                    connection.Open();
                     SqlDataAdapter adapter = new SqlDataAdapter("Select * from Authors", connection);
                     DataSet ds = new DataSet("Authors");
                     adapter.Fill(ds, "Authors");
@@ -537,6 +559,7 @@ namespace LibraryBL.Providers.Default
                 catch (Exception)
                 {
                     throw;
+                    //TODO: add logging of exception
                 }
             }
         }
@@ -547,7 +570,6 @@ namespace LibraryBL.Providers.Default
             {
                 try
                 {
-                    connection.Open();
                     SqlDataAdapter adapter = new SqlDataAdapter("Select * from Authors", connection);
                     DataSet ds = new DataSet("Authors");
                     adapter.Fill(ds, "Authors");
@@ -572,6 +594,7 @@ namespace LibraryBL.Providers.Default
                 catch (Exception)
                 {
                     throw;
+                    //TODO: add logging of exception
                 }
             }
         }
@@ -582,7 +605,6 @@ namespace LibraryBL.Providers.Default
             {
                 try
                 {
-                    connection.Open();
                     SqlDataAdapter adapter = new SqlDataAdapter("Select * from Authors", connection);
                     DataSet ds = new DataSet("Authors");
                     adapter.Fill(ds, "Authors");
@@ -598,6 +620,7 @@ namespace LibraryBL.Providers.Default
                 catch (Exception)
                 {
                     throw;
+                    //TODO: add logging of exception
                 }
             }
         }
@@ -608,7 +631,6 @@ namespace LibraryBL.Providers.Default
             {
                 try
                 {
-                    connection.Open();
                     SqlDataAdapter adapter = new SqlDataAdapter("Select * from BookCards", connection);
                     DataSet ds = new DataSet("BookCards");
                     adapter.Fill(ds, "BookCards");
@@ -627,6 +649,7 @@ namespace LibraryBL.Providers.Default
                 catch (Exception)
                 {
                     throw;
+                    //TODO: add logging of exception
                 }
             }
         }
@@ -637,7 +660,6 @@ namespace LibraryBL.Providers.Default
             {
                 try
                 {
-                    connection.Open();
                     SqlDataAdapter adapter = new SqlDataAdapter("Select * from BookCards", connection);
                     DataSet ds = new DataSet("BookCards");
                     adapter.Fill(ds, "BookCards");
@@ -653,6 +675,7 @@ namespace LibraryBL.Providers.Default
                 catch (Exception)
                 {
                     throw;
+                    //TODO: add logging of exception
                 }
             }
         }
@@ -663,7 +686,6 @@ namespace LibraryBL.Providers.Default
             {
                 try
                 {
-                    connection.Open();
                     SqlDataAdapter adapter = new SqlDataAdapter("Select * from Records", connection);
                     DataSet ds = new DataSet("Records");
                     adapter.Fill(ds, "Records");
@@ -676,17 +698,17 @@ namespace LibraryBL.Providers.Default
                 catch (Exception)
                 {
                     throw;
+                    //TODO: add logging of exception
                 }
             }
         }
-        
+
         public IEnumerable<Author> GetAuthorsByBookId(Guid bookId)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                try     
+                try
                 {
-                    connection.Open();
                     SqlDataAdapter adapter1 = new SqlDataAdapter("Select * from BookAuthor", connection);
                     DataSet ds1 = new DataSet("BookAuthor");
                     adapter1.Fill(ds1, "BookAuthor");
@@ -695,7 +717,7 @@ namespace LibraryBL.Providers.Default
                                         .Where(r => r.Field<Guid>("BookCardId") == bookId)
                                         .Select(r => r.Field<Guid>("AuthorId"));
 
-                                        
+
                     SqlDataAdapter adapter = new SqlDataAdapter("Select * from Authors", connection);
                     DataSet ds = new DataSet("Authors");
                     adapter.Fill(ds, "Authors");
@@ -712,11 +734,10 @@ namespace LibraryBL.Providers.Default
                 catch (Exception)
                 {
                     throw;
+                    //TODO: add logging of exception
                 }
             }
         }
-
-
         
         public IEnumerable<BookCard> GetBookCardsByAuthorId(Guid authorId)
         {
@@ -724,7 +745,6 @@ namespace LibraryBL.Providers.Default
             {
                 try
                 {
-                    connection.Open();
                     SqlDataAdapter adapter1 = new SqlDataAdapter("Select * from BookAuthor", connection);
                     DataSet ds1 = new DataSet("BookAuthor");
                     adapter1.Fill(ds1, "BookAuthor");
@@ -750,6 +770,7 @@ namespace LibraryBL.Providers.Default
                 catch (Exception)
                 {
                     throw;
+                    //TODO: add logging of exception
                 }
             }
         }

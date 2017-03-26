@@ -30,10 +30,8 @@ namespace LibraryUI.Controllers
 
         public ActionResult Index(int? page, string filterType, string sortType)
         {
-            filterType = getSelectedFilter(filterType, "filterParameter");
-            sortType = getSelectedFilter(sortType, "sortParameter");
-            filterType = filterType ?? "all";
-            sortType = sortType ?? "byTytle";
+            filterType = getSelectedFilter(filterType, "filterParameter", "all");
+            sortType = getSelectedFilter(sortType, "sortParameter", "byTytle");
 
             IEnumerable<BookCard> bookCards = filterBookCards(filterType);
             IEnumerable<BookCardViewModel> bookCardsViewModel = bookCards.Select(b =>
@@ -56,9 +54,10 @@ namespace LibraryUI.Controllers
             };
 
             return View(bcvm);
+            // TODO: Implement Basket for BookCards 
         }
         
-        private string getSelectedFilter(string category, string categoryParameter)
+        private string getSelectedFilter(string category, string categoryParameter, string defaultValue)
         {
             if (!string.IsNullOrEmpty(category))
             {
@@ -73,8 +72,8 @@ namespace LibraryUI.Controllers
                     TempData.Keep();
                 }
             }
-
-            return category;
+            
+            return category ?? defaultValue;
         }
         
         private IEnumerable<BookCardViewModel> sortBookCards(
@@ -87,7 +86,7 @@ namespace LibraryUI.Controllers
             else if (sortType.Equals("byAuthor"))
             {
                 return bookCardsViewModel.OrderBy(b =>
-                        _librarian.GetAuthorsByBookId(b.Id).FirstOrDefault().Name)
+                        _librarian.GetAuthorNamesByBookId(b.Id).FirstOrDefault())
                         .ThenBy(b => b.Title);
             }
 

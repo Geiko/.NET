@@ -215,117 +215,117 @@ namespace LibraryBL
 
 
 
-        //[Test]
-        //public void GetoutBookToUser()
-        //{
-        //    //Arrange
-        //    Guid bookId = Guid.NewGuid();
-        //    string userEmail = "someEmail";
-        //    DateTime getoutTime = DateTime.Now;
-        //    DateTime? returnTime = null;
-        //    Record record = new Record
-        //    {
-        //        UserEmail = userEmail,
-        //        GetoutTime = getoutTime,
-        //        ReturnTime = returnTime
-        //    };
+        [Test]
+        public void GetoutBookToUser()
+        {
+            //Arrange
+            Guid bookId = Guid.NewGuid();
+            string userEmail = "someEmail";
+            DateTime getoutTime = DateTime.Now;
+            DateTime? returnTime = null;
+            Record record = new Record
+            {
+                UserEmail = userEmail,
+                GetoutTime = getoutTime,
+                ReturnTime = returnTime
+            };
 
-        //    List<BookCard> testedBookCards = new List<BookCard>
-        //    {
-        //        new BookCard { Id = bookId, Records = new List<Record> { } },
-        //        new BookCard { Id = Guid.NewGuid(), Records = new List<Record> { } },
-        //        new BookCard { Id = Guid.NewGuid(), Records = new List<Record> { } }
-        //    };
+            List<BookCard> testedBookCards = new List<BookCard>
+            {
+                new BookCard { Id = bookId, Records = new List<Record> { } },
+                new BookCard { Id = Guid.NewGuid(), Records = new List<Record> { } },
+                new BookCard { Id = Guid.NewGuid(), Records = new List<Record> { } }
+            };
 
-        //    var mockProvider = new Moq.Mock<IStorageProvider>();
-        //    mockProvider
-        //        .Setup(i => i.GetoutBook(bookId, userEmail))
-        //        .Callback(() => (testedBookCards.Single(b => b.Id == bookId)).Records.Add(record))
-        //        .Returns(true);
-        //    mockProvider
-        //        .Setup(i => i.GetRecords(bookId))
-        //        .Returns(testedBookCards.Single(b => b.Id == bookId).Records);
+            var mockProvider = new Moq.Mock<IStorageProvider>();
+            mockProvider
+                .Setup(i => i.GetoutBook(record))
+                .Callback(() => (testedBookCards.Single(b => b.Id == bookId)).Records.Add(record))
+                .Returns(true);
+            mockProvider
+                .Setup(i => i.GetRecords(bookId))
+                .Returns(testedBookCards.Single(b => b.Id == bookId).Records);
 
-        //    Librarian librarian = new Librarian(mockProvider.Object);
+            Librarian librarian = new Librarian(mockProvider.Object);
 
-        //    //Act
-        //    bool result = librarian.GetoutBook(bookId, userEmail);
-        //    IEnumerable<Record> bookRecords = librarian.GetBookRecords(bookId);
-        //    int recordQuantity = bookRecords.Where(r => r.Equals(record)).Count();
+            //Act
+            bool result = librarian.GetoutBook(bookId, userEmail);
+            IEnumerable<Record> bookRecords = librarian.GetBookRecords(bookId);
+            int recordQuantity = bookRecords.Where(r => r.Equals(record)).Count();
 
-        //    //Assert
-        //    Assert.IsTrue(result);
-        //    Assert.AreEqual(1, recordQuantity);
-        //}
-
-
-
-        //[Test]
-        //public void ReturnBookFromUser()
-        //{
-        //    //Arrange
-        //    Guid bookId = Guid.NewGuid();
-        //    DateTime? returnTime = DateTime.Now;
-        //    Record record = new Record
-        //    {
-        //        GetoutTime = new DateTime(2000, 5, 22),
-        //        ReturnTime = null
-        //    };
-
-        //    List<BookCard> testedBookCards = new List<BookCard>
-        //    {
-        //        new BookCard { Id = bookId, Records = new List<Record> { record } },
-        //        new BookCard { Id = Guid.NewGuid(), Records = new List<Record> { } },
-        //        new BookCard { Id = Guid.NewGuid(), Records = new List<Record> { } }
-        //    };
-            
-        //    var mockProvider = new Moq.Mock<IStorageProvider>();
-        //    mockProvider
-        //        .Setup(i => i.ReturnBook(bookId))
-        //        .Callback(() => (testedBookCards
-        //                            .Single(b => b.Id == bookId)
-        //                            .Records.Single(r => r.ReturnTime == null))
-        //                            .ReturnTime = returnTime)
-        //        .Returns(true);
-        //    mockProvider
-        //        .Setup(i => i.GetRecords(bookId))
-        //        .Returns(testedBookCards.Single(b => b.Id == bookId).Records);
-
-        //    Librarian librarian = new Librarian(mockProvider.Object);
-
-        //    //Act
-        //    bool result = librarian.ReturnBook(bookId);
-        //    IEnumerable<Record> bookRecords = librarian.GetBookRecords(bookId);
-        //    IEnumerable<DateTime?> returnTimes = bookRecords.Select(r => r.ReturnTime);
-        //    returnTimes.Single(rt => DateTime.Compare((DateTime)rt, (DateTime)returnTime) == 0);
-
-        //    //Assert
-        //    Assert.IsTrue(result);
-        //    Assert.IsTrue(returnTimes.All(rt => rt != null));
-        //}
+            //Assert
+            Assert.IsTrue(result);
+            Assert.AreEqual(1, recordQuantity);
+        }
 
 
 
-        //[Test]
-        //public void GetAvailableBook()
-        //{
-        //    //Arrange
-        //    IEnumerable<BookCard> bookCards = getAvailableBookCards();
-            
-        //    var mockProvider = new Moq.Mock<IStorageProvider>();
-        //    mockProvider.Setup(i => i.GetAvailableBookCards()).Returns(bookCards);
+        [Test]
+        public void ReturnBookFromUser()
+        {
+            //Arrange
+            Guid bookId = Guid.NewGuid();
+            DateTime returnTime = DateTime.Now;
+            Record record = new Record
+            {
+                GetoutTime = new DateTime(2000, 5, 22),
+                ReturnTime = null
+            };
 
-        //    Librarian librarian = new Librarian(mockProvider.Object);
+            List<BookCard> testedBookCards = new List<BookCard>
+            {
+                new BookCard { Id = bookId, Records = new List<Record> { record } },
+                new BookCard { Id = Guid.NewGuid(), Records = new List<Record> { } },
+                new BookCard { Id = Guid.NewGuid(), Records = new List<Record> { } }
+            };
 
-        //    //Act
-        //    IEnumerable<BookCard> availableBooks = librarian.GetAvailableBookCards();
-        //    var areAvailable = availableBooks.Where(b => b.Records != null)
-        //                                    .SelectMany(b => b.Records)
-        //                                    .All(rec => rec.ReturnTime != null);
-        //    //Assert
-        //    Assert.NotNull(availableBooks);
-        //    Assert.IsTrue(areAvailable);
-        //}
+            var mockProvider = new Moq.Mock<IStorageProvider>();
+            mockProvider
+                .Setup(i => i.ReturnBook(bookId, returnTime))
+                .Callback(() => (testedBookCards
+                                    .Single(b => b.Id == bookId)
+                                    .Records.Single(r => r.ReturnTime == null))
+                                    .ReturnTime = returnTime)
+                .Returns(true);
+            mockProvider
+                .Setup(i => i.GetRecords(bookId))
+                .Returns(testedBookCards.Single(b => b.Id == bookId).Records);
+
+            Librarian librarian = new Librarian(mockProvider.Object);
+
+            //Act
+            bool result = librarian.ReturnBook(bookId);
+            IEnumerable<Record> bookRecords = librarian.GetBookRecords(bookId);
+            IEnumerable<DateTime?> returnTimes = bookRecords.Select(r => r.ReturnTime);
+            returnTimes.Single(rt => DateTime.Compare((DateTime)rt, (DateTime)returnTime) == 0);
+
+            //Assert
+            Assert.IsTrue(result);
+            Assert.IsTrue(returnTimes.All(rt => rt != null));
+        }
+
+
+
+        [Test]
+        public void GetAvailableBook()
+        {
+            //Arrange
+            IEnumerable<BookCard> bookCards = getAvailableBookCards();
+
+            var mockProvider = new Moq.Mock<IStorageProvider>();
+            mockProvider.Setup(i => i.GetAvailableBookCards()).Returns(bookCards);
+
+            Librarian librarian = new Librarian(mockProvider.Object);
+
+            //Act
+            IEnumerable<BookCard> availableBooks = librarian.GetAvailableBookCards();
+            var areAvailable = availableBooks.Where(b => b.Records != null)
+                                            .SelectMany(b => b.Records)
+                                            .All(rec => rec.ReturnTime != null);
+            //Assert
+            Assert.NotNull(availableBooks);
+            Assert.IsTrue(areAvailable);
+        }
 
 
 

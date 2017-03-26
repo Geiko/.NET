@@ -2,13 +2,11 @@
 
 @{
     ViewBag.Title = "AddUser";
-    string resultMessage = string.Empty;
+
+    string message = string.Empty;
     if (Model != null)
     {
-        if (!(bool)Model.registerResult)
-        {
-            resultMessage = "Please verify your Email. There is the same one in our DB!";
-        }
+        message = "Please verify your Email. There is the same one in the Data Base!";
     }
 }
 
@@ -35,7 +33,7 @@
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
             <div class="col-md-offset-2 col-md-10 resultUserRegister">
-                <span>@resultMessage</span>
+                <span>@message</span>
             </div>
         </div>
     </div>

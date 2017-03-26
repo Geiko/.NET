@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "BookCards Index";
-    int counter = 0;
+    //int counter = 0;
 }
 
 <h2>BookCards Index</h2>
@@ -12,9 +12,9 @@
 </p>
 <table class="table">
     <tr>
-        <th>
+        @*<th>
             №
-        </th>
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.Title)
         </th>
@@ -29,10 +29,10 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td>
+        @*<td>
             @{counter++;}
             @counter
-        </td>
+        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.Title)
         </td>

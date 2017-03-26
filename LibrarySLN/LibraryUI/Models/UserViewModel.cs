@@ -15,5 +15,7 @@ namespace LibraryUI.Models
         public bool? registerResult { get; set; }
 
         public SelectList Records { get; set; }
+
+        public string creatingUserMessage { get; set; }
     }
 }
