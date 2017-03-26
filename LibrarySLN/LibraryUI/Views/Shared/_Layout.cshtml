@@ -22,7 +22,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        @Html.ActionLink("Cart", "Index", null,
+                        @Html.ActionLink("Cart", "Cart", null,
                        new { area = "" }, htmlAttributes: new { id = "basketLink" })
                     </li>
                     <li>
@@ -48,15 +48,8 @@
 
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
-
-    <script>
-        'use strict';
-        $(document).ready(function () {
-            $('#FilterType, #SortType').change(function () {
-                $('#filterForm').submit();
-            });
-        });
-    </script>
-
+    @using System.Web.Optimization
+    @Scripts.Render("~/bundles/radioButtonSubmit")
+    @Scripts.Render("~/bundles/putBookToCart")   
 </body>
 </html>

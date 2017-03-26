@@ -194,5 +194,6 @@ namespace LibraryBL.ManagerModels.Default
         {
             return this.provider.RemoveAuthor(id);
         }
+        
     }
 }

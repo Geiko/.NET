@@ -12,5 +12,9 @@ namespace LibraryUI.Models
 
         public string FilterType { get; set; }
         public string SortType { get; set; }
+
+        public bool registerResult { get; set; }
+
+        public bool isBookToCart { get; set; }
     }
 }

@@ -5,10 +5,11 @@
 
 @{
     ViewBag.Title = "Books";
-    //int counter = 0;
 }
 
 <h2>Books</h2>
+
+@Html.HiddenFor(model => model.registerResult, new { id = "registerResult" })
 
 @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "filterForm" }))
 {
@@ -27,9 +28,6 @@
 
 <table class="table">
     <tr>
-        @*<th>
-            №
-        </th>*@
         <th>
             Title
         </th>
@@ -40,19 +38,12 @@
             Is Available
         </th>
         <th>
-            <button class="btn btn-primary btn-xs" id="setToBasket">
-                Put checked books into my Сart
-            </button>
         </th>
     </tr>
 
     @foreach (var item in Model.BookCards)
     {
         <tr>
-            @*<td>
-                @{counter++;}
-                @counter
-            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
@@ -66,7 +57,9 @@
                 @Html.DisplayFor(modelItem => item.isAvailable)
             </td>
             <td>
-                <input id="isSetBookToBasket" name="isSetBookToBasket" type="checkbox" value="" />
+                <button class="btn btn-default btn-sm setToBasket" disabled >
+                    Put it into my Сart
+                </button>
             </td>
         </tr>
                     }

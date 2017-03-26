@@ -28,7 +28,7 @@ namespace LibraryUI.Controllers
             _librarian = new Librarian(sqlProvider);
         }
 
-        public ActionResult Index(int? page, string filterType, string sortType)
+        public ActionResult Index(int? page, string filterType, string sortType, bool? registerUserResult)
         {
             filterType = getSelectedFilter(filterType, "filterParameter", "all");
             sortType = getSelectedFilter(sortType, "sortParameter", "byTytle");
@@ -46,15 +46,17 @@ namespace LibraryUI.Controllers
             bookCardsViewModel = sortBookCards(bookCardsViewModel, sortType);
 
             int pageNumber = (page ?? 1);
+            bool result = registerUserResult ?? false;
             BookCardViewModelPaged bcvm = new BookCardViewModelPaged
             {
                 BookCards = bookCardsViewModel.ToPagedList(pageNumber, PAGE_SIZE),
                 FilterType = filterType,
-                SortType = sortType
+                SortType = sortType,
+                registerResult = result
             };
 
             return View(bcvm);
-            // TODO: Implement Basket for BookCards 
+            // TODO: Implement Basket for Books 
         }
         
         private string getSelectedFilter(string category, string categoryParameter, string defaultValue)
@@ -121,13 +123,9 @@ namespace LibraryUI.Controllers
         {
             try
             {
-                userViewModel.registerResult = _librarian.AddUser(userViewModel.Email);
-                if (!(bool)userViewModel.registerResult)
-                {
-                    return View(userViewModel);
-                }
-
-                return RedirectToAction("Index");
+                bool result = _librarian.AddUser(userViewModel.Email);
+                       
+                return RedirectToAction("Index", new { registerUserResult = result as bool? });
             }
             catch
             {
@@ -135,5 +133,10 @@ namespace LibraryUI.Controllers
             }
         }
 
+
+        public ActionResult Cart()
+        {
+            return View();
+        }
     }
 }
