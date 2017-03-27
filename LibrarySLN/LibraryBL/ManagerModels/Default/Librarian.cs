@@ -98,16 +98,9 @@ namespace LibraryBL.ManagerModels.Default
 
         public bool AddAuthor(Author author)
         {
-            //Guid id = Guid.NewGuid();
             return this.provider.AddAuthor(author);
         }
-
-        //public bool AddAuthor(string name)
-        //{
-        //    Guid id = Guid.NewGuid();
-        //    return this.provider.AddAuthor(name, id);
-        //}
-
+        
         public IEnumerable<User> GetAllUsers()
         {
             return this.provider.GetAllUsers();
