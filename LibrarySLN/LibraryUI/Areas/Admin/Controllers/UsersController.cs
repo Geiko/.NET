@@ -1,5 +1,4 @@
-﻿using LibraryBL.BookModels;
-using LibraryBL.ManagerModels.Default;
+﻿using LibraryBL.ManagerModels.Default;
 using LibraryBL.Providers;
 using LibraryBL.Providers.Default;
 using LibraryUI.Models;
@@ -7,7 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace LibraryUI.Areas.Admin.Controllers
@@ -31,24 +29,24 @@ namespace LibraryUI.Areas.Admin.Controllers
         {
             var users = _librarian.GetAllUsers();
             IEnumerable<UserViewModel> userViewModel = 
-                users.Select(u => new UserViewModel() { Email = u.Email });
+                    users.Select(u => new UserViewModel() { Email = u.Email });
             return View(userViewModel);
         }
         
         public ActionResult Details(string email)
-        {            
-            IEnumerable<Record> records = _librarian.GetBookRecords(email.Trim());
-
-            IEnumerable<string> strRecords = records.Select(r =>
-                    string.Format($"{r.BookCardId} / {r.GetoutTime} / {r.ReturnTime}"));
-
-            UserViewModel userViewModel = new UserViewModel
-            {
-                Email = email,
-                Records = new SelectList(strRecords)
-            };
-
-            return View(userViewModel);
+        {                       
+            var userRecords = _librarian.GetBookRecords(email.Trim())
+                    .Select(r => new UserRecordsViewModel
+                    {
+                        BookTitle = _librarian.GetBookCardById(r.BookCardId).Title,
+                        FirstAuthor = _librarian.GetAuthorNamesByBookId(r.BookCardId)
+                                        .FirstOrDefault(),
+                        BookId = r.BookCardId,
+                        GetoutTime = r.GetoutTime,
+                        ReturnTime = r.ReturnTime
+                    }).OrderBy(r => r.GetoutTime).ToList();
+            ViewBag.userEmail = email;            
+            return View(userRecords);
         }
         
         public ActionResult Create()
@@ -82,7 +80,7 @@ namespace LibraryUI.Areas.Admin.Controllers
             try
             {
                 userViewModel.registerResult = 
-                    _librarian.UpdateUser(OldEmail.Trim(), userViewModel.Email.Trim());
+                        _librarian.UpdateUser(OldEmail.Trim(), userViewModel.Email.Trim());
                 if (!(bool)userViewModel.registerResult)
                 {
                     return View(userViewModel);

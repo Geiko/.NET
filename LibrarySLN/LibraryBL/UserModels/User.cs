@@ -11,9 +11,7 @@
         {
             this.Email = email;
         }
-
-        //public int Id { get; set; }
-
+        
         public string Email { get; set; }
         
         // TODO: Id - Email hashcode?

@@ -181,6 +181,7 @@
     <Content Include="Areas\Admin\Views\Records\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Records\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\BookCards\ReturnBook.cshtml" />
+    <Content Include="Areas\Admin\Views\Orders\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -196,9 +197,12 @@
     <Compile Include="Areas\Admin\Controllers\AuthorsController.cs" />
     <Compile Include="Areas\Admin\Controllers\BookCardsController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrdersController.cs" />
     <Compile Include="Areas\Admin\Controllers\RecordsController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Areas\Admin\Models\RecordViewModel.cs" />
+    <Compile Include="Models\BookCardRecordsViewModel.cs" />
+    <Compile Include="Models\UserRecordsViewModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

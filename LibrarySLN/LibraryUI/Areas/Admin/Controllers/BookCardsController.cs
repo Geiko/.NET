@@ -2,14 +2,12 @@
 using LibraryBL.ManagerModels.Default;
 using LibraryBL.Providers;
 using LibraryBL.Providers.Default;
-using LibraryBL.UserModels;
 using LibraryUI.Models;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
-using System.Web;
+using System.Text;
 using System.Web.Mvc;
 
 namespace LibraryUI.Areas.Admin.Controllers
@@ -48,19 +46,24 @@ namespace LibraryUI.Areas.Admin.Controllers
         public ActionResult Details(Guid id)
         {
             BookCard bookCard = _librarian.GetBookCardById(id);
-            IEnumerable<Record> records = _librarian.GetBookRecords(id);
-            IEnumerable<string> strRecords = records.Select(r => 
-                    string.Format($"{r.UserEmail} / {r.GetoutTime} / {r.ReturnTime}"));
-            BookCardViewModel bookCardViewModel = new BookCardViewModel
+            StringBuilder sb = new StringBuilder();
+            foreach (var n in _librarian.GetAuthorsByBookId(bookCard.Id))
             {
-                Id = bookCard.Id,
-                Title = bookCard.Title,
-                Records = new SelectList(strRecords),
-                BookAuthors = new SelectList(
-                        _librarian.GetAuthorsByBookId(bookCard.Id).Select(a => a.Name).ToList())
-            };
+                sb.Append(n.Name.Trim()).Append(", ");
+            }
+            ViewBag.AuthorNames = sb.ToString().Trim().TrimEnd(',');
+            ViewBag.IsAvailable = _librarian.isBookAvailable(bookCard.Id);
+            ViewBag.BookCardId = bookCard.Id;
+            ViewBag.BookCardTitle = bookCard.Title;
+            var bookRecords = _librarian.GetBookRecords(id).Select(r => 
+                    new BookCardRecordsViewModel
+                    {
+                        UserEmail = r.UserEmail,
+                        GetoutTime = r.GetoutTime,
+                        ReturnTime = r.ReturnTime
+                    }).OrderBy(r => r.GetoutTime).ToList();
 
-            return View(bookCardViewModel);
+            return View(bookRecords);
         }
         
         public ActionResult Create()
@@ -164,7 +167,6 @@ namespace LibraryUI.Areas.Admin.Controllers
             catch (Exception ex)
             {
                 ViewBag.Exception = ex.Message;
-                //return View(bookCardViewModel);
                 throw;
                 //TODO: add logging of exception
             }
@@ -193,8 +195,6 @@ namespace LibraryUI.Areas.Admin.Controllers
                     ViewBag.RecordResult =
                         "This can't be executed. The book has been returned already.";
                     // TODO: js make button unable if book is able
-                    // return View(bookCardViewModel);
-
                 }
 
                 return RedirectToAction("Index");

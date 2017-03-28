@@ -6,7 +6,6 @@ namespace LibraryBL.BookModels
     public class BookCard
     {
         List<Author> authors = new List<Author>();
-
         public BookCard()
         {
             this.Id = Guid.NewGuid();
@@ -24,11 +23,8 @@ namespace LibraryBL.BookModels
         }
 
         public Guid Id { get; set; }
-
         public string Title { get; set; }
-
         public IList<Author> Authors { get { return authors; } }
-
         public IList<Record> Records { get; set; }
     }
 }

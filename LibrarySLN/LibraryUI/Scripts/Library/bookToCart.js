@@ -11,7 +11,7 @@ $(document).ready(function () {
 
         $('.setToBasket').click(function () {
 
-            alert('This feature is in progress.\n To get a book:\n -> Librarian -> BookCards -> Getout Book.');
+            alert('This feature is in progress.\n To get a book:\n >>> Librarian >>> BookCards >>> Getout Book.');
         })
 
     })();

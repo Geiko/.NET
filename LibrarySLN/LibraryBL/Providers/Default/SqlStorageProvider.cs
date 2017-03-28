@@ -753,33 +753,21 @@ namespace LibraryBL.Providers.Default
                 try
                 {
                     SqlDataAdapter adapter = new SqlDataAdapter(
-                        "Select * from Records", connection);
-                    DataSet dsRecords = new DataSet("Records");
-                    adapter.Fill(dsRecords, "Records");
-
-                    SqlDataAdapter adapter2 = new SqlDataAdapter(
-                        "Select * from BookCards", connection);
-                    DataSet dsBooks = new DataSet("BookCards");
-                    adapter2.Fill(dsBooks, "BookCards");
-
-                    var takenBookId = dsRecords.Tables["Records"].AsEnumerable()
-                            .Where(r => r.Field<DateTime?>("ReturnTime") == null)
-                            .Select(r => r.Field<Guid>("BookCardId"));
-
-                    var allBookId = dsBooks.Tables["BookCards"].AsEnumerable()
-                            .Select(b => b.Field<Guid>("Id"));
-                    var availableBookId = allBookId.Except(takenBookId);
-
-                    var bookCards = dsBooks.Tables["BookCards"].AsEnumerable()
-                            .Where(b => availableBookId.Contains(b.Field<Guid>("Id")))
-                            .Select(
+                            @"Select * from BookCards 
+                            EXCEPT
+                            Select BookCards.Id, BookCards.Title from BookCards
+                            inner join Records
+                            on BookCards.Id = Records.BookCardId
+                            where Records.ReturnTime IS NULL",
+                            connection);
+                    DataSet ds = new DataSet("AvailableBooks");
+                    adapter.Fill(ds, "AvailableBooks");
+                    return ds.Tables["AvailableBooks"].AsEnumerable().Select(
                             dataRow => new BookCard
                             {
                                 Id = dataRow.Field<Guid>("Id"),
                                 Title = dataRow.Field<string>("Title")
                             }).OrderBy(b => b.Title);
-
-                    return bookCards;
                 }
                 catch (Exception)
                 {

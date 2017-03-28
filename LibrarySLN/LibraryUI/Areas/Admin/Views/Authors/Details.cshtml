@@ -1,13 +1,18 @@
 ﻿@model LibraryUI.Models.AuthorViewModel
 
 @{
-    ViewBag.Title = "Author Details";
+    ViewBag.Title = "Author Books";
 }
 
-<h2>Author Details</h2>
+<h2>Author Books</h2>
 
 <div>
     <hr />
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Name)
@@ -23,14 +28,10 @@
         </dt>
 
         <dd>
-            @Html.DropDownList(
-               "authorBooks",
-               Model.AuthorBooks as SelectList,
-               htmlAttributes: new { @class = "form-control" })
+            @foreach (var book in Model.AuthorBooks)
+            {
+                <span>"</span>@book.Text.Trim()<span>"</span><br/>
+            }
         </dd>
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

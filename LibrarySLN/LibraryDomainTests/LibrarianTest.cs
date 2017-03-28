@@ -80,26 +80,15 @@ namespace LibraryBL
         {
             //Arrange
             Guid bookCardId = Guid.NewGuid();
-            //List<BookCard> cards = new List<BookCard>
-            //{
-            //    new BookCard {Id = Guid.NewGuid(), Title = "some title 1" },
-            //    new BookCard {Id = bookCardId, Title = "some title 2" },
-            //    new BookCard {Id = Guid.NewGuid(), Title = "some title 3" }
-            //};
-
-            //BookCard bookCardToDelete = cards.Single(c => c.Id == bookCardId);
 
             var mockProvider = new Moq.Mock<IStorageProvider>();
             mockProvider
                 .Setup(i => i.RemoveBookCard(bookCardId))
-                //.Callback(() => cards.Remove(bookCardToDelete))
                 .Returns(true);
-            //mockProvider.Setup(i => i.GetAllBookCards()).Returns(cards);
 
             Librarian librarian = new Librarian(mockProvider.Object);
 
             //Act
-            //var allCards = librarian.GetAllBookCards();
             bool result = librarian.RemoveBookCard(bookCardId);
 
             //Assert

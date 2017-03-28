@@ -1,37 +1,46 @@
-﻿@model LibraryUI.Models.UserViewModel
+﻿@model List<LibraryUI.Models.UserRecordsViewModel>
 
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>User Details</h2>
+<h2>User History</h2>
 
 <div>
     <hr />
+
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { email = ViewBag.userEmail }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+
     <dl class="dl-horizontal">
-
         <dt>
-            @Html.DisplayNameFor(model => model.Email)
+            User Email
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-
-        <dt>
-            History
-        </dt>
-
-        <dd>
-            @Html.DropDownList(
-                       "userRecords",
-                       Model.Records as SelectList,
-                       null,
-                       htmlAttributes: new { @class = "form-control" })
+           @ViewBag.userEmail
         </dd>
     </dl>
+
+    <table class="table table-bordered table-striped table-hover table-condensed text-center">
+        <tr class="active">
+            <td>First Author</td>
+            <td>Title</td>
+            <td>Book Id</td>
+            <td>Getout Time</td>
+            <td>Return Time</td>
+        </tr>
+        @foreach (var r in Model)
+        {
+            <tr>
+                <td><p>@r.FirstAuthor</p></td>
+                <td><p>@r.BookTitle</p></td>
+                <td><p>@r.BookId</p></td>
+                <td><p>@r.GetoutTime</p></td>
+                <td><p>@r.ReturnTime</p></td>
+            </tr>
+        }
+    </table>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new {  email = Model.Email  }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

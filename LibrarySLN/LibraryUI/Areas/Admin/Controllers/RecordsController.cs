@@ -2,9 +2,7 @@
 using LibraryBL.ManagerModels.Default;
 using LibraryBL.Providers;
 using LibraryBL.Providers.Default;
-using LibraryBL.UserModels;
 using LibraryUI.Areas.Admin.Models;
-using LibraryUI.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -35,7 +33,6 @@ namespace LibraryUI.Areas.Admin.Controllers
         {
             List<string> allUsers = _librarian.GetAllUsers().Select(u => u.Email).ToList();
             BookCard bookCard = _librarian.GetBookCardById(id);
-
             RecordViewModel recordViewModel = new RecordViewModel
             {
                 AllUsers = new SelectList(allUsers),
@@ -52,7 +49,6 @@ namespace LibraryUI.Areas.Admin.Controllers
             try
             {
                 bool result = _librarian.GetoutBook(id, tookBookUser);
-
                 ViewBag.RecordResult = "The book has been got out successfully.";
                 if (!result)
                 {
@@ -65,9 +61,8 @@ namespace LibraryUI.Areas.Admin.Controllers
                 var bookAuthors = _librarian.GetAuthorsByBookId(id).Select(a => a.Name);
                 string authors = string.Join(", ", bookAuthors.ToArray());
                 string content = $"{authors} \"{bookCard.Title}\"";
-
                 //SendEmailToUser(tookBookUser, content);
-
+                //Password is needed to execute.
                 return RedirectToAction("Index", "BookCards");
             }
             catch

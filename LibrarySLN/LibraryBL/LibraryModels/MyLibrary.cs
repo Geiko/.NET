@@ -8,9 +8,7 @@ namespace LibraryBL.LibraryModels
     public class MyLibrary
     {
         public ICollection<BookCard> BookCards { get; set; }
-
         public ICollection<User> Users { get; set; }
-
         public Librarian Librarian { get; set; }
     }
 }

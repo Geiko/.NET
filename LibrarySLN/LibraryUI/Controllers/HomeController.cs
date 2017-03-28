@@ -32,7 +32,6 @@ namespace LibraryUI.Controllers
         {
             filterType = getSelectedFilter(filterType, "filterParameter", "all");
             sortType = getSelectedFilter(sortType, "sortParameter", "byTytle");
-
             IEnumerable<BookCard> bookCards = filterBookCards(filterType);
             IEnumerable<BookCardViewModel> bookCardsViewModel = bookCards.Select(b =>
                     new BookCardViewModel()
@@ -43,8 +42,8 @@ namespace LibraryUI.Controllers
                                 _librarian.GetAuthorsByBookId(b.Id).Select(a => a.Name).ToList()),
                         isAvailable = _librarian.isBookAvailable(b.Id)
                     });
-            bookCardsViewModel = sortBookCards(bookCardsViewModel, sortType);
 
+            bookCardsViewModel = sortBookCards(bookCardsViewModel, sortType);
             int pageNumber = (page ?? 1);
             bool result = registerUserResult ?? false;
             BookCardViewModelPaged bcvm = new BookCardViewModelPaged

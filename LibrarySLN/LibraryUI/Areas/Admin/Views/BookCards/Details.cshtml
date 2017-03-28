@@ -1,29 +1,35 @@
-﻿@model LibraryUI.Models.BookCardViewModel
+﻿@model List<LibraryUI.Models.BookCardRecordsViewModel>
 
 @{
     ViewBag.Title = "BookCard Details";
 }
 
-<h2>BookCard Details</h2>
+<h2>BookCard Records</h2>
 
 <div>
     <hr />
+
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = @ViewBag.BookCardId }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.isAvailable)
+            Is Available
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.isAvailable)
+            <input type="checkbox" checked="@ViewBag.IsAvailable" />
         </dd>
 
 
         <dt>
-            @Html.DisplayNameFor(model => model.Title)
+            Title
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Title)
+            <span>"</span>@ViewBag.BookCardTitle<span>"</span>
         </dd>
 
 
@@ -32,23 +38,7 @@
         </dt>
 
         <dd>
-            @Html.DropDownList(
-               "bookAuthors",
-               Model.BookAuthors as SelectList,
-               htmlAttributes: new { @class = "form-control" })
-        </dd>
-
-
-        <dt>
-            Records
-        </dt>
-
-        <dd>
-            @Html.DropDownList(
-                       "bookRecords",
-                       Model.Records as SelectList,
-                       null,
-                       htmlAttributes: new { @class = "form-control" })
+            @ViewBag.AuthorNames
         </dd>
 
 
@@ -57,11 +47,23 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Id)
+            @ViewBag.BookCardId
         </dd>
     </dl>
+
+    <table class="table table-bordered table-striped table-hover table-condensed text-center">
+        <tr class="active">
+            <td>Reader</td>
+            <td>Getout Time</td>
+            <td>Return Time</td>
+        </tr>
+        @foreach (var r in Model)
+        {
+            <tr>
+                <td><p>@r.UserEmail</p></td>
+                <td><p>@r.GetoutTime</p></td>
+                <td><p>@r.ReturnTime</p></td>
+            </tr>
+        }
+    </table>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

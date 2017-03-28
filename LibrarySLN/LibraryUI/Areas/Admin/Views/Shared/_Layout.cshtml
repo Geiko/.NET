@@ -7,7 +7,6 @@
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
-
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top myMenu">
@@ -26,10 +25,6 @@
                         @Html.ActionLink("Reader", "Index", "Home",
                        new { area = "" }, htmlAttributes: new { id = "readerLink" })
                     </li>
-                    @*<li>
-                        @Html.ActionLink("Register Reader Email", "Register", "Home",
-                       new { area = "" }, htmlAttributes: new { id = "registerLink" })
-                    </li>*@
                     <li>
                         @Html.ActionLink("Librarian", "Index", "Dashboard",
                         new { area = "Admin" }, htmlAttributes: new { id = "activeLink" })
@@ -39,17 +34,14 @@
         </div>
     </div>
 
-
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-2 adminDashboard">
                 <ul id="menuActiveAdmin">
-                    @*<li class="dashboard">@Html.ActionLink("Admin dashboard", "Index", "Dashboard")</li>*@
                     <li class="dashboard">@Html.ActionLink("BookCards", "Index", "BookCards")</li>
                     <li class="dashboard">@Html.ActionLink("Authors", "Index", "Authors")</li>
-                    @*<li class="dashboard">@Html.ActionLink("Records", "Index", "Records")</li>*@
                     <li class="dashboard">@Html.ActionLink("Users", "Index", "Users")</li>
-                    <li class="dashboard">@Html.ActionLink("Orders", "Index", "Dashboard")</li>
+                    <li class="dashboard">@Html.ActionLink("Orders", "Index", "Orders")</li>
                 </ul>
             </div>
 
@@ -58,16 +50,8 @@
             </div>
         </div>
     </div>
-
-
-    <div class="container body-content">
-        <footer>
-            @*<p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>*@
-        </footer>
-    </div>
-
+    
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
-
 </body>
 </html>

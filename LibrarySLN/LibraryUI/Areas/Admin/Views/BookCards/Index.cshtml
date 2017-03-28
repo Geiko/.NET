@@ -2,7 +2,6 @@
 
 @{
     ViewBag.Title = "BookCards Index";
-    //int counter = 0;
 }
 
 <h2>BookCards Index</h2>
@@ -12,9 +11,6 @@
 </p>
 <table class="table">
     <tr>
-        @*<th>
-            №
-        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.Title)
         </th>
@@ -27,32 +23,29 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        @*<td>
-            @{counter++;}
-            @counter
-        </td>*@
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DropDownList(
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DropDownList(
                "bookAuthors",
                item.BookAuthors as SelectList,
                htmlAttributes: new { @class = "form-control" })
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.isAvailable)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.Id }) |
-            @Html.ActionLink("Getout Book", "Create", "Records", new { id = item.Id }, null) |
-            @Html.ActionLink("Return Book", "ReturnBook", new { id=item.Id }) 
-        </td>
-    </tr>
-}
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isAvailable)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id }) |
+                @Html.ActionLink("Getout Book", "Create", "Records", new { id = item.Id }, null) |
+                @Html.ActionLink("Return Book", "ReturnBook", new { id = item.Id })
+            </td>
+        </tr>
+    }
 
 </table>

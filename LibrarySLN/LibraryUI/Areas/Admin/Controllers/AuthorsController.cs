@@ -7,7 +7,6 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace LibraryUI.Areas.Admin.Controllers
@@ -63,9 +62,7 @@ namespace LibraryUI.Areas.Admin.Controllers
         {
             try
             {
-                authorViewModel.registerResult = _librarian.AddAuthor(new Author(authorViewModel.Name.Trim()) );
-
-                    //authorViewModel.Name.Trim());
+                authorViewModel.registerResult = _librarian.AddAuthor(new Author(authorViewModel.Name.Trim()) ); 
                 if (!(bool)authorViewModel.registerResult)
                 {
                     return View(authorViewModel);

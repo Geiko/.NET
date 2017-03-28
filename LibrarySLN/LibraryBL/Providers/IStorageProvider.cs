@@ -18,11 +18,9 @@ namespace LibraryBL.Providers
         bool UpdateUser(string email, object newEmail);
         IEnumerable<Record> GetRecords(Guid bookId);
         IEnumerable<BookCard> GetAvailableBookCards();
-        //bool AddAuthorToBook(Guid id1, Guid id2);
         IEnumerable<BookCard> GetTakenBookCards();
         IEnumerable<Record> GetUserRecords(string userEmail);
         IEnumerable<Author> GetAllAuthors();
-        //bool AddAuthor(string name, Guid id);
         Author GetAuthorById(Guid id);
         bool RemoveAuthor(Guid id);
         bool UpdateAuthor(Guid idToEdit, Author author);
