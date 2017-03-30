@@ -122,13 +122,19 @@ namespace LibraryUI.Controllers
         {
             try
             {
+                if(string.IsNullOrEmpty(userViewModel.Email))
+                {
+                    return View(userViewModel);
+                }
+
                 bool result = _librarian.AddUser(userViewModel.Email);
                        
                 return RedirectToAction("Index", new { registerUserResult = result as bool? });
             }
             catch
             {
-                return View(userViewModel);
+                throw;
+                //TODO: add logging of exception
             }
         }
 

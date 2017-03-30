@@ -23,23 +23,15 @@ namespace LibraryBL.Providers.Default
             {
                 try
                 {
-                    SqlDataAdapter dataAdapter = new SqlDataAdapter();
-                    SqlCommand selectCommand = new SqlCommand(
-                            "select * from Users", connection);
-                    dataAdapter.SelectCommand = selectCommand;
-                    DataTable schemaTable = new DataTable();
-                    dataAdapter.FillSchema(schemaTable, SchemaType.Source);
-                    DataSet ds = new DataSet("Users");
-                    dataAdapter.Fill(ds, "Users");
-                    DataRow newCustomersRow = ds.Tables["Users"].NewRow();
-                    newCustomersRow["Email"] = newEmail;
-                    ds.Tables["Users"].Rows.Add(newCustomersRow);
-                    SqlCommandBuilder objCommandBuilder = 
-                            new SqlCommandBuilder(dataAdapter);
-                    dataAdapter.Update(ds, "Users");
+                    connection.Open();
+                    SqlCommand command = new SqlCommand();
+                    command.CommandText = "INSERT INTO Users VALUES (@newEmail)";
+                    command.Parameters.AddWithValue("@newEmail", newEmail);
+                    command.Connection = connection;
+                    int number = command.ExecuteNonQuery();
                     return true;
                 }
-                catch (Exception)
+                catch
                 {
                     throw;
                 }
@@ -52,27 +44,21 @@ namespace LibraryBL.Providers.Default
             {
                 try
                 {
-                    SqlDataAdapter dataAdapter = new SqlDataAdapter();
-                    dataAdapter.SelectCommand = new SqlCommand(
-                            "select * from BookCards", connection);
-                    DataTable schemaTable = new DataTable();
-                    dataAdapter.FillSchema(schemaTable, SchemaType.Source);
-                    DataSet ds = new DataSet("BookCards");
-                    dataAdapter.Fill(ds, "BookCards");
-                    DataRow newCustomersRow = ds.Tables["BookCards"].NewRow();                    
-                    newCustomersRow["Id"] = bookCard.Id;
-                    newCustomersRow["Title"] = bookCard.Title;
-                    ds.Tables["BookCards"].Rows.Add(newCustomersRow);
-                    SqlCommandBuilder objCommandBuilder = 
-                            new SqlCommandBuilder(dataAdapter);
-                    dataAdapter.Update(ds, "BookCards");
+                    connection.Open();
+                    SqlCommand command = new SqlCommand();
+                    command.CommandText = 
+                            "INSERT INTO BookCards VALUES (@bookCardId, @bookCardTitle)";
+                    command.Parameters.AddWithValue("@bookCardId", bookCard.Id);
+                    command.Parameters.AddWithValue("@bookCardTitle", bookCard.Title);
+                    command.Connection = connection;
+                    int number = command.ExecuteNonQuery();
                     foreach (Author author in bookCard.Authors)
                     {
-                        AddAuthorToBook(bookCard.Id, author.Id);
+                        LinkingAuthorsToBook(bookCard.Id, author.Id, connection);
                     }
                     return true;
                 }
-                catch (Exception)
+                catch
                 {
                     throw;
                     //TODO: add logging of exception
@@ -80,38 +66,28 @@ namespace LibraryBL.Providers.Default
             }
         }
 
-        private bool AddAuthorToBook(Guid bookId, Guid authorId)
+        private bool LinkingAuthorsToBook(
+                Guid bookId, Guid authorId, SqlConnection connection)
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
-                try
-                {
-                    SqlDataAdapter dataAdapter = new SqlDataAdapter();
-                    dataAdapter.SelectCommand = new SqlCommand(
-                            "select * from BookAuthor", connection);
-                    DataTable schemaTable = new DataTable();
-                    dataAdapter.FillSchema(schemaTable, SchemaType.Source);
-                    DataSet ds = new DataSet("BookAuthor");
-                    dataAdapter.Fill(ds, "BookAuthor");
-                    DataRow newCustomersRow = ds.Tables["BookAuthor"].NewRow();
-                    newCustomersRow["BookCardId"] = bookId;
-                    newCustomersRow["AuthorId"] = authorId;
-                    newCustomersRow["Id"] = Guid.NewGuid();
-                    ds.Tables["BookAuthor"].Rows.Add(newCustomersRow);
-                    SqlCommandBuilder objCommandBuilder = 
-                            new SqlCommandBuilder(dataAdapter);
-                    dataAdapter.Update(ds, "BookAuthor");
-                    return true;
-                }
-                catch (Exception)
-                {
-                    throw;
-                    //TODO: add logging of exception
-                }
+                SqlCommand command = new SqlCommand();
+                command.CommandText = 
+                        "INSERT INTO BookAuthor VALUES (@BookCardId, @authorId)";
+                command.Parameters.AddWithValue("@bookCardId", bookId);
+                command.Parameters.AddWithValue("@authorId", authorId);
+                command.Connection = connection;
+                int number = command.ExecuteNonQuery();
+                return true;
+            }
+            catch
+            {
+                throw;
             }
         }
 
-        public bool AddBookCards(int increment, string title, params Author[] authors)
+        public bool AddBookCards(
+                int increment, string title, params Author[] authors)
         {
             throw new NotImplementedException();
         }
@@ -122,23 +98,17 @@ namespace LibraryBL.Providers.Default
             {
                 try
                 {
-                    SqlDataAdapter dataAdapter = new SqlDataAdapter();
-                    dataAdapter.SelectCommand = new SqlCommand(
-                            "select * from Authors", connection);
-                    DataTable schemaTable = new DataTable();
-                    dataAdapter.FillSchema(schemaTable, SchemaType.Source);
-                    DataSet ds = new DataSet("Authors");
-                    dataAdapter.Fill(ds, "Authors");
-                    DataRow newCustomersRow = ds.Tables["Authors"].NewRow();
-                    newCustomersRow["Id"] = author.Id;
-                    newCustomersRow["Name"] = author.Name;
-                    ds.Tables["Authors"].Rows.Add(newCustomersRow);
-                    SqlCommandBuilder objCommandBuilder = 
-                            new SqlCommandBuilder(dataAdapter);
-                    dataAdapter.Update(ds, "Authors");
+                    connection.Open();
+                    SqlCommand command = new SqlCommand();
+                    command.CommandText = 
+                            "INSERT INTO Authors VALUES (@authorId, @authorName)";
+                    command.Parameters.AddWithValue("@authorId", author.Id);
+                    command.Parameters.AddWithValue("@authorName", author.Name);
+                    command.Connection = connection;
+                    int number = command.ExecuteNonQuery();
                     return true;
                 }
-                catch (Exception)
+                catch
                 {
                     throw;
                     //TODO: add logging of exception
@@ -152,52 +122,46 @@ namespace LibraryBL.Providers.Default
             {
                 try
                 {
-                    SqlDataAdapter dataAdapter = new SqlDataAdapter();
-                    dataAdapter.SelectCommand = new SqlCommand(
-                            "select * from Records", connection);
-                    DataTable schemaTable = new DataTable();
-                    dataAdapter.FillSchema(schemaTable, SchemaType.Source);
-                    DataSet ds = new DataSet("Records");
-                    dataAdapter.Fill(ds, "Records");
-                    DataRow newCustomersRow = ds.Tables["Records"].NewRow();
-                    newCustomersRow["Id"] = record.Id;
-                    newCustomersRow["BookCardId"] = record.BookCardId;
-                    newCustomersRow["UserEmail"] = record.UserEmail;
-                    newCustomersRow["GetoutTime"] = record.GetoutTime;
-                    ds.Tables["Records"].Rows.Add(newCustomersRow);
-                    SqlCommandBuilder objCommandBuilder = 
-                            new SqlCommandBuilder(dataAdapter);
-                    dataAdapter.Update(ds, "Records");
+                    connection.Open();
+                    SqlCommand command = new SqlCommand();
+                    command.CommandText =
+                            @"INSERT INTO Records (Id, BookCardId, UserEmail, GetoutTime)
+                            VALUES (@recordrId, @BookCardId, @UserEmail, @GetoutTime)";
+                    command.Parameters.AddWithValue("@recordrId", record.Id);
+                    command.Parameters.AddWithValue("@BookCardId", record.BookCardId);
+                    command.Parameters.AddWithValue("@UserEmail", record.UserEmail);
+                    command.Parameters.AddWithValue("@GetoutTime", record.GetoutTime);
+                    command.Connection = connection;
+                    int number = command.ExecuteNonQuery();
                     return true;
                 }
-                catch (Exception)
+                catch
                 {
                     throw;
                     //TODO: add logging of exception
                 }
             }
         }
-        
+
         public bool ReturnBook(Guid bookId, DateTime returnTime)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 try
                 {
-                    SqlDataAdapter adapter = new SqlDataAdapter(
-                            @"SELECT * FROM Records
-                            WHERE BookCardId = @bookId AND
-                            ReturnTime IS NULL", connection);
-                    adapter.SelectCommand.Parameters.AddWithValue("@bookId", bookId);
-                    DataSet ds = new DataSet("Records");
-                    adapter.Fill(ds, "Records");
-                    ds.Tables["Records"].Rows[0]["ReturnTime"] = returnTime;
-                    SqlCommandBuilder objCommandBuilder = 
-                            new SqlCommandBuilder(adapter);
-                    adapter.Update(ds, "Records");
+                    connection.Open();
+                    SqlCommand command = new SqlCommand();
+                    command.CommandText =
+                            @"UPDATE Records
+                            SET ReturnTime = @returnTime
+                            WHERE BookCardId = @bookId AND ReturnTime IS NULL";
+                    command.Parameters.AddWithValue("@bookId", bookId);
+                    command.Parameters.AddWithValue("@returnTime", returnTime);
+                    command.Connection = connection;
+                    int number = command.ExecuteNonQuery();
                     return true;
                 }
-                catch (Exception)
+                catch
                 {
                     throw;
                     //TODO: add logging of exception
@@ -222,7 +186,7 @@ namespace LibraryBL.Providers.Default
                                 Title = dataRow.Field<string>("Title")
                             }).OrderBy(b => b.Title);
                 }
-                catch (Exception)
+                catch
                 {
                     throw;
                     //TODO: add logging of exception
@@ -246,7 +210,7 @@ namespace LibraryBL.Providers.Default
                                 Email = dataRow.Field<string>("Email").Trim()
                             });
                 }
-                catch (Exception)
+                catch
                 {
                     throw;
                     //TODO: add logging of exception
@@ -266,7 +230,7 @@ namespace LibraryBL.Providers.Default
                 try
                 {
                     SqlDataAdapter adapter = new SqlDataAdapter(
-                            "Select * from Records Where BookCardId = @bookId", 
+                            "Select * from Records Where BookCardId = @bookId",
                             connection);
                     adapter.SelectCommand.Parameters.AddWithValue("bookId", bookId);
                     DataSet ds = new DataSet("Records");
@@ -279,7 +243,7 @@ namespace LibraryBL.Providers.Default
                                 ReturnTime = dataRow.Field<DateTime?>("ReturnTime"),
                             }).OrderBy(r => r.GetoutTime);
                 }
-                catch (Exception)
+                catch
                 {
                     throw;
                     //TODO: add logging of exception
@@ -294,7 +258,7 @@ namespace LibraryBL.Providers.Default
                 try
                 {
                     SqlDataAdapter adapter = new SqlDataAdapter(
-                            "Select * from Records Where RTRIM(UserEmail) = @email", 
+                            "Select * from Records Where RTRIM(UserEmail) = @email",
                             connection);
                     adapter.SelectCommand.Parameters.AddWithValue("@email", email);
                     DataSet ds = new DataSet("Records");
@@ -307,7 +271,7 @@ namespace LibraryBL.Providers.Default
                                 ReturnTime = dataRow.Field<DateTime?>("ReturnTime"),
                             }).OrderBy(r => r.GetoutTime);
                 }
-                catch (Exception)
+                catch
                 {
                     throw;
                     //TODO: add logging of exception
@@ -332,7 +296,7 @@ namespace LibraryBL.Providers.Default
                                 Name = dataRow.Field<string>("Name").Trim()
                             });
                 }
-                catch (Exception)
+                catch
                 {
                     throw;
                     //TODO: add logging of exception
@@ -340,53 +304,48 @@ namespace LibraryBL.Providers.Default
             }
         }
 
-        public bool RemoveBookCard(Guid id)
+        public bool RemoveBookCard(Guid bookIdToDelete)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 try
                 {
-                    SqlDataAdapter adapter = new SqlDataAdapter(
-                            "Select * from BookCards where Id = @id", 
-                            connection);
-                    adapter.SelectCommand.Parameters.AddWithValue("@id", id);
-                    DataSet ds = new DataSet("BookCards");
-                    adapter.Fill(ds, "BookCards");
-                    ds.Tables["BookCards"].Rows[0].Delete();
-                    SqlCommandBuilder objCommandBuilder = 
-                            new SqlCommandBuilder(adapter);
-                    adapter.Update(ds, "BookCards");
-                    RemoveRecordsByBookCardId(id);
-                    RemoveBookToAuthorByBookCardId(id);
+                    RemoveRecordsByBookCardId(bookIdToDelete);
+                    RemoveBookToAuthorByBookCardId(bookIdToDelete);
+                    connection.Open();
+                    SqlCommand command = new SqlCommand();
+                    command.CommandText = 
+                            "Delete from BookCards Where Id = @bookIdToDelete";
+                    command.Parameters.AddWithValue(
+                            "@bookIdToDelete", bookIdToDelete);
+                    command.Connection = connection;
+                    int number = command.ExecuteNonQuery();
                     return true;
                 }
-                catch (Exception)
+                catch
                 {
                     throw;
                     //TODO: add logging of exception
                 }
             }
         }
-        public bool RemoveRecordsByBookCardId(Guid id)
+        public bool RemoveRecordsByBookCardId(Guid bookIdToDelete)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 try
                 {
-                    SqlDataAdapter adapter2 = new SqlDataAdapter(
-                            "Select * from Records where BookCardId = @id",
-                            connection);
-                    adapter2.SelectCommand.Parameters.AddWithValue("@id", id);
-                    DataSet ds2 = new DataSet("Records");
-                    adapter2.Fill(ds2, "Records");
-                    ds2.Tables["Records"].AsEnumerable()
-                            .ToList().ForEach(row => row.Delete());
-                    SqlCommandBuilder objCommandBuilder2 =
-                            new SqlCommandBuilder(adapter2);
-                    adapter2.Update(ds2, "Records");
+                    connection.Open();
+                    SqlCommand command = new SqlCommand();
+                    command.CommandText = 
+                            "Delete from Records Where BookCardId = @bookIdToDelete";
+                    command.Parameters.AddWithValue(
+                            "@bookIdToDelete", bookIdToDelete);
+                    command.Connection = connection;
+                    int number = command.ExecuteNonQuery();
                     return true;
                 }
-                catch (Exception)
+                catch
                 {
                     throw;
                     //TODO: add logging of exception
@@ -394,26 +353,22 @@ namespace LibraryBL.Providers.Default
             }
         }
 
-        public bool RemoveBookToAuthorByBookCardId(Guid id)
+        public bool RemoveBookToAuthorByBookCardId(Guid bookIdToDelete)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 try
                 {
-                    SqlDataAdapter adapter3 = new SqlDataAdapter(
-                            "Select * from BookAuthor where BookCardId = @id",
-                            connection);
-                    adapter3.SelectCommand.Parameters.AddWithValue("@id", id);
-                    DataSet ds3 = new DataSet("BookAuthor");
-                    adapter3.Fill(ds3, "BookAuthor");
-                    ds3.Tables["BookAuthor"].AsEnumerable()
-                            .ToList().ForEach(row => row.Delete());
-                    SqlCommandBuilder objCommandBuilder3 =
-                            new SqlCommandBuilder(adapter3);
-                    adapter3.Update(ds3, "BookAuthor");
+                    connection.Open();
+                    SqlCommand command = new SqlCommand();
+                    command.CommandText =
+                            "Delete from BookAuthor Where BookCardId = @bookIdToDelete";
+                    command.Parameters.AddWithValue("@bookIdToDelete", bookIdToDelete);
+                    command.Connection = connection;
+                    int number = command.ExecuteNonQuery();
                     return true;
                 }
-                catch (Exception)
+                catch
                 {
                     throw;
                     //TODO: add logging of exception
@@ -427,20 +382,26 @@ namespace LibraryBL.Providers.Default
             {
                 try
                 {
-                    SqlDataAdapter adapter = new SqlDataAdapter(
-                            "Select * from Users Where RTRIM(Email) = @emailToDelete",
-                            connection);
-                    adapter.SelectCommand.Parameters.AddWithValue(
+                    //Remove User Records
+                    connection.Open();
+                    SqlCommand recordCommand = new SqlCommand();
+                    recordCommand.CommandText = 
+                            "Delete from Records Where UserEmail = @emailToDelete";
+                    recordCommand.Parameters.AddWithValue(
                             "@emailToDelete", emailToDelete);
-                    DataSet ds = new DataSet("Users");
-                    adapter.Fill(ds, "Users");
-                    ds.Tables["Users"].Rows[0].Delete();
-                    SqlCommandBuilder objCommandBuilder = 
-                            new SqlCommandBuilder(adapter);
-                    adapter.Update(ds, "Users");
+                    recordCommand.Connection = connection;
+                    int number1 = recordCommand.ExecuteNonQuery();
+                    //Remove User
+                    SqlCommand userCommand = new SqlCommand();
+                    userCommand.CommandText = 
+                            "Delete from Users Where Email = @emailToDelete";
+                    userCommand.Parameters.AddWithValue(
+                            "@emailToDelete", emailToDelete);
+                    userCommand.Connection = connection;
+                    int number2 = userCommand.ExecuteNonQuery();
                     return true;
                 }
-                catch (Exception)
+                catch
                 {
                     throw;
                     //TODO: add logging of exception
@@ -454,26 +415,26 @@ namespace LibraryBL.Providers.Default
             {
                 try
                 {
-                    SqlDataAdapter adapter = new SqlDataAdapter(
-                            "Select * from Users where RTRIM(Email) = @oldEmail",
-                            connection);
-                    adapter.SelectCommand.Parameters.AddWithValue("@oldEmail", oldEmail);
-                    DataSet ds = new DataSet("Users");
-                    adapter.Fill(ds, "Users");
-                    ds.Tables["Users"].Rows[0]["Email"] = newEmail;
-                    SqlCommandBuilder objCommandBuilder = 
-                            new SqlCommandBuilder(adapter);
-                    adapter.Update(ds, "Users");
+                    connection.Open();
+                    SqlCommand command = new SqlCommand();
+                    command.CommandText =
+                            @"UPDATE Users
+                            SET Email = @newEmail
+                            WHERE Email = @oldEmail";
+                    command.Parameters.AddWithValue("@oldEmail", oldEmail);
+                    command.Parameters.AddWithValue("@newEmail", newEmail);
+                    command.Connection = connection;
+                    int number = command.ExecuteNonQuery();
                     return true;
                 }
-                catch (Exception)
+                catch
                 {
                     throw;
                     //TODO: add logging of exception
                 }
             }
         }
-        
+
         public Author GetAuthorById(Guid id)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -492,7 +453,7 @@ namespace LibraryBL.Providers.Default
                         Name = authorRow["Name"].ToString().Trim()
                     };
                 }
-                catch (Exception)
+                catch
                 {
                     throw;
                     //TODO: add logging of exception
@@ -500,40 +461,32 @@ namespace LibraryBL.Providers.Default
             }
         }
 
-        public bool RemoveAuthor(Guid idToDelete)
+        public bool RemoveAuthor(Guid authorIdToDelete)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 try
                 {
-                    SqlDataAdapter adapter = new SqlDataAdapter(
-                            "Select * from Authors where Id = @idToDelete",
-                            connection);
-                    adapter.SelectCommand.Parameters.AddWithValue(
-                            "@idToDelete", idToDelete);
-                    DataSet ds = new DataSet("Authors");
-                    adapter.Fill(ds, "Authors");
-                    ds.Tables["Authors"].Rows[0].Delete();
-                    SqlCommandBuilder objCommandBuilder = 
-                            new SqlCommandBuilder(adapter);
-                    adapter.Update(ds, "Authors");
-
-                    //Remove BookToAuthor
-                    SqlDataAdapter adapter3 = new SqlDataAdapter(
-                            "Select * from BookAuthor where AuthorId = @idToDelete",
-                            connection);
-                    adapter3.SelectCommand.Parameters.AddWithValue(
-                        "@idToDelete", idToDelete);
-                    DataSet ds3 = new DataSet("BookAuthor");
-                    adapter3.Fill(ds3, "BookAuthor");
-                    ds3.Tables["BookAuthor"].AsEnumerable()
-                            .ToList().ForEach(row => row.Delete());  
-                    SqlCommandBuilder objCommandBuilder3 = 
-                            new SqlCommandBuilder(adapter3);
-                    adapter3.Update(ds3, "BookAuthor");
+                    //Remove Rows from table BookAuthor
+                    connection.Open();
+                    SqlCommand command = new SqlCommand();
+                    command.CommandText = 
+                            "Delete from BookAuthor Where AuthorId = @authorIdToDelete";
+                    command.Parameters.AddWithValue(
+                            "@authorIdToDelete", authorIdToDelete);
+                    command.Connection = connection;
+                    int number = command.ExecuteNonQuery();
+                    //Remove Author
+                    SqlCommand authorCommand = new SqlCommand();
+                    authorCommand.CommandText = 
+                            "Delete from Authors Where Id = @authorIdToDelete";
+                    authorCommand.Parameters.AddWithValue(
+                            "@authorIdToDelete", authorIdToDelete);
+                    authorCommand.Connection = connection;
+                    int number2 = authorCommand.ExecuteNonQuery();
                     return true;
                 }
-                catch (Exception)
+                catch
                 {
                     throw;
                     //TODO: add logging of exception
@@ -555,12 +508,12 @@ namespace LibraryBL.Providers.Default
                     DataSet ds = new DataSet("Authors");
                     adapter.Fill(ds, "Authors");
                     ds.Tables["Authors"].Rows[0]["Name"] = author.Name;
-                    SqlCommandBuilder objCommandBuilder = 
+                    SqlCommandBuilder objCommandBuilder =
                             new SqlCommandBuilder(adapter);
                     adapter.Update(ds, "Authors");
                     return true;
                 }
-                catch (Exception)
+                catch
                 {
                     throw;
                     //TODO: add logging of exception
@@ -586,7 +539,7 @@ namespace LibraryBL.Providers.Default
                         Title = bookCardRow["Title"].ToString().Trim()
                     };
                 }
-                catch (Exception)
+                catch
                 {
                     throw;
                     //TODO: add logging of exception
@@ -601,19 +554,19 @@ namespace LibraryBL.Providers.Default
                 try
                 {
                     SqlDataAdapter adapter = new SqlDataAdapter(
-                            "Select * from BookCards where Id = @idToEdit", 
+                            "Select * from BookCards where Id = @idToEdit",
                             connection);
                     adapter.SelectCommand.Parameters.AddWithValue(
                             "@idToEdit", idToEdit);
                     DataSet ds = new DataSet("BookCards");
                     adapter.Fill(ds, "BookCards");
                     ds.Tables["BookCards"].Rows[0]["Title"] = bookCard.Title;
-                    SqlCommandBuilder objCommandBuilder = 
+                    SqlCommandBuilder objCommandBuilder =
                             new SqlCommandBuilder(adapter);
                     adapter.Update(ds, "BookCards");
                     return true;
                 }
-                catch (Exception)
+                catch
                 {
                     throw;
                     //TODO: add logging of exception
@@ -627,17 +580,16 @@ namespace LibraryBL.Providers.Default
             {
                 try
                 {
-                    SqlDataAdapter adapter = new SqlDataAdapter(
-                            "Select * from Records where BookCardId = @bookId", 
-                            connection);
-                    adapter.SelectCommand.Parameters.AddWithValue(
-                            "@bookId", bookId);
-                    DataSet ds = new DataSet("Records");
-                    adapter.Fill(ds, "Records");
-                    return ds.Tables["Records"].AsEnumerable()
-                            .All(r => r.Field<DateTime?>("ReturnTime") != null);
+                    connection.Open();
+                    SqlCommand command = new SqlCommand();
+                    command.CommandText =
+                            @"Select Count(BookCardId) from Records
+                            where BookCardId = @bookId and ReturnTime is null";
+                    command.Parameters.AddWithValue("@bookId", bookId);
+                    command.Connection = connection;
+                    return (int)command.ExecuteScalar() <= 0;
                 }
-                catch (Exception)
+                catch
                 {
                     throw;
                     //TODO: add logging of exception
@@ -649,7 +601,7 @@ namespace LibraryBL.Providers.Default
         {
             throw new NotImplementedException();
         }
-        
+
         public IEnumerable<BookCard> GetBookCardsByAuthorId(Guid authorId)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -662,7 +614,7 @@ namespace LibraryBL.Providers.Default
                             on BookCards.Id = BookAuthor.BookCardId
                             inner join Authors
                             on Authors.Id = BookAuthor.AuthorId
-                            where Authors.Id = @authorId", 
+                            where Authors.Id = @authorId",
                             connection);
                     adapter1.SelectCommand.Parameters.AddWithValue(
                             "@authorId", authorId);
@@ -675,14 +627,14 @@ namespace LibraryBL.Providers.Default
                                 Title = dataRow.Field<string>("Title")
                             }).OrderBy(a => a.Title);
                 }
-                catch (Exception)
+                catch
                 {
                     throw;
                     //TODO: add logging of exception
                 }
             }
         }
-        
+
         public IEnumerable<Author> GetAuthorsByBookId(Guid bookId)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -700,7 +652,7 @@ namespace LibraryBL.Providers.Default
                     adapter1.SelectCommand.Parameters.AddWithValue(
                             "@bookId", bookId);
                     DataSet ds1 = new DataSet("Authors");
-                    adapter1.Fill(ds1, "Authors");                  
+                    adapter1.Fill(ds1, "Authors");
                     var authors = ds1.Tables["Authors"].AsEnumerable()
                             .Select(dataRow => new Author
                             {
@@ -709,7 +661,7 @@ namespace LibraryBL.Providers.Default
                             }).OrderBy(a => a.Name);
                     return authors;
                 }
-                catch (Exception)
+                catch
                 {
                     throw;
                     //TODO: add logging of exception
@@ -738,14 +690,14 @@ namespace LibraryBL.Providers.Default
                                 Title = dataRow.Field<string>("Title")
                             }).OrderBy(b => b.Title);
                 }
-                catch (Exception)
+                catch
                 {
                     throw;
                     //TODO: add logging of exception
                 }
             }
         }
-        
+
         public IEnumerable<BookCard> GetAvailableBookCards()
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -769,7 +721,7 @@ namespace LibraryBL.Providers.Default
                                 Title = dataRow.Field<string>("Title")
                             }).OrderBy(b => b.Title);
                 }
-                catch (Exception)
+                catch
                 {
                     throw;
                     //TODO: add logging of exception

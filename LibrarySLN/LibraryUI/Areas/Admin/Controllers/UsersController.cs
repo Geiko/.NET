@@ -59,12 +59,17 @@ namespace LibraryUI.Areas.Admin.Controllers
         {
             try
             {
+                if (string.IsNullOrEmpty(userViewModel.Email))
+                {
+                    return View(userViewModel);
+                }
                 bool result = _librarian.AddUser(userViewModel.Email.Trim());
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View(userViewModel);
+                throw;
+                //TODO: add logging of exception
             }
         }
         
@@ -90,8 +95,8 @@ namespace LibraryUI.Areas.Admin.Controllers
             }
             catch (Exception ex)
             {
-                ViewBag.Error = ex.Message;
-                return View(userViewModel);
+                throw;
+                //TODO: add logging of exception
             }
         }
         
@@ -116,7 +121,8 @@ namespace LibraryUI.Areas.Admin.Controllers
             }
             catch
             {
-                return View(userViewModel);
+                throw;
+                //TODO: add logging of exception
             }
         }
     }

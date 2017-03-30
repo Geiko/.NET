@@ -3,7 +3,6 @@ using LibraryBL.Providers;
 using LibraryBL.Providers.Default;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using NUnit.Framework.Internal;

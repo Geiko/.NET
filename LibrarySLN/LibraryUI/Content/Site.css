@@ -57,3 +57,14 @@ textarea {
         padding: 0 0 0 50px!important;
     border-left: 1px solid grey;
 }
+
+.disactLink{
+    color: #F0F0F0;
+}
+.disactLink:hover{
+    color: lightgray;
+}
+
+.actLink{
+    color: blue;
+}

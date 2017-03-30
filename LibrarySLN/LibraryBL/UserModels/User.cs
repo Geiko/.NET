@@ -13,7 +13,5 @@
         }
         
         public string Email { get; set; }
-        
-        // TODO: Id - Email hashcode?
     }
 }

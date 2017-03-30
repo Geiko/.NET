@@ -62,6 +62,11 @@ namespace LibraryUI.Areas.Admin.Controllers
         {
             try
             {
+                if (string.IsNullOrEmpty(authorViewModel.Name))
+                {
+                    return View(authorViewModel);
+                }
+
                 authorViewModel.registerResult = _librarian.AddAuthor(new Author(authorViewModel.Name.Trim()) ); 
                 if (!(bool)authorViewModel.registerResult)
                 {
@@ -72,8 +77,8 @@ namespace LibraryUI.Areas.Admin.Controllers
             }
             catch(Exception ex)
             {
-                ViewBag.Error = ex.Message;
-                return View(authorViewModel);
+                throw;
+                //TODO: add logging of exception
             }
         }
         
@@ -111,8 +116,8 @@ namespace LibraryUI.Areas.Admin.Controllers
             }
             catch (Exception ex)
             {
-                ViewBag.Error = ex.Message;
-                return View(authorViewModel);
+                throw;
+                //TODO: add logging of exception
             }
         }
         
@@ -143,8 +148,8 @@ namespace LibraryUI.Areas.Admin.Controllers
             }
             catch(Exception ex)
             {
-                ViewBag.Exception = ex.Message;
-                return View(authorViewModel);
+                throw;
+                //TODO: add logging of exception
             }
         }
     }

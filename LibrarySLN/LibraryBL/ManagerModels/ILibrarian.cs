@@ -13,9 +13,9 @@ namespace LibraryBL.ManagerModels
 
         bool AddUser(string email);                                              
         bool UpdateUser(string email, object newEmail);                          
-        bool RemoveUser(string email);                                           
+        bool RemoveUser(string email);
 
-        bool GetoutBook(Guid bookId, int userId);                              
+        bool GetoutBook(Guid bookId, string tookBookUserEmail);
         bool ReturnBook(Guid bookId);                   
 
         IEnumerable<BookCard> GetCards(string title, params Author[] author);     
@@ -25,7 +25,7 @@ namespace LibraryBL.ManagerModels
 
         IEnumerable<User> GetAllUsers();                                   
         
-        IEnumerable<Record> GetBookRecords(Guid bookId);                      
-        IEnumerable<Record> GetUserRecords(int userId);                          
+        IEnumerable<Record> GetBookRecords(Guid bookId);
+        IEnumerable<Record> GetUserRecords(string userEmail);                    
     }
 }

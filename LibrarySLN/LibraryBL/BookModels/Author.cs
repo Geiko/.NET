@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Cryptography;
 
 namespace LibraryBL.BookModels
 {
@@ -6,15 +7,19 @@ namespace LibraryBL.BookModels
     {
         public Author()
         {
-            this.Id = Guid.NewGuid();
+
         }
 
-        public Author(string authorName) : this()
+        public Author(string name)
         {
-            this.Name = authorName;
+            MD5 md5 = MD5.Create();
+            byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(name);
+            byte[] hash = md5.ComputeHash(inputBytes);
+            Guid hashGuid = new Guid(hash);
+            this.Id = hashGuid;
+            this.Name = name;
         }
-
-        // TODO: fix id
+        
         public Guid Id { get; set; } 
         public string Name { get; set; }
     }

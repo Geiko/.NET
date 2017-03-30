@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace LibraryBL.ManagerModels.Default
 {
-    public class Librarian //: ILibrarian
+    public class Librarian: ILibrarian
     {
         IStorageProvider provider;
 
@@ -124,7 +124,7 @@ namespace LibraryBL.ManagerModels.Default
         
         public bool GetoutBook(Guid bookId, string tookBookUserEmail)
         {
-            if (this.provider.isBookAvailable(bookId) == false)
+            if (!this.provider.isBookAvailable(bookId))
             {
                 return false;
             }
@@ -148,13 +148,12 @@ namespace LibraryBL.ManagerModels.Default
 
         public bool ReturnBook(Guid bookId)
         {
-            if(this.provider.isBookAvailable(bookId) == true)
+            if(this.provider.isBookAvailable(bookId))
             {
                 return false;
             }
 
             DateTime returnTime = DateTime.Now;
-
             return this.provider.ReturnBook(bookId, returnTime);
         }
 

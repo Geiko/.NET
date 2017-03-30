@@ -82,19 +82,31 @@ namespace LibraryUI.Areas.Admin.Controllers
         {
             try
             {
+                if (string.IsNullOrEmpty(bookCardViewModel.Title))
+                {
+                    IEnumerable<Author> allAuthors = _librarian.GetAllAuthors();
+                    BookCardViewModel bookViewModel = new BookCardViewModel
+                    {
+                        Authors = new MultiSelectList(allAuthors, "Id", "Name")
+                    };
+
+                    return View(bookViewModel);
+                }
+
                 if (Id == null)
                 {
                     Id = new Guid[] { };
                 }
 
-                Author[] authors = authors = Id.Select(a => new Author { Id = a }).ToArray();
+                Author[] authors = Id.Select(a => new Author { Id = a }).ToArray();
                 BookCard bookCard = new BookCard(bookCardViewModel.Title, authors);
                 _librarian.AddBook(bookCard);
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View(bookCardViewModel);
+                throw;
+                //TODO: add logging of exception
             }
         }
         
@@ -132,8 +144,8 @@ namespace LibraryUI.Areas.Admin.Controllers
             }
             catch (Exception ex)
             {
-                ViewBag.Error = ex.Message;
-                return View(bookCardViewModel);
+                throw;
+                //TODO: add logging of exception
             }
         }
         
@@ -166,7 +178,6 @@ namespace LibraryUI.Areas.Admin.Controllers
             }
             catch (Exception ex)
             {
-                ViewBag.Exception = ex.Message;
                 throw;
                 //TODO: add logging of exception
             }
@@ -201,8 +212,8 @@ namespace LibraryUI.Areas.Admin.Controllers
             }
             catch (Exception ex)
             {
-                ViewBag.Exception = ex.Message;
-                return View(bookCardViewModel);
+                throw;
+                //TODO: add logging of exception
             }
         }
     }

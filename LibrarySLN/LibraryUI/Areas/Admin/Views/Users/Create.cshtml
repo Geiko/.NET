@@ -2,12 +2,6 @@
 
 @{
     ViewBag.Title = "AddUser";
-
-    string message = string.Empty;
-    if (Model != null)
-    {
-        message = "Please verify your Email. There is the same one in the Data Base!";
-    }
 }
 
 <h2>Add new User</h2>
@@ -31,9 +25,6 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-1">
                 <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-            <div class="col-md-offset-2 col-md-10 resultUserRegister">
-                <span>@message</span>
             </div>
         </div>
     </div>

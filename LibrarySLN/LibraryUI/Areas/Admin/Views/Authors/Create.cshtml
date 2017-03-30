@@ -2,14 +2,6 @@
 
 @{
     ViewBag.Title = "Create Author";
-    string resultMessage = string.Empty;
-    if (Model != null)
-    {
-        if (!(bool)Model.registerResult)
-        {
-            resultMessage = ViewBag.Error;
-        }
-    }
 }
 
 <h2>Create Author</h2>
@@ -32,9 +24,6 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-            <div class="col-md-offset-2 col-md-10 resultUserRegister">
-                <span>@resultMessage</span>
             </div>
         </div>
     </div>
